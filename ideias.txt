@@ -1,0 +1,6 @@
+Paginação Inicial php
+Js posterior
+            1.Retira a Paginação
+            2.Implementa infitine scrolling
+            
+            
