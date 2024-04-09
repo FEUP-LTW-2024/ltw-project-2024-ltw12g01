@@ -1,3 +1,5 @@
+<?php require_once('templates/common.tpl.php') ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -21,29 +23,7 @@
     </header>
 
     <nav>
-        <!-- Nav Bar-->
-        <ul class="nav-bar">
-            <li>
-                Women
-            </li>
-
-            <li>
-                Men
-            </li>
-
-            <li>
-                Kids
-            </li>
-            
-            <li>
-                Sneakers
-            </li>
-            
-            <li>
-                Shoes
-            </li>
-
-        </ul>
+        <?php drawNavBar(); ?>
     </nav>
     <main>
         <h1>Nike Air Zoom Pegasus</h1>
