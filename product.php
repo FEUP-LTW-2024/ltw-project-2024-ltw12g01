@@ -36,7 +36,7 @@
               <p><strong>Preço:</strong> $129.99</p> 
               <p><strong>Tamanhos disponíveis:</strong> 36-45</p>
               <p><strong>Cores disponíveis:</strong> Preto, branco, azul marinho, vermelho</p>
-              <p> <strong>Vendido por User:<a>TestUser123</a></strong></p>
+              <p><strong>Vendido por User:<a>TestUser123</a></strong></p>
           </div>
           </article> 
         </section>
