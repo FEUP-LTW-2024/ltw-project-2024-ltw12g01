@@ -17,7 +17,7 @@
               <article>
                 <a href=".php?id=10">User Test</a>
                 <img src="https://picsum.photos/200?1">
-                <a href=".php?id=1">Sneakers 1</a>
+                <a href="product.php">Sneakers 1</a>
                 <h3>Hugo Boss</h3>
                 <h4>Price: 44.99$</h4>
               </article>

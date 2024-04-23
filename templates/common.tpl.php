@@ -30,6 +30,6 @@
         </form>
             <a>Login</a>
             <a>Register</a>
-            <a>Sell Now</a>
+            <a href="Sell.php">Sell Now</a>
     </header>    
 <?php } ?>
