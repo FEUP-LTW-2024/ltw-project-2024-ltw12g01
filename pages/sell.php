@@ -1,4 +1,4 @@
-<?php require_once('templates/common.tpl.php') ?>
+<?php require_once('../templates/common.tpl.php') ?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -7,13 +7,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Main Page</title>
-    <link rel="stylesheet" href="style/style.css">
-    <script src="javascript/UploadImage.js"></script>
+    <link rel="stylesheet" href="../style/style.css">
+    <script src="../javascript/UploadImage.js"></script>
 </head>
 
 <body>
-    <?php drawHeader(); ?>
-    <?php drawNavBar(); ?>
+    <?php drawHeader(false); ?>
     <main class="sell">
         <h1>Sell an article</h1>
 

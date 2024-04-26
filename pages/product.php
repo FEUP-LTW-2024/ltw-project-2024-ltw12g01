@@ -1,4 +1,4 @@
-<?php require_once('templates/common.tpl.php') ?>
+<?php require_once('../templates/common.tpl.php') ?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -6,25 +6,23 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Main Page</title>
-    <link rel="stylesheet" href="style/productStyle.css">
+    <link rel="stylesheet" href="../style/productStyle.css">
 </head>
+<?php drawHeader(false); ?>
 <body>
     <header>
          <!-- First bar, logo search bar etc-->
         <form class="search-form">
             <input type="text" placeholder="Search for items" cols="30" rows="10"></input>
             <button>
-                <img src="imgs/magnify.svg">
+                <img src="../imgs/magnify.svg">
             </button>
         </form>
             <a>Login</a>
             <a>Register</a>
             <a>Sell Now</a>
     </header>
-
-    <nav>
-        <?php drawNavBar(); ?>
-    </nav>
+    <?php drawNavBar(); ?>
     <main>
         <h1>Nike Air Zoom Pegasus</h1>
         <h2>Nike</h2>
@@ -41,6 +39,6 @@
           </article> 
         </section>
     </main>
-
+    <?php drawFooter(); ?>
 </body>
 </html>

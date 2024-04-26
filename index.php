@@ -9,15 +9,14 @@
     <link rel="stylesheet" href="style/style.css">
 </head>
 <body>
-    <?php drawHeader();?>
-    <?php drawNavBar();?>
+    <?php drawHeader(true); ?>
     <main>
         <h2>Products</h2>
         <section id = "products">
               <article>
-                <a href=".php?id=10">User Test</a>
+                <a href="/pages/product.php?id=10">User Test</a>
                 <img src="https://picsum.photos/200?1">
-                <a href="product.php">Sneakers 1</a>
+                <a href="pages/product.php">Sneakers 1</a>
                 <h3>Hugo Boss</h3>
                 <h4>Price: 44.99$</h4>
               </article>
@@ -72,6 +71,6 @@
               </article>
         </section>
     </main>
-
+    <?php drawFooter();?>
 </body>
 </html>
