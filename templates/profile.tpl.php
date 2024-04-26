@@ -43,24 +43,34 @@ function drawProfile(User $user): void {
 ?>
 
 <?php function drawRegisterForm() { ?>
-  <form action="../actions/action_register.php" method="post" class="register">
-    <label for="username">Username</label>
-    <input type="text" name="username" id="username">
-    <label for="email">Email address</label>
-    <input type="email" name="email" id="email">
-    <label for="password">Enter a password</label>
-    <input type="password" name="password" id="password">
-    <label for="password2">Confirm the password</label>
-    <input type="password" name="password2" id="password2">
-    <button type="submit">Register</button>
+  <link rel="stylesheet" href="../style/login.css"> <!-- Continues to use the login.css for styling -->
+  <form action="../actions/action_register.php" method="post" class="login-form"> <!-- Use the same class as the login form -->
+    <div class="form-group">
+      <label for="username">Username</label>
+      <input type="text" name="username" id="username" required>
+    </div>
+    <div class="form-group">
+      <label for="email">Email address</label>
+      <input type="email" name="email" id="email" required>
+    </div>
+    <div class="form-group">
+      <label for="password">Enter a password</label>
+      <input type="password" name="password" id="password" required>
+    </div>
+    <div class="form-group">
+      <label for="password2">Confirm the password</label>
+      <input type="password" name="password2" id="password2" required>
+    </div>
+    <button type="submit" class="btn btn-primary">Register</button>
   </form>
-  <?php global $session; ?>
   <section id="messages">
-    <?php foreach ($session->getMessages() as $message) { 
+    <?php global $session; ?>
+    <?php foreach ($session->getMessages() as $message) {
       if (str_starts_with($message['type'], 'Register')) { ?>
-    <article class="<?=$message['type']?>">
-      <?=$message['text']?>
-    </article>
+        <article class="<?=$message['type']?>">
+          <?=$message['text']?>
+        </article>
     <?php }} ?>
   </section>
 <?php } ?>
+

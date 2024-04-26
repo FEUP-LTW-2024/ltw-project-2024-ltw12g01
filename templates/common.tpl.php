@@ -1,12 +1,10 @@
 <?php 
-  declare(strict_types = 1);
-  $name = "VinhoTinted";
-  
-  require_once(__DIR__ . '/../session/session.php');
-  $session = new Session();
-?>
+declare(strict_types = 1);
+$name = "VinhoTinted";
 
-<?php 
+require_once(__DIR__ . '/../session/session.php');
+$session = new Session();
+
 function drawHeader($isIndexPage = false) {
   global $session; ?>
   <!DOCTYPE html>
@@ -17,18 +15,12 @@ function drawHeader($isIndexPage = false) {
     <title><?php echo $name; ?></title>
     <link rel="stylesheet" href="style/style.css">
   </head>
-  <body>
-  <header>
-    <div class="logo">
-      <img src="imgs/logo.png">
-    </div>
-  </header>
+
   <?php if ($isIndexPage) { ?>
       <?php drawSearchBar(); ?>
       <?php drawNavBar(); ?>
   <?php } ?>
 <?php } ?>
-
 
 
 <?php function drawNavBar() { ?>
@@ -73,32 +65,42 @@ function drawHeader($isIndexPage = false) {
     </footer>
 <?php } ?>
 
-<?php function drawLoginForm() { ?>
-  <section>
-    <form action="../actions/action_login.php" method="post" class="login_form">
+<?php
+function drawLoginForm() {
+?>
+  <link rel="stylesheet" href="../style/login.css"> <!-- Include login.css only for the login form -->
+  <form action="../actions/action_login.php" method="post" class="login-form">
+    <div class="form-group">
       <label for="email">Email address</label>
-      <input type="email" name="email" id="email">
+      <input type="email" name="email" id="email" required>
+    </div>
+    <div class="form-group">
       <label for="password">Password</label>
-      <input type="password" name="password" id="password">
-      <button type="submit">Login</button>
-    </form>
+      <input type="password" name="password" id="password" required>
+    </div>
+    <button type="submit" class="btn btn-primary">Login</button>
+  </form>
 
-    <p> Don't have an account yet? </p>
-    <a href="../pages/register.php">Register</a>
+  <p>Don't have an account yet? <a href="../pages/register.php">Register</a></p>
 
-    <section id="messages">
-        <?php foreach ($session->getMessages() as $message) {
-          if (str_starts_with($message['type'], "Login")) {?>
+  <section id="messages">
+    <?php 
+      global $session;
+      foreach ($session->getMessages() as $message) {
+        if (str_starts_with($message['type'], "Login")) {
+    ?>
           <article class="<?=$message['type']?>">
             <?=$message['text']?>
           </article>
-        <?php }} ?>
-    </section>
+    <?php 
+        }
+      }
+    ?>
   </section>
+<?php
+}
+?>
 
-  <a href = "../index.php">Login</a>
-
-<?php } ?>
 
 <?php function drawLogoutForm() { ?>
   <form action="../actions/action_logout.php" method="post" class="logout">
@@ -106,4 +108,3 @@ function drawHeader($isIndexPage = false) {
     <button type="submit">Logout</button>
   </form>
 <?php } ?>
-
