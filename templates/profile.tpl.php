@@ -43,7 +43,7 @@ function drawProfile(User $user): void {
 ?>
 
 <?php function drawRegisterForm() { ?>
-  <link rel="stylesheet" href="../style/login.css"> <!-- Continues to use the login.css for styling -->
+  <link rel="stylesheet" href="../style/register.css"> <!-- Continues to use the login.css for styling -->
   <form action="../actions/action_register.php" method="post" class="login-form"> <!-- Use the same class as the login form -->
     <div class="form-group">
       <label for="username">Username</label>

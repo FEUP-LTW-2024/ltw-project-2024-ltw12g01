@@ -47,17 +47,25 @@ function drawHeader($isIndexPage = false) {
 
 <?php function drawSearchBar(){ ?>
     <header>
+        <a href="index.php">
+            <img src="imgs/logo.jpg" alt="Logo" class="logo"> <!-- Applied the new class -->
+        </a>
+        
         <form class="search-form">
             <input type="text" placeholder="Search for items" cols="30" rows="10"></input>
-            <button>
-                <img src="imgs/magnify.svg">
+            <button type="submit">
+                <img src="imgs/magnify.svg" alt="Search">
             </button>
         </form>
+        <nav>
             <a href="../pages/login.php">Login</a>
             <a href="../pages/register.php">Register</a>
             <a href="../pages/sell.php">Sell Now</a>
+        </nav>
     </header>    
 <?php } ?>
+
+
 
 <?php function drawFooter(){ ?>
     <footer>
