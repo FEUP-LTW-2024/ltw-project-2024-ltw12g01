@@ -6,7 +6,7 @@ require_once(__DIR__ . '/../session/session.php');
 $session = new Session();
 
 function drawHeader($isIndexPage = false) {
-  global $session; ?>
+  global $session, $name; ?>
   <!DOCTYPE html>
   <html lang="en">
   <head>
@@ -15,12 +15,12 @@ function drawHeader($isIndexPage = false) {
     <title><?php echo $name; ?></title>
     <link rel="stylesheet" href="style/style.css">
   </head>
-</body>
-  <?php if ($isIndexPage) { ?>
+  <body>
+    <?php if ($isIndexPage) { ?>
       <?php drawSearchBar(); ?>
       <?php drawNavBar(); ?>
+    <?php } ?>
   <?php } ?>
-<?php } ?>
 
 
 <?php function drawNavBar() { ?>
