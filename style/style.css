@@ -146,3 +146,92 @@ footer {
     font-size: 14px; /* Adjusted font size */
     color: #777; /* Adjusted font color */
 }
+
+.sell h1 {
+    font-weight: 500;
+    padding: 10px;
+    padding-left: 0;
+}
+.img-load {
+    background-color: white;
+    height: 400px;
+    padding-top: 50px;
+
+}
+
+
+
+.img-load p {
+    text-align: left;
+    padding: 1rem;
+    font-size: 1rem;
+    font-weight: 400;
+
+}
+
+.border {
+    border: 1.5px dashed #8a2be2;
+    border-radius: 5px;
+    padding-bottom: 50px;
+    margin: 0 150px;
+    height: 300px;
+}
+
+.border .upload-icon {
+    margin: 20px 240px;
+    margin-top: 20px;
+}
+
+.border p:first-of-type {
+    font-weight: 600;
+    text-align: center;
+    padding-top: 0;
+    padding-bottom: 10px;
+}
+
+.border p:last-of-type {
+    font-weight: 400;
+    text-align: center;
+}
+.img-load button {
+    padding: 0.5rem 1rem;
+    background-color: rgb(169, 104, 230);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    background-color: blueviolet;
+    display: block;
+    margin: 0 auto;
+
+}
+
+.img-load button:hover {
+    box-shadow: 0 10px 15px -3px blueviolet, 0 4px 6px -2px blueviolet;
+  }
+
+.img-load button:active {
+    transform: scale(0.95);
+}
+  button:focus,button:active {
+    opacity: .85;
+    box-shadow: none;
+  }
+
+.border svg {
+    padding-top: 50px;
+}
+
+#hiddenInput {
+    display: none;
+}
+
+main > h2{
+    font-style: italic;
+    color: #666;
+}
+
+main .addImg {
+    font-size: larger;
+}
