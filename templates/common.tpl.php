@@ -15,7 +15,7 @@ function drawHeader($isIndexPage = false) {
     <title><?php echo $name; ?></title>
     <link rel="stylesheet" href="style/style.css">
   </head>
-
+</body>
   <?php if ($isIndexPage) { ?>
       <?php drawSearchBar(); ?>
       <?php drawNavBar(); ?>
@@ -63,6 +63,8 @@ function drawHeader($isIndexPage = false) {
     <footer>
         <p>&copy; <?php echo date("Y"); ?> YourWebsiteName &#x2122;. All rights reserved.</p>
     </footer>
+  </body>
+</html>
 <?php } ?>
 
 <?php
