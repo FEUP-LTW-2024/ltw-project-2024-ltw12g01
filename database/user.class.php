@@ -33,7 +33,7 @@ class User{
     }
  
    static public function getUserByPassword(PDO $db, string $username, string $password): ?User {
-        $stmt = $db->prepare('SELECT * FROM users WHERE username = :username');
+        $stmt = $db->prepare('SELECT * FROM User WHERE username = :username');
         $stmt->execute([':username' => $username]);
         $user = $stmt->fetch();
         
@@ -49,7 +49,7 @@ class User{
     }
 
     static public function getUserById(PDO $db, int $id): ?User {
-        $stmt = $db->prepare('SELECT * FROM users WHERE id = :id');
+        $stmt = $db->prepare('SELECT * FROM User WHERE id = :id');
         $stmt->execute([':id' => $id]);
         $user = $stmt->fetch();
         
@@ -61,7 +61,7 @@ class User{
     }
 
     static public function getUserByEmail(PDO $db, string $email): ?User {
-        $stmt = $db->prepare('SELECT * FROM users WHERE email = :email');
+        $stmt = $db->prepare('SELECT * FROM User WHERE email = :email');
         $stmt->execute([':email' => $email]);
         $user = $stmt->fetch();
         
@@ -73,17 +73,17 @@ class User{
     }
 
     static public function getUserType(PDO $db, int $id): string {
-        $stmt = $db->prepare('SELECT type FROM users WHERE id = :id');
+        $stmt = $db->prepare('SELECT type FROM User WHERE id = :id');
         $stmt->execute([':id' => $id]);
     }
 
     static public function getUserItemsListed(PDO $db, int $id): int {
-        $stmt = $db->prepare('SELECT items_listed FROM users WHERE id = :id');
+        $stmt = $db->prepare('SELECT items_listed FROM User WHERE id = :id');
         $stmt->execute([':id' => $id]);
     }
 
     static public function emailExists(PDO $db, string $email): bool {
-        $stmt = $db->prepare('SELECT * FROM users WHERE email = :email');
+        $stmt = $db->prepare('SELECT * FROM User WHERE email = :email');
         $stmt->execute([':email' => $email]);
         $user = $stmt->fetch();
         
@@ -95,7 +95,7 @@ class User{
     }
 
     static public function usernameExists(PDO $db, string $username): bool {
-        $stmt = $db->prepare('SELECT * FROM users WHERE username = :username');
+        $stmt = $db->prepare('SELECT * FROM User WHERE username = :username');
         $stmt->execute([':username' => $username]);
         $user = $stmt->fetch();
         
@@ -109,7 +109,7 @@ class User{
     static public function changePassword(PDO $db, int $id, string $password): void {
         $hashedPassword = password_hash($password, PASSWORD_DEFAULT, ['cost' => 8]);
 
-        $stmt = $db->prepare('UPDATE users SET password = :password WHERE id = :id');
+        $stmt = $db->prepare('UPDATE User SET password = :password WHERE id = :id');
         $stmt->execute([
             ':password' => $hashedPassword,
             ':id' => $id
@@ -117,7 +117,7 @@ class User{
     }
 
     static public function changeEmail(PDO $db, int $id, string $email): void {
-        $stmt = $db->prepare('UPDATE users SET email = :email WHERE id = :id');
+        $stmt = $db->prepare('UPDATE User SET email = :email WHERE id = :id');
         $stmt->execute([
             ':email' => $email,
             ':id' => $id
@@ -125,7 +125,7 @@ class User{
     }
 
     static public function changeUsername(PDO $db, int $id, string $username): void {
-        $stmt = $db->prepare('UPDATE users SET username = :username WHERE id = :id');
+        $stmt = $db->prepare('UPDATE User SET username = :username WHERE id = :id');
         $stmt->execute([
             ':username' => $username,
             ':id' => $id
@@ -133,7 +133,7 @@ class User{
     }
 
     static public function changeType(PDO $db, int $id, string $type): void {
-        $stmt = $db->prepare('UPDATE users SET type = :type WHERE id = :id');
+        $stmt = $db->prepare('UPDATE user SET type = :type WHERE id = :id');
         $stmt->execute([
             ':type' => $type,
             ':id' => $id
@@ -141,7 +141,7 @@ class User{
     }
 
     static public function getAllUsers(PDO $db): array {
-        $stmt = $db->prepare('SELECT * FROM users');
+        $stmt = $db->prepare('SELECT * FROM User');
         $stmt->execute();
     
         $users = array();
@@ -160,7 +160,7 @@ class User{
     }
 
     static public function isUserAdmin(PDO $db, int $id): bool {
-        $stmt = $db->prepare('SELECT type FROM users WHERE id = :id');
+        $stmt = $db->prepare('SELECT type FROM User WHERE id = :id');
         $stmt->execute([':id' => $id]);
         $user = $stmt->fetch();
         
@@ -172,7 +172,7 @@ class User{
     }
 
     static public function isUserSeller(PDO $db, int $id): bool {
-        $stmt = $db->prepare('SELECT type FROM users WHERE id = :id');
+        $stmt = $db->prepare('SELECT type FROM User WHERE id = :id');
         $stmt->execute([':id' => $id]);
         $user = $stmt->fetch();
         
@@ -184,7 +184,7 @@ class User{
     }
 
     static public function isUserBuyer(PDO $db, int $id): bool {
-        $stmt = $db->prepare('SELECT type FROM users WHERE id = :id');
+        $stmt = $db->prepare('SELECT type FROM User WHERE id = :id');
         $stmt->execute([':id' => $id]);
         $user = $stmt->fetch();
         
@@ -196,10 +196,22 @@ class User{
     }
 
     static public function highestItemsListed(PDO $db): User {
-        $stmt = $db->prepare('SELECT * FROM users ORDER BY items_listed DESC LIMIT 1');
+        $stmt = $db->prepare('SELECT * FROM User ORDER BY items_listed DESC LIMIT 1');
         $stmt->execute();
         $user = $stmt->fetch();
         
+        return new User((int)$user['id'], $user['username'], $user['email'], $user['type'], (int)$user['items_listed']);
+    }
+
+    static public function getUserByUsername(PDO $db, string $username): ?User {
+        $stmt = $db->prepare('SELECT * FROM User WHERE username = :username');
+        $stmt->execute([':username' => $username]);
+        $user = $stmt->fetch();
+    
+        if ($user === false) {
+            return null;
+        }
+    
         return new User((int)$user['id'], $user['username'], $user['email'], $user['type'], (int)$user['items_listed']);
     }
 }

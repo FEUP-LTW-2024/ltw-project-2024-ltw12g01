@@ -3,9 +3,11 @@ declare(strict_types = 1);
 $name = "VinhoTinted";
 
 require_once(__DIR__ . '/../session/session.php');
-$session = new Session();
 
-function drawHeader($isIndexPage = false) {
+$session = new Session();
+?>
+
+<?php function drawHeader($isIndexPage = false) {
   global $session, $name; ?>
   <!DOCTYPE html>
   <html lang="en">
@@ -17,10 +19,11 @@ function drawHeader($isIndexPage = false) {
   </head>
   <body>
     <?php if ($isIndexPage) { ?>
-      <?php drawSearchBar(); ?>
+      <?php drawSearchBar($session); ?>
       <?php drawNavBar(); ?>
     <?php } ?>
-  <?php } ?>
+  <?php } 
+  ?>
 
 
 <?php function drawNavBar() { ?>
@@ -45,26 +48,33 @@ function drawHeader($isIndexPage = false) {
     </nav>
 <?php } ?>
 
-<?php function drawSearchBar(){ ?>
+
+<?php 
+function drawSearchBar(Session $session) {
+    ?>
     <header>
         <a href="index.php">
-            <img src="imgs/logo.jpg" alt="Logo" class="logo"> <!-- Applied the new class -->
+            <img src="imgs/logo.jpg" alt="Logo" class="logo">
         </a>
         
         <form class="search-form">
-            <input type="text" placeholder="Search for items" cols="30" rows="10"></input>
+            <input type="text" placeholder="Search for items"></input>
             <button type="submit">
                 <img src="imgs/magnify.svg" alt="Search">
             </button>
         </form>
-        <nav>
-            <a href="../pages/login.php">Login</a>
-            <a href="../pages/register.php">Register</a>
-            <a href="../pages/sell.php">Sell Now</a>
+        <nav class="header-nav">
+            <?php if($session->isLoggedIn()): ?>
+                <a href="../pages/logout.php">Logout</a>
+                <a href="../pages/sell.php">Sell Now</a>
+            <?php else: ?>
+                <a href="../pages/login.php">Login</a>
+                <a href="../pages/register.php">Register</a>
+            <?php endif; ?>
         </nav>
     </header>    
-<?php } ?>
-
+    <?php
+}?>
 
 
 <?php function drawFooter(){ ?>
@@ -76,45 +86,47 @@ function drawHeader($isIndexPage = false) {
 <?php } ?>
 
 <?php
-function drawLoginForm() {
-?>
-  <link rel="stylesheet" href="../style/login.css"> <!-- Include login.css only for the login form -->
+function drawLoginForm(Session $session) {
+  ?>
+  <link rel="stylesheet" href="../style/login.css">
   <form action="../actions/action_login.php" method="post" class="login-form">
-    <div class="form-group">
-      <label for="email">Email address</label>
-      <input type="email" name="email" id="email" required>
-    </div>
-    <div class="form-group">
-      <label for="password">Password</label>
-      <input type="password" name="password" id="password" required>
-    </div>
-    <button type="submit" class="btn btn-primary">Login</button>
+      <div class="form-group">
+          <label for="email">Email address or Username:</label>
+          <input type="email" name="email" id="email" required>
+      </div>
+      <div class="form-group">
+          <label for="password">Password:</label>
+          <input type="password" name="password" id="password" required>
+      </div>
+      <button type="submit" class="btn btn-primary">Login</button>
   </form>
 
   <p>Don't have an account yet? <a href="../pages/register.php">Register</a></p>
 
   <section id="messages">
-    <?php 
-      global $session;
+      <?php 
       foreach ($session->getMessages() as $message) {
-        if (str_starts_with($message['type'], "Login")) {
-    ?>
-          <article class="<?=$message['type']?>">
-            <?=$message['text']?>
-          </article>
-    <?php 
-        }
+          if (str_starts_with($message['type'], "Login")) {
+      ?>
+              <article class="<?=$message['type']?>">
+                  <?=$message['text']?>
+              </article>
+      <?php 
+          }
       }
-    ?>
+      ?>
   </section>
-<?php
+  <?php
 }
+
 ?>
 
-
-<?php function drawLogoutForm() { ?>
-  <form action="../actions/action_logout.php" method="post" class="logout">
-    <a href="../pages/profile.php"><?=$session->getName()?></a>
-    <button type="submit">Logout</button>
-  </form>
-<?php } ?>
+<?php function drawLogoutForm(Session $session) {
+    ?>
+    <form action="../actions/action_logout.php" method="post" class="logout">
+        <a href="../pages/profile.php"><?=$session->getName()?></a> 
+        <button type="submit">Logout</button>
+    </form>
+    <?php
+}
+?>
