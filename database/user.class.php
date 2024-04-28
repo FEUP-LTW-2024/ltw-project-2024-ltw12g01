@@ -28,6 +28,33 @@ class User {
         return new User((int)$db->lastInsertId(), $username, $email, $type, 0);
     }
 
+    static public function getUserWithPassword(PDO $db, string $emailOrUsername, string $password): ?User {
+        // Prepare a query that searches for a user by both email or username
+        $stmt = $db->prepare('
+          SELECT UserId, UserName, Email, UserType, ItemsListed, UserPassword
+          FROM User
+          WHERE Email = :emailOrUsername OR UserName = :emailOrUsername
+        ');
+        $stmt->execute([':emailOrUsername' => $emailOrUsername]);
+    
+        // Fetch the user data
+        if ($user = $stmt->fetch()) {
+            // Verify the password
+            if (password_verify($password, $user['UserPassword'])) {
+                // Return a new User object if the password is correct
+                return new User(
+                    (int)$user['UserId'],
+                    $user['UserName'],
+                    $user['Email'],
+                    $user['UserType'],
+                    (int)$user['ItemsListed']
+                );
+            }
+        }
+        // Return null if no user is found or if the password does not match
+        return null;
+    }
+
     static public function getUserByUsername(PDO $db, string $username): ?User {
         $stmt = $db->prepare('SELECT * FROM User WHERE UserName = :username');
         $stmt->execute([':username' => $username]);
@@ -134,5 +161,17 @@ class User {
         return new User((int)$user['id'], $user['username'], $user['email'], $user['type'], (int)$user['items_listed']);
     }
 
-}
+    static public function emailExists(PDO $db, string $email): bool {
+        $stmt = $db->prepare('SELECT * FROM User WHERE Email = :email');
+        $stmt->execute([':email' => $email]);
+        return $stmt->fetch() !== false;
+    }
+
+    static public function userNameExists(PDO $db, string $username): bool {
+        $stmt = $db->prepare('SELECT * FROM User WHERE UserName = :username');
+        $stmt->execute([':username' => $username]);
+        return $stmt->fetch() !== false;
+    }
+
+}   
 ?>

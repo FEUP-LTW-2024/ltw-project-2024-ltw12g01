@@ -107,14 +107,9 @@ function drawLoginForm(Session $session) {
 
   <section id="messages">
       <?php 
-      foreach ($session->getMessages() as $message) {
-          if (str_starts_with($message['type'], "Login")) {
-      ?>
-              <article class="<?=$message['type']?>">
-                  <?=$message['text']?>
-              </article>
-      <?php 
-          }
+      $messages = $session->getMessages();
+      foreach ($messages as $message) {
+          echo "<div class='alert alert-{$message['type']}'>{$message['text']}</div>";
       }
       ?>
   </section>

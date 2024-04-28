@@ -12,12 +12,7 @@
     $emailOrUsername = htmlentities($_POST['email']);
     $password = htmlentities($_POST['password']);
 
-    $user = User::getUserByEmail($db, $emailOrUsername);
-
-
-    if (!$user) {
-        $user = User::getUserByUsername($db, $emailOrUsername);
-    }
+    $user = User::getUserWithPassword($db, $emailOrUsername, $password);
 
     if ($user) {
         $session->setId($user->id);

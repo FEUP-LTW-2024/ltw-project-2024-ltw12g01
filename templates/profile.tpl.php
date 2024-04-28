@@ -59,7 +59,7 @@ function drawProfile(User $user): void {
     </div>
     <div class="form-group">
       <label for="password2">Confirm the password</label>
-      <input type="password" name="password2" id="password2" required>
+      <input type="confirm-password" name="confirm-password" id="confirm-password" required>
     </div>
     <button type="submit" class="btn btn-primary">Register</button>
   </form>
