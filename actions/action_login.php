@@ -7,10 +7,11 @@
 
     $db = getDatabaseConnection();
 
-    $emailOrUsername = $_POST['email'];
-    $password = $_POST['password'];
+    $emailOrUsername = htmlentities($_POST['email']);
+    $password = htmlentities($_POST['password']);
 
     $user = User::getUserByEmail($db, $emailOrUsername);
+
 
     if (!$user) {
         $user = User::getUserByUsername($db, $emailOrUsername);
