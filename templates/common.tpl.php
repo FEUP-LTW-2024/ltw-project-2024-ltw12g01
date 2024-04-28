@@ -14,9 +14,10 @@ $session = new Session();
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><?php echo $name; ?></title>
-    <link rel="stylesheet" href="style/style.css">
+    <title><?= $name; ?></title>
+    <link rel="stylesheet" href="../style/style.css">
   </head>
+
   <body>
     <?php if ($isIndexPage) { ?>
       <?php drawSearchBar($session); ?>
