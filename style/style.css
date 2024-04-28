@@ -26,7 +26,7 @@ header {
     border-radius: 10px;
 }
 
-#login-register{
+.header-anchors a{
     text-decoration: none;
     color: #fff; /* White text */
     background-color: #0056b3; /* Bootstrap primary blue color */
@@ -36,7 +36,7 @@ header {
     transition: background-color 0.3s ease;
 }
 
-#login-register:hover{
+.header-anchors a:hover{
     background-color: #0056b3; /* Darken background on hover */
 }
 header form {

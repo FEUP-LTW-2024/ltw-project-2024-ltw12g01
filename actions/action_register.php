@@ -9,7 +9,6 @@
 
     $db = getDatabaseConnection();
 
-    // Apply htmlentities to user inputs
     $email = htmlentities($_POST['email']);
     $username = htmlentities($_POST['username']);
     $password = htmlentities($_POST['password']);

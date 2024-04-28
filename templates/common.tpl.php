@@ -67,11 +67,11 @@ function drawSearchBar(Session $session) {
         </form>
         <section class ="header-anchors">
             <?php if($session->isLoggedIn()): ?>
-                <a href="../pages/logout.php">Logout</a>
+                <a href="../actions/action_logout.php">Logout</a>
                 <a href="../pages/sell.php">Sell Now</a>
             <?php else: ?>
-                <a id = "login-register" href="../pages/login.php">Login</a>
-                <a id = "login-register" href="../pages/register.php">Register</a>
+                <a href="../pages/login.php">Login</a>
+                <a href="../pages/register.php">Register</a>
             <?php endif; ?>
           </section>
     </header>    
