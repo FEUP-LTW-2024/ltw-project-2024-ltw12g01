@@ -9,11 +9,10 @@
 
     $db = getDatabaseConnection();
 
-    $emailOrUsername = htmlentities($_POST['email']);
+    $emailOrUsername = htmlentities($_POST['username-email']);
     $password = htmlentities($_POST['password']);
-
+    
     $user = User::getUserWithPassword($db, $emailOrUsername, $password);
-
     if ($user) {
         $session->setId($user->id);
         $session->setName($user->username);
@@ -23,7 +22,7 @@
     } else {
         $session->addMessage('error', 'Login failed! Please check your credentials.');
     }
-
+    sleep(10);
     header('Location: ' . $_SERVER['HTTP_REFERER']);
     exit();
 ?>

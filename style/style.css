@@ -280,3 +280,15 @@ main .addImg {
     background-color: #fff; 
     object-fit: cover; /* Ensures the image covers the area without being distorted */
 }
+
+
+.login-register-alert{
+    color: #721c24;
+    background-color: #f8d7da;
+    border-color: #f5c6cb;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid transparent;
+    border-radius: .25rem;
+}
+

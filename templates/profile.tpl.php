@@ -42,7 +42,7 @@ function drawProfile(User $user): void {
 }
 ?>
 
-<?php function drawRegisterForm() { ?>
+<?php function drawRegisterForm($session) { ?>
   <link rel="stylesheet" href="../style/register.css"> <!-- Continues to use the login.css for styling -->
   <form action="../actions/action_register.php" method="post" class="login-form"> <!-- Use the same class as the login form -->
     <div class="form-group">
@@ -63,14 +63,15 @@ function drawProfile(User $user): void {
     </div>
     <button type="submit" class="btn btn-primary">Register</button>
   </form>
+
   <section id="messages">
-    <?php global $session; ?>
-    <?php foreach ($session->getMessages() as $message) {
-      if (str_starts_with($message['type'], 'Register')) { ?>
-        <article class="<?=$message['type']?>">
-          <?=$message['text']?>
-        </article>
-    <?php }} ?>
+      <?php 
+      $messages = $session->getMessages();
+      foreach ($messages as $message) {
+          echo "<div class='login-register-alert'>{$message['text']}</div>";
+      }
+      ?>
   </section>
+
 <?php } ?>
 

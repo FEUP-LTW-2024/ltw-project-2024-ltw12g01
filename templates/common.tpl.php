@@ -94,7 +94,7 @@ function drawLoginForm(Session $session) {
   <form action="../actions/action_login.php" method="post" class="login-form">
       <div class="form-group">
           <label for="email">Email address or Username:</label>
-          <input type="email" name="email" id="email" required>
+          <input type="text" name="username-email" id="username-email" required>
       </div>
       <div class="form-group">
           <label for="password">Password:</label>
@@ -109,7 +109,7 @@ function drawLoginForm(Session $session) {
       <?php 
       $messages = $session->getMessages();
       foreach ($messages as $message) {
-          echo "<div class='alert alert-{$message['type']}'>{$message['text']}</div>";
+          echo "<div class='login-register-alert'>{$message['text']}</div>";
       }
       ?>
   </section>

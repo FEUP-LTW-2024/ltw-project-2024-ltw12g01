@@ -32,7 +32,7 @@ label {
     margin-bottom: 5px;
 }
 
-input[type="email"],
+input[type="text"],
 input[type="password"] {
     width: 100%;
     padding: 10px;
@@ -61,3 +61,14 @@ button:hover {
 .success {
     color: green;
 }
+.login-register-alert{
+    color: #721c24;
+    background-color: #f8d7da;
+    border-color: #f5c6cb;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid transparent;
+    border-radius: .25rem;
+}
+
+
