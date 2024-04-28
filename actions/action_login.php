@@ -1,7 +1,7 @@
 <?php 
     declare(strict_types = 1);
 
-    require_once(__DIR__ . '/../session/session.php');
+    require_once('../session/session.php');
     require_once('../database/connection.db.php');
     require_once('../database/user.class.php');
 
@@ -9,15 +9,11 @@
 
     $db = getDatabaseConnection();
 
-    $emailOrUsername = $_POST['email'] ?? null;
-
-    if (is_null($emailOrUsername) || trim($emailOrUsername) === '') {
-        $session->addMessage('error', 'Email or Username is required.');
-        header('Location: ' . $_SERVER['HTTP_REFERER']);
-        exit();
-    }
+    $emailOrUsername = htmlentities($_POST['email']);
+    $password = htmlentities($_POST['password']);
 
     $user = User::getUserByEmail($db, $emailOrUsername);
+
 
     if (!$user) {
         $user = User::getUserByUsername($db, $emailOrUsername);
