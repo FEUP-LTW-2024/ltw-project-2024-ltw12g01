@@ -55,14 +55,14 @@ $session = new Session();
 function drawSearchBar(Session $session) {
     ?>
     <header>
-        <a href="index.php">
+        <a href="../index.php">
             <img src="../imgs/logo.jpg" alt="Logo" class="logo">
         </a>
         
         <form class="search-form">
             <input type="text" placeholder="Search for items"></input>
             <button type="submit">
-                <img src="imgs/magnify.svg" alt="Search">
+                <img src="../imgs/magnify.svg" alt="Search">
             </button>
         </form>
         <section class ="header-anchors">
