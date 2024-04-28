@@ -15,7 +15,7 @@
 <main>
   <section class="login-section">
     <h2>Register</h2>
-    <?php drawRegisterForm(); ?>
+    <?php drawRegisterForm($session); ?>
   </section>
 </main>
 <?php
