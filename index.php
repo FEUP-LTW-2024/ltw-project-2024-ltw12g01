@@ -5,11 +5,13 @@
   require_once('templates/items.tpl.php');
     
 
+  $session = new Session();
+
   $db = getDatabaseConnection();
 
   $items = Item::getItems($db, 10);
 
-    drawHeader(true);
+    drawHeader($session,true);
     drawItems($items);
     drawFooter();
 ?>
