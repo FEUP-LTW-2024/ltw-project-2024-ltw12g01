@@ -55,7 +55,7 @@ function drawSearchBar(Session $session) {
     ?>
     <header>
         <a href="index.php">
-            <img src="imgs/logo.jpg" alt="Logo" class="logo">
+            <img src="../imgs/logo.jpg" alt="Logo" class="logo">
         </a>
         
         <form class="search-form">
