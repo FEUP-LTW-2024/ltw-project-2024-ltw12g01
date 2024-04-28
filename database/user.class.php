@@ -41,7 +41,6 @@ class User {
         if ($user = $stmt->fetch()) {
             // Verify the password
             if (password_verify($password, $user['UserPassword'])) {
-                // Return a new User object if the password is correct
                 return new User(
                     (int)$user['UserId'],
                     $user['UserName'],
