@@ -64,15 +64,15 @@ function drawSearchBar(Session $session) {
                 <img src="imgs/magnify.svg" alt="Search">
             </button>
         </form>
-        <nav class="header-nav">
+        <section class ="header-anchors">
             <?php if($session->isLoggedIn()): ?>
                 <a href="../pages/logout.php">Logout</a>
                 <a href="../pages/sell.php">Sell Now</a>
             <?php else: ?>
-                <a href="../pages/login.php">Login</a>
-                <a href="../pages/register.php">Register</a>
+                <a id = "login-register" href="../pages/login.php">Login</a>
+                <a id = "login-register" href="../pages/register.php">Register</a>
             <?php endif; ?>
-        </nav>
+          </section>
     </header>    
     <?php
 }?>

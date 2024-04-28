@@ -26,25 +26,19 @@ header {
     border-radius: 10px;
 }
 
-header a {
-    padding: 0.8rem 1.5rem; /* Adjusted padding */
-    margin-right: 10px; /* Added margin */
-    background-color: #0056b3;
-    color: white;
-    border-radius: 4px;
+#login-register{
     text-decoration: none;
+    color: #fff; /* White text */
+    background-color: #0056b3; /* Bootstrap primary blue color */
+    padding: 9px 18px;
+    border-radius: 4px;
+    margin: 0 4px;
     transition: background-color 0.3s ease;
 }
 
-header a:last-child {
-    margin-right: 20px; /* Adjusted margin for last button */
-    padding-right: 15px; /* Added padding to Sell Now button */
+#login-register:hover{
+    background-color: #0056b3; /* Darken background on hover */
 }
-
-header a:hover {
-    background-color: #003580;
-}
-
 header form {
     flex-grow: 1;
     margin: 0 20px;
@@ -280,23 +274,9 @@ main .addImg {
 }
 
 .logo {
-    width: 80px; /* Increase size as needed */
-    height: 80px; /* Maintain aspect ratio */
-    border-radius: 50%; /* Makes the image round */
-    background-color: #fff; /* Ensures background is white */
+    width: 80px; 
+    height: 80px; 
+    border-radius: 50%; 
+    background-color: #fff; 
     object-fit: cover; /* Ensures the image covers the area without being distorted */
-}
-
-.header-nav a {
-    text-decoration: none;
-    color: #fff; /* White text */
-    background-color: #007bff; /* Bootstrap primary blue color */
-    padding: 8px 16px;
-    border-radius: 4px;
-    margin: 0 4px;
-    transition: background-color 0.3s ease;
-}
-
-.header-nav a:hover {
-    background-color: #0056b3; /* Darken background on hover */
 }
