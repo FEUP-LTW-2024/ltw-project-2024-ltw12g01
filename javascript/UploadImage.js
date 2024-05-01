@@ -3,21 +3,72 @@ function triggerFileInput() {
     console.log('triggered');
 }
 
-function handleImageUpload(event) {
-    console.log('handling image upload');
-    const files = event.target.files;
-    const borderDiv = document.querySelector('.border');
+function handleImageDragAndDrop() {
+    const dropArea = document.querySelector('.border');
+    dragText = dropArea.querySelector("p");
+    
+    let file; 
+    //if user Drag file over drag area
+    dropArea.addEventListener("dragover",(event)=>  {
+        event.preventDefault();
+        dropArea.classList.add("active");
+        dragText.textContent = "Release to Upload File";
 
-    const uploadedImagesDiv = borderDiv.querySelector('.uploaded-images');
-    uploadedImagesDiv.innerHTML = '';
+    });
 
-    for (const file of files) {
-        const img = document.createElement('img');
-        img.src = URL.createObjectURL(file);
+    //if user leave dragged file from DragArea
+    dropArea.addEventListener("dragleave",(event)=>  {
+        event.preventDefault();
+        dropArea.classList.remove("active");
+        dragText.textContent = "Drag and Drop file here";
+    });
 
-        uploadedImagesDiv.appendChild(img);
-    }
+    //if user drop file on DragArea
+    dropArea.addEventListener("drop",(event)=>  {
+        event.preventDefault();
 
+        //getting user select file and [0] this means if user select 
+        //multiple files then we'll select only the first one 
+        file = event.dataTransfer.files[0];
+        let fileType = file.type;
+        console.log(fileType);
+
+        let validExtensions = ["image/jpeg", "image/jpg", "image/png"];
+        if(validExtensions.includes(fileType)){
+            let fileReader = new FileReader(); //creating new FileReader object
+            fileReader.onload = ()=>{
+                let fileURL = fileReader.result; //passing user file source in fileURL variable
+                let imgTag = `<img src="${fileURL}" alt="">`; //creating an img tag and passing user selected file source inside src attribute
+                dropArea.innerHTML = imgTag; //adding that created img tag inside dropArea container
+            }
+            fileReader.readAsDataURL(file);
+        }else{
+            alert("This is not an image file");
+            dropArea.classList.remove("active");
+        }
+    });
 }
 
+function handleImageUpload() {
+    const image_input = document.querySelector('#hiddenInput');
+    let uploaded_image = "";
 
+    image_input.addEventListener("change", function() {
+        const reader = new FileReader();
+
+        reader.addEventListener("load", ()=> {
+            uploaded_image = reader.result;
+            console.log(uploaded_image);
+            document.querySelector('.border').style.backgroundImage = `url(${uploaded_image})`;
+            const Display_none = document.querySelectorAll('.border * '); 
+            Display_none.forEach(element => {
+                element.style.display = 'none';
+            });
+        });
+        reader.readAsDataURL(this.files[0]);
+    });
+}
+
+handleImageUpload();
+
+handleImageDragAndDrop();
