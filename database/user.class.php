@@ -29,7 +29,6 @@ class User {
     }
 
     static public function getUserWithPassword(PDO $db, string $emailOrUsername, string $password): ?User {
-        // Prepare a query that searches for a user by both email or username
         $stmt = $db->prepare('
           SELECT UserId, UserName, Email, UserType, ItemsListed, UserPassword
           FROM User
@@ -50,7 +49,6 @@ class User {
                 );
             }
         }
-        // Return null if no user is found or if the password does not match
         return null;
     }
 

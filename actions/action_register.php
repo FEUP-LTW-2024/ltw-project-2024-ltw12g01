@@ -43,7 +43,7 @@
         header('Location: ' . $_SERVER['HTTP_REFERER']);
         exit();
     } else {
-        $user = User::createAndInsert($db, $username, $email, $password, 'buyer'); // Fixed typo: $use to $user
+        $user = User::createAndInsert($db, $username, $email, $password, 'buyer'); 
         $session->addMessage('Register success', 'Welcome, ' . $user->name . '!');
         header('Location: ../index.php');
     }
