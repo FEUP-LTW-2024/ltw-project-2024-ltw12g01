@@ -107,6 +107,7 @@ class Item {
     public function getImageUrl() {
         return $this->ItemImage;
     }
+
 }
 
 ?>
