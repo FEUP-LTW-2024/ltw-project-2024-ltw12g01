@@ -45,7 +45,6 @@
         <label for="new2">Confirm new password</label>
         <input type="password" name="new2" id="new2">
         <input type="hidden" name="username" value="<?=$_GET['username']?>">
-        <input type="hidden" name="csrf" value="<?= $_SESSION['csrf'] ?>">
         <button type="submit">Submit</button>
     </form>
 
