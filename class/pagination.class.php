@@ -31,7 +31,7 @@ class Pagination {
     }
 
     public function getOffset(): int {
-        return ($this->currentPage - 1) * $this->itemsPerPage;
+        return ($this->getCurrentPage() - 1) * $this->itemsPerPage;
     }
 
     public function getLimit(): int {
@@ -44,8 +44,4 @@ class Pagination {
 
 }
 
-// Set current page based on request parameter or any other logic
-if (isset($_GET['page']) && is_numeric($_GET['page'])) {
-    $pagination->setCurrentPage(intval($_GET['page']));
-}
 ?>
