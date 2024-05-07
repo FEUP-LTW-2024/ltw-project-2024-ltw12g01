@@ -38,11 +38,8 @@
         $session->addMessage('error', 'Username can only contain letters, numbers, underscores, hyphens and dots!');
         header('Location: ' . $_SERVER['HTTP_REFERER']);
         exit();
-    } else if (!preg_match("/^[a-zA-Z1-9_\-\.@]+$/", $email)) {
-        $session->addMessage('error', 'Invalid email format!');
-        header('Location: ' . $_SERVER['HTTP_REFERER']);
-        exit();
-    } else {
+    }
+    else {
         $user = User::createAndInsert($db, $username, $email, $password, 'buyer'); // Fixed typo: $use to $user
         $session->addMessage('Register success', 'Welcome, ' . $user->name . '!');
         header('Location: ../index.php');
