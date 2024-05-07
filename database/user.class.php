@@ -74,6 +74,13 @@ class User {
         return new User((int)$user['UserId'], $user['UserName'], $user['Email'], $user['UserType'], (int)$user['ItemsListed']);
     }
 
+    static public function getEmailByUsername(PDO $db, string $username): string {
+        $stmt = $db->prepare('SELECT Email FROM User WHERE UserName = :username');
+        $stmt->execute([':username' => $username]);
+        $user = $stmt->fetch();
+        return $user['Email'];
+    }
+
     static public function getUserById(PDO $db, int $id): ?User {
         $stmt = $db->prepare('SELECT * FROM User WHERE UserId = :id');
         $stmt->execute([':id' => $id]);
@@ -87,6 +94,13 @@ class User {
     static public function getUserType(PDO $db, int $id): string {
         $stmt = $db->prepare('SELECT UserType FROM User WHERE UserId = :id');
         $stmt->execute([':id' => $id]);
+        $user = $stmt->fetch();
+        return $user['UserType'];
+    }
+
+    static public function getUserTypeByUsername(PDO $db, string $username): string {
+        $stmt = $db->prepare('SELECT UserType FROM User WHERE UserName = :username');
+        $stmt->execute([':username' => $username]);
         $user = $stmt->fetch();
         return $user['UserType'];
     }
