@@ -1,4 +1,7 @@
-<?php require_once('../templates/common.tpl.php') ?>
+<?php 
+require_once('../templates/common.tpl.php');
+require_once('../actions/action_sell.php');
+?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -39,46 +42,49 @@
                     <path d="M6.95.435c.58-.58 1.52-.58 2.1 0l6.515 6.516c.58.58.58 1.519 0 2.098L9.05 15.565c-.58.58-1.519.58-2.098 0L.435 9.05a1.48 1.48 0 0 1 0-2.098zm1.4.7a.495.495 0 0 0-.7 0L1.134 7.65a.495.495 0 0 0 0 .7l6.516 6.516a.495.495 0 0 0 .7 0l6.516-6.516a.495.495 0 0 0 0-.7L8.35 1.134z" />
                     <path d="M7.002 11a1 1 0 1 1 2 0 1 1 0 0 1-2 0M7.1 4.995a.905.905 0 1 1 1.8 0l-.35 3.507a.552.552 0 0 1-1.1 0z" />
                 </svg> -->
+                <form action="../actions/action_sell.php" method="post">
                 <div class="title-input">
-                    <input class="input" type="text" placeholder="por exemplo:t-shirt preta da ZARA" required="">
-                    <label for="title" class="label">Title</label>
+                    <input class="input" type="text" name="ItemName" placeholder="Item Name" required>
+                    <label for="title" class="label">Item Name</label>
                 </div>
-            </div>
-            <div class="border-descri"></div>
-            <div class="descricao">
-                <span>Description</span>
-                <div class="descri-input">
-                    <!-- <input class="input" type="text" placeholder="Description" required> -->
-                    <textarea class="input" placeholder="por exemplo: usado algumas vezes, comprado em 2023" name="Text1" cols="40" rows="3"></textarea>
+                <div class="brand-input">
+                    <span>Brand</span>
+                    <input class="input" type="text" name="ItemBrand" placeholder="Item Brand" required>
+                    <label for="brand" class="label">Brand</label>
+                </div>
+                <div class="owner-input">
+                    <input type="hidden" name="ItemOwner" value="<?php echo $_SESSION['username']; ?>">
+                </div>
+                <div class="border-descri"></div>
+                <div class="descricao">
+                    <span>Description</span>
+                    <div class="descri-input">
+                    <textarea class="input" name="ItemDescription" placeholder="Item Description" required></textarea>
                     <label for="description" class="label">Description</label>
-                </div>
-            </div>
-        </div>
-        <br>
-        <div class="category-div">
-            <div class="category">
-                <span>Category</span>
-                <div class="choose-cat">
-                    <input readonly placeholder="Choose a category">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-arrow-down-short" viewBox="0 0 16 16">
-                        <path fill-rule="evenodd" d="M8 4a.5.5 0 0 1 .5.5v5.793l2.146-2.147a.5.5 0 0 1 .708.708l-3 3a.5.5 0 0 1-.708 0l-3-3a.5.5 0 1 1 .708-.708L7.5 10.293V4.5A.5.5 0 0 1 8 4" />
-                    </svg>
-                </div>
-            </div>
-            <div class="border-descri"></div>
-                <div class="price">
-                    <span>Size</span>
-                    <div class="price-input">
-                        <input class="input" type="text" placeholder="€ 0,00" required="">
-                            <label for="title" class="label">Price</label>
                     </div>
                 </div>
-            </div>
-            <br>
-
-        <button class="load-btn">Save Product</button>
-    </main>
-</body>
-
+                <div class="category-div">
+                    <div class="category">
+                    <span>Category</span>
+                    <div class="choose-cat">
+                        <select name="ItemCategory">
+                            <option value="Kids">Kids</option>
+                            <option value="Male">Male</option>
+                            <option value="Female">Female</option>
+                        </select>
+                    </div>
+                    </div>
+                </div>
+                <div class="price">
+                    <span>Price</span>
+                    <div class="price-input">
+                    <input class="input" type="text" name="ItemPrice" placeholder="€ 0,00" required>
+                    <label for="title" class="label">Price</label>
+                    </div>
+                </div>
+                <button class="load-btn">Save Item</button>
+                </form>
+                    </main>
+                </body>
 
 </html>

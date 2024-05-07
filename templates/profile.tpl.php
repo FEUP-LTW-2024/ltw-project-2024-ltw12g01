@@ -2,45 +2,34 @@
 declare(strict_types=1);
 
 require_once(__DIR__ . '/../database/connection.db.php');
+require_once(__DIR__ . '/../actions/action_change_password.php');
 require_once(__DIR__ . '/../database/user.class.php');
 require_once(__DIR__ . '/../session/session.php');
 
-function drawProfile(User $user): void {
-    global $session, $db;
-    $loggedInUserType = $session->isLoggedIn() ? $session->getUserType() : null;
-?>
 
-<p class="token invisible"><?= $_SESSION['csrf'] ?></p>
-<h3 class="name"><span class="content"><?= $user->getFullName() ?></span>
-    <?php if ($loggedInUserType === 'Admin' || $session->getUsername() === $user->getUsername()) { ?>
-        <a class="change_profile_attribute" name="name">Change...</a>
-    <?php } ?>
-</h3>
-<div class="username"><span class="bold">Username:</span> <span class="content"><?= $user->getUsername() ?></span></div>
-<div class="email"><span class="bold">Email address:</span> <span class="content"><?= $user->getEmail() ?></span>
-    <?php if ($loggedInUserType === 'Admin' || $session->getUsername() === $user->getUsername()) { ?>
-        <a class="change_profile_attribute" name="email">Change...</a>
-    <?php } ?>
-</div>
-<div class="type"><span class="bold">User type:</span> <?= ($user->getType() === 'Admin') ? 'Administrator' : 'Regular User' ?>
-    <?php if ($loggedInUserType === 'Admin') { ?>
-        <a class="change_profile_attribute" href="change_user_type.php?username=<?= $user->getUsername() ?>">Change...</a>
-    <?php } ?>
-</div>
-<?php if ($user->getType() === 'Seller') { ?>
-    <div class="seller_info">
-        <span class="bold">Seller Rating:</span> <?= $user->getRating() ?>
-        <?php if ($loggedInUserType === 'Admin') { ?>
-            <a class="change_profile_attribute" href="change_seller_rating.php?username=<?= $user->getUsername() ?>">Change...</a>
-        <?php } ?>
-    </div>
-<?php } ?>
-<a href="change_password.php?username=<?= $user->getUsername() ?>">Change password...</a>
-</div>
+function drawProfile(User $user) : void {
+  $session = new Session();
+  $db = getDatabaseConnection();
 
-<?php
-}
-?>
+  $my_type = $session->isLoggedIn() ? User::getUserTypeByUsername($db, $session->getName()) : null;
+
+  ?>
+  <div class="username">
+      <span class="bold">Username:</span> <span class="content"><?= $user->getName() ?></span>
+      <a href="change_username.php?username=<?= $user->getName() ?>">Change...</a>
+  </div>
+
+  <div class="email">
+      <span class="bold">Email:</span> <span class="content"><?= $user->getEmail() ?></span>
+      <a href="change_email.php?username=<?= $user->getName() ?>">Change...</a>
+  </div>
+
+  <div class="password">
+      <span class="bold">Password:</span> <span class="content"><?= hash('sha256', $user->getPassword()) ?></span>
+      <a href="change_password.php?username=<?= $user->getName() ?>">Change...</a>
+  </div>
+  <?php
+}?>
 
 <?php function drawRegisterForm($session) { ?>
   <link rel="stylesheet" href="../style/register.css"> <!-- Continues to use the login.css for styling -->

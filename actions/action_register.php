@@ -38,7 +38,7 @@
         $session->addMessage('error', 'Username can only contain letters, numbers, underscores, hyphens and dots!');
         header('Location: ' . $_SERVER['HTTP_REFERER']);
         exit();
-    } else if (!preg_match("/^[a-zA-Z1-9_\-\.@]+$/", $email)) {
+    } else if (!preg_match("/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/", $email)) {
         $session->addMessage('error', 'Invalid email format!');
         header('Location: ' . $_SERVER['HTTP_REFERER']);
         exit();
