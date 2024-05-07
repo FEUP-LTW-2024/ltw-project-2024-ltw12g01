@@ -7,8 +7,7 @@ require_once(__DIR__ . '/../database/user.class.php');
 require_once(__DIR__ . '/../session/session.php');
 
 
-function drawProfile(User $user) : void {
-  $session = new Session();
+function drawProfile(User $user,Session $session) : void {
   $db = getDatabaseConnection();
 
   $my_type = $session->isLoggedIn() ? User::getUserTypeByUsername($db, $session->getName()) : null;

@@ -20,7 +20,7 @@ if (!($session->isLoggedIn())) {
 
 $user = User::getUserByUsername($db, $session->getName());
 
-drawProfile($user);
+drawProfile($user,$session);
 
 drawFooter();
 

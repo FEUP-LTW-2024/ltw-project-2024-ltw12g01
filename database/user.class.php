@@ -119,6 +119,15 @@ class User {
         ]);
     }
 
+    static public function changePasswordName(PDO $db, string $username, string $password): void {
+        $hashedPassword = password_hash($password, PASSWORD_DEFAULT, ['cost' => 8]);
+        $stmt = $db->prepare('UPDATE User SET UserPassword = :password WHERE UserName = :username');
+        $stmt->execute([
+            ':password' => $hashedPassword,
+            ':username' => $username
+        ]);
+    }
+
     static public function changeEmail(PDO $db, int $id, string $email): void {
         $stmt = $db->prepare('UPDATE User SET Email = :email WHERE UserId = :id');
         $stmt->execute([
