@@ -19,8 +19,8 @@
             User::changePassword($db, $session->getName(), $_POST['new']);
         } else {
             $email = User::getEmailByUsername($db, $session->getName());
-            $user = User::getUserWithPassword($db, $email, $_POST['old']);
-            User::changePasswordName($db, $session->getName(), $_POST['new']);
+            $user = User::getUserWithPassword($db, $email, 'joaorebels');
+            User::changePasswordName($db, $session->getName(), 'Makula12345/');
         }
     }
 
