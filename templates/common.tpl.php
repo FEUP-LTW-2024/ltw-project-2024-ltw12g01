@@ -5,6 +5,7 @@ $name = "VinhoTinted";
 require_once(__DIR__ . '/../session/session.php');
 
 $session = new Session();
+$username = $session->getName();
 ?>
 
 <?php function drawHeader($session, $isIndexPage = false) {
@@ -69,6 +70,8 @@ function drawSearchBar(Session $session) {
             <?php if($session->isLoggedIn()): ?>
                 <a href="../actions/action_logout.php">Logout</a>
                 <a href="../pages/sell.php">Sell Now</a>
+                <a href="../pages/profile.php">Profile</a>
+                <a href="../pages/shopping.php">Cart</a>
             <?php else: ?>
                 <a href="../pages/login.php">Login</a>
                 <a href="../pages/register.php">Register</a>

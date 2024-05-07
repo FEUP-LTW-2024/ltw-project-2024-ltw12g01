@@ -20,25 +20,38 @@
     </main>
 <?php } ?>
 
-
-<?php function drawItem(Item $item){ ?>
+<?php function drawItem(Item $item) { ?>
   <main>
-        <h1><?= $item->itemName ?></h1>
-        <h2><?= $item->itemBrand ?></h2>
+        <h1><?php echo $item->itemName; ?></h1>
+        <h2><?php echo $item->itemBrand; ?></h2>
         <section id="product" class="product-grid">
         <div class="product-image">
-            <img id="product-img" src="https://picsum.photos/200/300" alt="Nike Air Zoom Pegasus">
+            <img id="product-img" src="https://picsum.photos/200/300" alt="<?php echo $item->itemName; ?>">
         </div>
         <div class="product-info">
-            <h2><?= $item->itemName ?></h2>
-            <p>A Nike Air Zoom Pegasus 38 é uma sapatilha versátil e confortável, perfeita para corridas de longa distância e treinos diários. Ela apresenta uma entressola responsiva com unidade Zoom Air no calcanhar, proporcionando amortecimento eficaz e retorno de energia. O cabedal em mesh respirável oferece ventilação e suporte, enquanto a sola de borracha durável proporciona tração em uma variedade de superfícies.</p>
-            <p><strong>Preço:</strong> <?= $item->itemPrice ?></p>
-            <p><strong>Tamanhos disponíveis:</strong> 36-45</p>
-            <p><strong>Cores disponíveis:</strong> Preto, branco, azul marinho, vermelho</p>
-            <p><strong>Vendido por User:</strong> <a href="#"> <?= $item->itemOwner ?></a></p>
+            <h2><?php echo $item->itemName; ?></h2>
+            <p><?php echo $item->itemDescription; ?></p>
+            <p><strong>Preço:</strong> <?php echo $item->itemPrice; ?></p>
+            <p><strong>Categoria:</strong> <?php echo $item->itemCategory; ?></p>
+            <p><strong>Vendido por:</strong> <a href="#"> <?php echo $item->itemOwner; ?></a></p>
+            <button id="add-to-cart" onclick="addToCart(<?=$item->id; ?>)">Add to Cart</button>
         </div>
     </section>
 
     </main>
+
+<script>
+    function addToCart(productId) {
+    $.ajax({
+        type: 'POST',
+        url: '/actions/add-to-cart',
+        data: JSON.stringify({ productId: productId }),
+        contentType: 'application/json',
+        success: function(data) {
+            console.log(data);
+        }
+    });
+}
+</script>
 
 <?php } ?>
