@@ -15,18 +15,18 @@ function drawProfile(User $user) : void {
 
   ?>
   <div class="username">
-      <span class="bold">Username:</span> <span class="content"><?= $user->getName() ?></span>
-      <a href="change_username.php?username=<?= $user->getName() ?>">Change...</a>
+      <span class="bold">Username:</span> <span class="content"><?= $user->username ?></span>
+      <a href="change_username.php?username=<?= $user->name ?>">Change...</a>
   </div>
 
   <div class="email">
-      <span class="bold">Email:</span> <span class="content"><?= $user->getEmail() ?></span>
-      <a href="change_email.php?username=<?= $user->getName() ?>">Change...</a>
+      <span class="bold">Email:</span> <span class="content"><?= $user->email ?></span>
+      <a href="change_email.php?username=<?= $user->name ?>">Change...</a>
   </div>
 
   <div class="password">
-      <span class="bold">Password:</span> <span class="content"><?= hash('sha256', $user->getPassword()) ?></span>
-      <a href="change_password.php?username=<?= $user->getName() ?>">Change...</a>
+      <span class="bold">Password:</span> <span class="content">*** (Hidden for security)</span>
+      <a href="change_password.php?username=<?= $user->username ?>">Change...</a>
   </div>
   <?php
 }?>
