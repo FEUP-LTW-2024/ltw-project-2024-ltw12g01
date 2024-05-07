@@ -29,24 +29,25 @@
           <?=$messsage['text']?>
         </article>
       <?php } ?>
-    </section>
-    <h3>Changing <?= $session->getName() ?>'s password</h3>
-    <form action="../actions/action_change_password.php" method="post" enctype="multipart/form-data">
+      </section>
+<h3>Changing <?= $session->getName() ?>'s password</h3>
+<form id="changePasswordForm" action="../actions/action_change_password.php" method="post" >
 
 <?php
     if ($user_type != 'admin') {
 ?>
-        <label for="old">Old password</label>
-        <input type="password" name="old" id="old">
+    <label for="old">Old password</label>
+    <input type="password" name="old" id="old" required>
 <?php
     }
 ?>
-        <label for="new">New password</label>
-        <input type="password" name="new" id="new">
-        <label for="new2">Confirm new password</label>
-        <input type="password" name="new2" id="new2">
-        <button type="submit">Submit</button>
-    </form>
+    <label for="new">New password</label>
+    <input type="password" name="new" id="new" required>
+    <label for="new2">Confirm new password</label>
+    <input type="password" name="new2" id="new2" required>
+    <button type="submit">Submit</button>
+</form>
+
 
 <?php
     drawFooter();
