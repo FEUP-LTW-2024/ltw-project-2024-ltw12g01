@@ -19,7 +19,7 @@
     
             if ($admin) {
                 User::changePassword($db, $session->getName(), $_POST['new']);
-            } else {
+            } elseif($_POST['new_username'] == $_POST['confirm_username']) {
                 $email = User::getEmailByUsername($db, $session->getName());
                 $user = User::getUserWithPassword($db, $email, $_POST['old_password']);
                 User::changerUsernameName($db, $session->getName(), $_POST['new_username']);

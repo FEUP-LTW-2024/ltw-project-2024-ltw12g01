@@ -23,10 +23,14 @@
         ?>
         <h3>Changing <?= $session->getName() ?>'s username</h3>
         <form action="../actions/action_change_username.php" method="post" enctype="multipart/form-data">
+            <?php if ($user_type != 'admin') { ?>
             <label for="old_password">Old password</label>
             <input type="password" name="old_password" id="old_password">
+            <?php } ?>
             <label for="new_username">New username</label>
             <input type="text" name="new_username" id="new_username">
+            <label for="confirm_username">Confirm username</label>
+            <input type="text" name="confirm_username" id="confirm_username">
             <button type="submit">Submit</button>
         </form>
         <?php
