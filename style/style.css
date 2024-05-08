@@ -397,7 +397,17 @@ main .addImg {
     padding: 10px; /* Reduced padding */
 }
 
+.cart-list{
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+.cart-list li{
+    margin: 2rem;
+}
+
 /* Style for product info */
+
 .product-info {
     flex: 1;
 }

@@ -56,7 +56,17 @@
             unset($_SESSION['shopping_cart'][$index]);
         }
     }
-
+    public function removeFromCartById($itemId) {
+      if(isset($_SESSION['shopping_cart'])) {
+          foreach($_SESSION['shopping_cart'] as $index => $item) {
+            if($item->id === $itemId) {
+                 unset($_SESSION['shopping_cart'][$index]);
+                  break; 
+              }
+          }
+      }
+  }
+  
     public function clearCart() {
         unset($_SESSION['shopping_cart']);
     }
