@@ -1,9 +1,10 @@
 <?php
-require_once(__DIR__ . '/../session/session.php'); 
+require_once(__DIR__ . '/../session/session.php');
 
-$session = new Session();
 
-$cart = $session->getCart();
+
+function drawCart($session){
+    $cart = $session->getCart();
 
 if (empty($cart)) {
     echo "<p>Your cart is empty.</p>";
@@ -30,5 +31,5 @@ if (empty($cart)) {
     echo "</ul>"; 
     echo "</section>";
 }
-
+}
 ?>
