@@ -77,9 +77,12 @@
         if($item->id === $itemId) {
             return true;
         }
-      }
-      return false;
-   }
+      }   
+    }else{
+      $_SESSION['shopping_cart'] = array(); 
+      
+    }
+   return false;
   }
 }
 ?>
