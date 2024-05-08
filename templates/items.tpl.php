@@ -21,10 +21,10 @@
 <?php } ?>
 
 <?php function drawItem(Item $item) { ?>
-  <main>
-        <h1><?php echo $item->itemName; ?></h1>
-        <h2><?php echo $item->itemBrand; ?></h2>
-        <section id="product" class="product-grid">
+    <main>
+    <h1><?php echo $item->itemName; ?></h1>
+    <h2><?php echo $item->itemBrand; ?></h2>
+    <section id="product" class="product-grid">
         <div class="product-image">
             <img id="product-img" src="https://picsum.photos/200/300" alt="<?php echo $item->itemName; ?>">
         </div>
@@ -34,11 +34,14 @@
             <p><strong>Preço:</strong> <?php echo $item->itemPrice; ?></p>
             <p><strong>Categoria:</strong> <?php echo $item->itemCategory; ?></p>
             <p><strong>Vendido por:</strong> <a href="#"> <?php echo $item->itemOwner; ?></a></p>
-            <button id="add-to-cart" onclick="addToCart(<?=$item->id; ?>)">Add to Cart</button>
+            <form id="add-to-cart-form" action="../actions/action_cart.php" method="POST">
+                <input type="hidden" name="item_json" value='<?php echo json_encode($item); ?>'>
+                <button type="submit">Add to Cart</button>
+            </form>
         </div>
     </section>
+</main>
 
-    </main>
 
 <script>
     function addToCart(productId) {

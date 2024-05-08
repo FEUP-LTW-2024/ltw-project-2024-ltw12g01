@@ -18,6 +18,7 @@ $username = $session->getName();
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title><?php echo $name; ?></title>
         <link rel="stylesheet" href="../style/style.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     </head>
     <body>
         <?php if ($isIndexPage) { ?>
@@ -68,10 +69,13 @@ function drawSearchBar(Session $session) {
         </form>
         <section class ="header-anchors">
             <?php if($session->isLoggedIn()): ?>
-                <a href="../actions/action_logout.php">Logout</a>
                 <a href="../pages/sell.php">Sell Now</a>
-                <a href="../pages/profile.php">Profile</a>
-                <a href="../pages/shopping.php">Cart</a>
+                <a href="../pages/shopping.php" class="cart-icon">
+                    <i class="fa-solid fa-cart-shopping"></i>
+                    <span class="cart-count"><?= $session->getNumberItemsInCart() ?></span>
+                </a>
+                <a href="../pages/profile.php"><i class="fa-solid fa-user"></i></a>
+                <a href="../actions/action_logout.php"><i class="fa-solid fa-right-from-bracket"></i></a>
             <?php else: ?>
                 <a href="../pages/login.php">Login</a>
                 <a href="../pages/register.php">Register</a>

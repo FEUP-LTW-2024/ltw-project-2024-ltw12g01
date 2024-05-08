@@ -40,6 +40,46 @@
     public function getMessages() {
       return $this->messages;
     }
+      public function getCart(): array {
+        return isset($_SESSION['shopping_cart']) ? $_SESSION['shopping_cart'] : [];
+    }
 
+    public function addToCart($item) {
+      if (!isset($_SESSION['shopping_cart'])) {
+          $_SESSION['shopping_cart'] = array(); 
+      }
+      $_SESSION['shopping_cart'][] = $item;
   }
+  
+    public function removeFromCart($index) {
+        if (isset($_SESSION['shopping_cart'][$index])) {
+            unset($_SESSION['shopping_cart'][$index]);
+        }
+    }
+    public function removeFromCartById($itemId) {
+      if(isset($_SESSION['shopping_cart'])) {
+          foreach($_SESSION['shopping_cart'] as $index => $item) {
+            if($item->id === $itemId) {
+                 unset($_SESSION['shopping_cart'][$index]);
+                  break; 
+              }
+          }
+      }
+    }
+  
+  public function getNumberItemsInCart(){
+    $num_items_in_cart = isset($_SESSION['shopping_cart']) ? count($_SESSION['shopping_cart']) : 0;
+    return $num_items_in_cart;
+  }
+  public function findItemInCart($itemId) : bool{
+    if(isset($_SESSION['shopping_cart'])) {
+      foreach($_SESSION['shopping_cart'] as $index => $item) {
+        if($item->id === $itemId) {
+            return true;
+        }
+      }
+      return false;
+   }
+  }
+}
 ?>
