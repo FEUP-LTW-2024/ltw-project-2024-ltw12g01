@@ -12,7 +12,7 @@ CREATE TABLE User (
     UserId INTEGER PRIMARY KEY AUTOINCREMENT,
     UserName NVARCHAR(120) UNIQUE NOT NULL,
     Email NVARCHAR(120) NOT NULL,
-    UserType NVARCHAR(5) NOT NULL, /* buyer seller admin */
+    UserType NVARCHAR(5) NOT NULL, /* buyer buyer/seller admin */
     UserPassword NVARCHAR(255) NOT NULL,
     ItemsListed INTEGER DEFAULT 0,
     ItemsSold INTEGER DEFAULT 0
@@ -27,6 +27,8 @@ CREATE TABLE Item (
     ItemImage NVARCHAR(255), 
     ItemDescription NVARCHAR(255),
     ItemCategory NVARCHAR(50) NOT NULL,
+    ItemCondition NVARCHAR(20) NOT NULL,  -- added column for condition
+    ItemSize NVARCHAR(20) NOT NULL,  -- added column for size
     FOREIGN KEY(ItemOwner) REFERENCES User(UserId)
 );
 

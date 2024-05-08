@@ -5,8 +5,10 @@ require_once(__DIR__ . '/../database/connection.db.php');
 require_once(__DIR__ . '/../database/user.class.php');
 require_once(__DIR__ . '/../session/session.php');
 
+$session = new Session();
 
-function drawProfile(User $user,Session $session) : void {
+
+function drawProfile(User $user, Session $session) : void {
   $db = getDatabaseConnection();
 
   $my_type = $session->isLoggedIn() ? User::getUserTypeByUsername($db, $session->getName()) : null;
@@ -27,7 +29,17 @@ function drawProfile(User $user,Session $session) : void {
       <span id="bold"><strong>Password:</strong></span> <span id="content">(Hidden for security)</span>
       <a href="change_password.php?username=<?= $user->username ?>">Change...</a>
   </div>
+<<<<<<< HEAD
 </section>
+=======
+
+  <?php if ($my_type == 'buyer/seller' && $user->items_listed >= 1): ?>
+    <div class="items">
+      <span class="bold">Items:</span>
+      <a href="user_items.php?username=<?= $user->name ?>">View all items</a>
+    </div>
+  <?php endif; ?>
+>>>>>>> 67d5b98b014bd29f3f58b2710f0b0c1dee575bbe
   <?php
 }?>
 
