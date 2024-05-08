@@ -65,10 +65,11 @@
               }
           }
       }
-  }
-  
-    public function clearCart() {
-        unset($_SESSION['shopping_cart']);
     }
+  
+  public function getNumberItemsInCart(){
+    $num_items_in_cart = isset($_SESSION['shopping_cart']) ? count($_SESSION['shopping_cart']) : 0;
+    return $num_items_in_cart;
   }
+}
 ?>
