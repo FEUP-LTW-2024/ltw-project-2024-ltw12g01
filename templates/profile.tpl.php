@@ -29,9 +29,6 @@ function drawProfile(User $user, Session $session) : void {
       <span id="bold"><strong>Password:</strong></span> <span id="content">(Hidden for security)</span>
       <a href="change_password.php?username=<?= $user->username ?>">Change...</a>
   </div>
-<<<<<<< HEAD
-</section>
-=======
 
   <?php if ($my_type == 'buyer/seller' && $user->items_listed >= 1): ?>
     <div class="items">
@@ -39,7 +36,6 @@ function drawProfile(User $user, Session $session) : void {
       <a href="user_items.php?username=<?= $user->name ?>">View all items</a>
     </div>
   <?php endif; ?>
->>>>>>> 67d5b98b014bd29f3f58b2710f0b0c1dee575bbe
   <?php
 }?>
 
