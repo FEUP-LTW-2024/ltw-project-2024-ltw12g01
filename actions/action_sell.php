@@ -1,26 +1,31 @@
 <?php
 require_once('../database/connection.db.php');
+require_once('../session/session.php');
 
+// Start the session
+$session = new Session();
 // Get the database connection
 $db = getDatabaseConnection();
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-// Insert the item into the database
-$itemName = $_POST['ItemName'];
-$itemBrand = $_POST['ItemBrand'];
-$itemDescription = $_POST['ItemDescription'];
-$itemCategory = $_POST['ItemCategory'];
-$itemPrice = $_POST['ItemPrice'];
-$itemOwner = $_POST['ItemOwner'];
-$itemImage = $_FILES['hiddenInput'];
+    // Insert the item into the database
+    $itemName = $_POST['ItemName'];
+    $itemBrand = $_POST['ItemBrand'];
+    $itemDescription = $_POST['ItemDescription'];
+    $itemCategory = $_POST['ItemCategory'];
+    $itemPrice = $_POST['ItemPrice'];
+    $itemOwner = $_POST['ItemOwner'];
+    $itemSize = $_POST['ItemSize'];
+    $itemCondition = $_POST['ItemCondition'];
+    $itemImage = $_FILES['hiddenInput'];
 
-// Validate the form data
-if (!isset($itemName) || !isset($itemDescription) || !isset($itemCategory) || !isset($itemPrice)) {
-  echo "Invalid form data";
-  exit;
-}
+    if (!isset($itemName) || !isset($itemDescription) || !isset($itemCategory) || !isset($itemPrice) || !isset($itemSize) || !isset($itemCondition)) {
+        echo "Invalid form data";
+        exit;
+    }
 
-    $query = "INSERT INTO Item (ItemName, ItemBrand, ItemDescription, ItemCategory, ItemPrice, ItemOwner, ItemImage) VALUES (:itemName, :itemBrand, :itemDescription, :itemCategory, :itemPrice, :itemOwner, :itemImage)";
+
+    $query = "INSERT INTO Item (ItemName, ItemBrand, ItemDescription, ItemCategory, ItemPrice, ItemOwner, ItemSize, ItemCondition, ItemImage) VALUES (:itemName, :itemBrand, :itemDescription, :itemCategory, :itemPrice, :itemOwner, :itemSize, :itemCondition, :itemImage)";
     $stmt = $db->prepare($query);
     $stmt->bindParam(':itemName', $itemName);
     $stmt->bindParam(':itemBrand', $itemBrand);
@@ -28,13 +33,17 @@ if (!isset($itemName) || !isset($itemDescription) || !isset($itemCategory) || !i
     $stmt->bindParam(':itemCategory', $itemCategory);
     $stmt->bindParam(':itemPrice', $itemPrice);
     $stmt->bindParam(':itemOwner', $itemOwner);
+    $stmt->bindParam(':itemSize', $itemSize);
+    $stmt->bindParam(':itemCondition', $itemCondition);
     $stmt->bindParam(':itemImage', $itemImage);
     $stmt->execute();
 
-    // Move the uploaded file
-    $target_dir = 'uploads/';
-    $target_file = $target_dir . basename($itemImage['name']);
-    move_uploaded_file($itemImage['tmp_name'], $target_file);
+    // Update the user's information
+    $user_id = $session->getId();
+    $query = "UPDATE User SET ItemsListed = ItemsListed + 1, UserType = CASE WHEN ItemsListed >= 1 THEN 'buyer/seller' ELSE 'buyer' END WHERE UserId = :user_id";
+    $stmt = $db->prepare($query);
+    $stmt->bindParam(':user_id', $user_id);
+    $stmt->execute();
 
     // Close the database connection
     $db = null;
