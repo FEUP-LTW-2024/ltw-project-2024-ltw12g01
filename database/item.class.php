@@ -10,8 +10,10 @@ class Item {
     public string $itemOwner;
     public string $itemCategory;
     public string $ItemImage;
+    public string $itemSize;
+    public string $itemCondition;
 
-    public function __construct(int $id, string $itemName, string $itemBrand, string $itemDescription, int $itemPrice, string $itemOwner, string $itemCategory, string $ItemImage)
+    public function __construct(int $id, string $itemName, string $itemBrand, string $itemDescription, int $itemPrice, string $itemOwner, string $itemCategory, string $ItemImage,string $itemSize, string $itemCondition)
     {
         $this->id = $id;
         $this->itemName = $itemName;
@@ -21,10 +23,12 @@ class Item {
         $this->itemOwner = $itemOwner;
         $this->itemCategory = $itemCategory;
         $this->ItemImage = $ItemImage ?? ''; 
+        $this->itemSize = $itemSize;
+        $this->itemCondition = $itemCondition;
     }
 
     static function getItems(PDO $db, int $count): array {
-        $stmt = $db->prepare('SELECT ItemId, ItemName, ItemBrand, ItemDescription, ItemPrice, ItemOwner, ItemCategory, ItemImage FROM Item LIMIT ?');
+        $stmt = $db->prepare('SELECT ItemId, ItemName, ItemBrand, ItemDescription, ItemPrice, ItemOwner, ItemCategory, ItemImage, ItemSize, ItemCondition FROM Item LIMIT ?');
         $stmt->execute(array($count));
     
         $items = array();
@@ -37,7 +41,9 @@ class Item {
                 $item->ItemPrice,
                 $item->ItemOwner,
                 $item->ItemCategory,
-                $item->ItemImage ?? '' // Use the null coalescing operator to provide an empty string if ItemImage is null
+                $item->ItemImage ?? '', // Use the null coalescing operator to provide an empty string if ItemImage is null
+                $item->ItemSize,
+                $item->ItemCondition
             );
         }
     
@@ -45,7 +51,7 @@ class Item {
     }
 
     static function getItemsStartingOn(PDO $db, int $startingID, int $count): array {
-        $stmt = $db->prepare('SELECT ItemId, ItemName, ItemBrand, ItemDescription, ItemPrice, ItemOwner, ItemCategory, ItemImage FROM Item WHERE ItemId >= ? LIMIT ?');
+        $stmt = $db->prepare('SELECT ItemId, ItemName, ItemBrand, ItemDescription, ItemPrice, ItemOwner, ItemCategory, ItemImage, ItemSize, ItemCondition FROM Item WHERE ItemId >= ? LIMIT ?');
         $stmt->execute(array($startingID, $count));
     
         $items = array();
@@ -58,7 +64,9 @@ class Item {
                 $item->ItemPrice,
                 $item->ItemOwner,
                 $item->ItemCategory,
-                $item->ItemImage ?? '' // Use the null coalescing operator to provide an empty string if ItemImage is null
+                $item->ItemImage ?? '', // Use the null coalescing operator to provide an empty string if ItemImage is null
+                $item->ItemSize,
+                $item->ItemCondition
             );
         }
     
@@ -66,7 +74,7 @@ class Item {
     }
 
     static function searchItems(PDO $db, string $search, int $count) : array {
-        $stmt = $db->prepare('SELECT ItemId, ItemName, ItemBrand, ItemDescription, ItemPrice, ItemOwner, ItemCategory, ItemImage FROM Item WHERE ItemName LIKE ? LIMIT ?');
+        $stmt = $db->prepare('SELECT ItemId, ItemName, ItemBrand, ItemDescription, ItemPrice, ItemOwner, ItemCategory, ItemImage, ItemSize, ItemCondition FROM Item WHERE ItemName LIKE ? LIMIT ?');
         $stmt->execute(array($search . '%', $count));
 
         $items = array();
@@ -79,7 +87,9 @@ class Item {
                 $item['ItemPrice'],
                 $item['ItemOwner'],
                 $item['ItemCategory'],
-                $item['ItemImage']
+                $item['ItemImage'],
+                $item['ItemSize'],
+                $item['ItemCondition']
             );
         }
 
@@ -87,7 +97,7 @@ class Item {
     }
 
     static function getItem(PDO $db, int $id) : Item {
-        $stmt = $db->prepare('SELECT ItemId, ItemName, ItemBrand, ItemDescription, ItemPrice, ItemOwner, ItemCategory, ItemImage FROM Item WHERE ItemId = ?');
+        $stmt = $db->prepare('SELECT ItemId, ItemName, ItemBrand, ItemDescription, ItemPrice, ItemOwner, ItemCategory, ItemImage, ItemSize, ItemCondition FROM Item WHERE ItemId = ?');
         $stmt->execute(array($id));
         
         $item = $stmt->fetch();
@@ -100,7 +110,9 @@ class Item {
             $item['ItemPrice'],
             $item['ItemOwner'],
             $item['ItemCategory'],
-            is_null($item['ItemImage']) ? '' : $item['ItemImage']
+            is_null($item['ItemImage']) ? '' : $item['ItemImage'],
+            $item['ItemSize'],
+            $item['ItemCondition']
         );
     }
 
