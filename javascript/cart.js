@@ -1,28 +1,13 @@
-const productElements = document.querySelectorAll('.product');
+// Select the delete button element
+const deleteButton = document.getElementById('deleteButton');
 
-productElements.forEach((productElement) => {
-  productElement.addEventListener('click', (event) => {
-    const productId = event.target.dataset.productId;
-    const quantity = event.target.dataset.quantity;
+// Add a click event listener to the delete button
+deleteButton.addEventListener('click', function() {
+    // Action to perform (delete the div element)
+    const itemToDelete = document.getElementById('itemToDelete');
+    itemToDelete.remove();
 
-    fetch('../actions/action_cart.php', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ productId, quantity }),
-    })
-      .then((response) => response.json())
-      .then((data) => {
-        const cartElement = document.getElementById('cart');
-        cartElement.innerHTML = '';
-        data.products.forEach((product) => {
-          const productElement = document.createElement('div');
-          productElement.innerHTML = `
-            <p>${product.name}</p>
-            <p>Quantity: ${product.quantity}</p>
-            <p>Price: ${product.price}</p>
-          `;
-          cartElement.appendChild(productElement);
-        });
-      });
-  });
+    // JavaScript code to execute after the action (optional)
+    console.log('Delete button clicked');
+    alert('Item deleted successfully!');
 });

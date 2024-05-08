@@ -40,6 +40,25 @@
     public function getMessages() {
       return $this->messages;
     }
+      public function getCart(): array {
+        return isset($_SESSION['shopping_cart']) ? $_SESSION['shopping_cart'] : [];
+    }
 
+    public function addToCart($item) {
+      if (!isset($_SESSION['shopping_cart'])) {
+          $_SESSION['shopping_cart'] = array(); 
+      }
+      $_SESSION['shopping_cart'][] = $item;
+  }
+  
+    public function removeFromCart($index) {
+        if (isset($_SESSION['shopping_cart'][$index])) {
+            unset($_SESSION['shopping_cart'][$index]);
+        }
+    }
+
+    public function clearCart() {
+        unset($_SESSION['shopping_cart']);
+    }
   }
 ?>

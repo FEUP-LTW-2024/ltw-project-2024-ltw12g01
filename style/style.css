@@ -323,71 +323,36 @@ main .addImg {
 }
 
 /* Styling for pagination starts here*/
-
 .pagination {
-
     list-style: none;
-
     display: flex;
-
     justify-content: center;
-
     padding: 0;
-
     margin-top: 3rem;
-
   }
-
-
-
 
   .pagination li {
-
     margin: 0 5px;
-
   }
-
-
-
 
   .pagination li a,
-
   .pagination li span {
-
     color: #333;
-
     text-decoration: none;
-
     padding: 8px 12px;
-
     border-radius: 5px;
-
     transition: background-color 0.3s ease;
-
   }
-
-
-
 
   .pagination li.active a,
-
   .pagination li a:hover {
-
     background-color: #0056b3;
-
     color: #fff;
-
   }
 
-
-
-
   .pagination li.disabled span {
-
     color: #ccc;
-
     cursor: not-allowed;
-<<<<<<< HEAD
   }
 
   /* Styling for Profile Starts Here*/
@@ -414,7 +379,64 @@ main .addImg {
   }
   
  
-=======
+/* Styling for the Cart Products Start Here*/
+/* Style for the main container */
+.cart-products {
+    display: flex;
+    flex-direction: column;
+    gap: 10px; /* Reduced gap between product lines */
+}
 
-  }
->>>>>>> 67d5b98b014bd29f3f58b2710f0b0c1dee575bbe
+/* Style for each product container */
+.cart-product {
+    display: flex;
+    align-items: center;
+    background-color: #f8f8f8;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    padding: 10px; /* Reduced padding */
+}
+
+/* Style for product info */
+.product-info {
+    flex: 1;
+}
+
+/* Style for product name */
+.product-name {
+    font-size: 1em; /* Reduced font size */
+    color: #0056b3; /* Main theme color */
+    margin-bottom: 3px; /* Reduced margin */
+}
+
+/* Style for product brand, price, and category */
+.product-brand,
+.product-price,
+.product-category {
+    font-size: 0.8em; /* Reduced font size */
+    margin-bottom: 5px; /* Reduced margin */
+    color: #555;
+}
+
+/* Style for delete button */
+.delete-btn {
+    color: #474747; /* Red color for the button */
+    border: none;
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.delete-btn:hover {
+    background-color: #f8d7da; /* Darker red color on hover */
+}
+
+/* Style for trash bin icon */
+.delete-btn i {
+    font-size: 16px;
+}
