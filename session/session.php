@@ -71,5 +71,15 @@
     $num_items_in_cart = isset($_SESSION['shopping_cart']) ? count($_SESSION['shopping_cart']) : 0;
     return $num_items_in_cart;
   }
+  public function findItemInCart($itemId) : bool{
+    if(isset($_SESSION['shopping_cart'])) {
+      foreach($_SESSION['shopping_cart'] as $index => $item) {
+        if($item->id === $itemId) {
+            return true;
+        }
+      }
+      return false;
+   }
+  }
 }
 ?>

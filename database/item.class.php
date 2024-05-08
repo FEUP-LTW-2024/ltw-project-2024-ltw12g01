@@ -116,6 +116,11 @@ class Item {
         );
     }
 
+    static public function deleteItemById(PDO $db, int $id) : bool {
+        $stmt = $db->prepare('DELETE FROM Item WHERE ItemId = ?');
+        return $stmt->execute(array($id));
+    }
+
     public function getImageUrl() {
         return $this->ItemImage;
     }

@@ -19,11 +19,12 @@ if(isset($_POST['item_json'])) {
         $item_data['itemSize'],
         $item_data['itemCondition']
     );
+    if($session->findItemInCart($item_data['id']) === true){
+        header('Location: ' . $_SERVER['HTTP_REFERER']);
+        exit();
+    }
     $session->addToCart($item);
-} else {
-    header('Location: ' . $_SERVER['HTTP_REFERER']);
-    exit();
 }
-header('Location: ../pages/shopping.php');
+header('Location: ' . $_SERVER['HTTP_REFERER']);
 exit();
 ?>

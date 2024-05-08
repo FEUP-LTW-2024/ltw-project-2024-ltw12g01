@@ -12,9 +12,9 @@ $db = getDatabaseConnection();
 $username = $session->getName();
 
 $stmt = $db->prepare('SELECT * FROM Item WHERE ItemOwner = ?');
-$stmt->execute(array($username));
+$stmt->execute([$username]);
 
-$items = array();
+$items = [];
 while ($item = $stmt->fetch()) {
     $items[] = new Item(
         $item['ItemId'],
@@ -42,5 +42,10 @@ while ($item = $stmt->fetch()) {
         <p>Price: <?= $item->itemPrice ?></p>
         <p>Category: <?= $item->itemCategory ?></p>
         <img src="<?= $item->getImageUrl() ?>" alt="Item image">
+        
+        <form action="../actions/action_delete.php" method="post">
+            <input type="hidden" name="item_id" value="<?= $item->id ?>">
+            <button type="submit">Remove</button>
+        </form>
     </div>
 <?php endforeach; ?>
