@@ -11,7 +11,7 @@ $session = new Session();
 
 $db = getDatabaseConnection();
 
-drawHeader(false);
+drawHeader($session, false);
 
 if (!($session->isLoggedIn())) {
     header('Location: ../index.php');

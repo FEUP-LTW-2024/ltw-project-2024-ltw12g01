@@ -2,7 +2,6 @@
 declare(strict_types=1);
 
 require_once(__DIR__ . '/../database/connection.db.php');
-require_once(__DIR__ . '/../actions/action_change_password.php');
 require_once(__DIR__ . '/../database/user.class.php');
 require_once(__DIR__ . '/../session/session.php');
 
@@ -13,20 +12,22 @@ function drawProfile(User $user,Session $session) : void {
   $my_type = $session->isLoggedIn() ? User::getUserTypeByUsername($db, $session->getName()) : null;
 
   ?>
-  <div class="username">
-      <span class="bold">Username:</span> <span class="content"><?= $user->username ?></span>
+  <section id="profile-info">
+  <div id="profile-username">
+      <span id="bold"> <strong>Username:</strong></span> <span id="content"><?= $user->username ?></span>
       <a href="change_username.php?username=<?= $user->name ?>">Change...</a>
   </div>
 
-  <div class="email">
-      <span class="bold">Email:</span> <span class="content"><?= $user->email ?></span>
+  <div id="profile-email">
+      <span id="bold"><strong>Email:</strong> </span> <span id="content"><?= $user->email ?></span>
       <a href="change_email.php?username=<?= $user->name ?>">Change...</a>
   </div>
 
-  <div class="password">
-      <span class="bold">Password:</span> <span class="content">*** (Hidden for security)</span>
+  <div id="profile-password">
+      <span id="bold"><strong>Password:</strong></span> <span id="content">(Hidden for security)</span>
       <a href="change_password.php?username=<?= $user->username ?>">Change...</a>
   </div>
+</section>
   <?php
 }?>
 

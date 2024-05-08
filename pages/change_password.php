@@ -21,15 +21,9 @@
         header('Location: ../index.php');
         exit();
     }
-
 ?>
-    <section id="messages">
-      <?php foreach ($session->getMessages() as $messsage) { ?>
-        <article class="<?=$messsage['type']?>">
-          <?=$messsage['text']?>
-        </article>
-      <?php } ?>
-      </section>
+
+<?php drawHeader($session, false); ?>
 <h3>Changing <?= $session->getName() ?>'s password</h3>
 <form id="changePasswordForm" action="../actions/action_change_password.php" method="post" >
 
@@ -47,6 +41,14 @@
     <input type="password" name="new2" id="new2" required>
     <button type="submit">Submit</button>
 </form>
+<section id="messages">
+      <?php 
+      $messages = $session->getMessages();
+      foreach ($messages as $message) {
+          echo "<div class='login-register-alert'>{$message['text']}</div>";
+      }
+      ?>
+  </section>
 
 
 <?php

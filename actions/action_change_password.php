@@ -8,29 +8,39 @@ require_once(__DIR__ . '/../database/user.class.php');
 
 $session = new Session();
 
-$antiga = $_POST['old'];
-$nova = $_POST['new'];
-$nova2 = $_POST['new2'];
+    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+        if ($_POST['new'] != $_POST['new2']) {
+            $session->addMessage('Password error', 'Passwords do not match!');
+        } else {
+            require_once(__DIR__ . '/../database/connection.db.php');
+            require_once(__DIR__ . '/../database/user.class.php');
 
-print($antiga);
+            $email = User::getEmailByUsername($db, $session->getName());
+            $user = User::getUserWithPassword($db, $email, $_POST['old']);
 
-    if ($nova != $nova2) {
-        $session->addMessage('Password error', 'Passwords do not match!');
-    } else {
+            if($user !== $session->getName() || $user === null){
+                $session->addMessage('Password error', 'Current password Wrong!');
+                header('Location: ' . $_SERVER['HTTP_REFERER']);
+                exit();
+            }
+    
+            $db = getDatabaseConnection();
+    
+            $admin = (User::getUserTypeByUsername($db, $session->getName()) == 'admin');
+    
+            if ($admin) {
+                User::changePassword($db, $session->getName(), $_POST['new']);
+                header('Location: ../pages/profile.php?username=' . $session->getName());
 
+            } else {
+                User::changePasswordName($db, $session->getName(), $_POST['new']);
+                header('Location: ../pages/profile.php?username=' . $session->getName());
 
-        $db = getDatabaseConnection();
-
-        // $admin = (User::getUserTypeByUsername($db, $session->getName()) == 'admin');
-
-        // if ($admin) {
-        //     User::changePassword($db, $session->getName(), $nova);
-        // } else {
-        //     $email = User::getEmailByUsername($db, $session->getName());
-        //     $user = User::getUserWithPassword($db, $email, $antiga);
-        //     User::changePasswordName($db, $session->getName(), $nova);
-        // }
+            }
+        }
     }
     
-        exit();
-?> 
+    header('Location: ' . $_SERVER['HTTP_REFERER']);
+    exit();
+
+?>

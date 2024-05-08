@@ -924,3 +924,28 @@ button:active {
     color: #ccc;
     cursor: not-allowed;
   }
+
+  /* Styling for Profile Starts Here*/
+
+#profile-info {
+    display: flex;
+    flex-direction: column;
+    gap: 20px; 
+  }
+  
+  #profile-info > div {
+    display: flex;
+    align-items: center;
+  }
+  
+  #profile-info > div a{
+    margin-left: auto; 
+        color: #007bff; 
+    text-decoration: none;
+  }
+  
+  #profile-info > div a:hover {
+    text-decoration: underline; 
+  }
+  
+ 

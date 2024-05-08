@@ -136,11 +136,27 @@ class User {
         ]);
     }
 
+    static public function changeEmailName(PDO $db, string $username, string $email): void {
+        $stmt = $db->prepare('UPDATE User SET Email = :email WHERE UserName = :username');
+        $stmt->execute([
+            ':email' => $email,
+            ':username' => $username
+        ]);
+    }
+
     static public function changeUsername(PDO $db, int $id, string $username): void {
         $stmt = $db->prepare('UPDATE User SET UserName = :username WHERE UserId = :id');
         $stmt->execute([
             ':username' => $username,
             ':id' => $id
+        ]);
+    }
+
+    static public function changerUsernameName(PDO $db, string $old_username, string $new_username): void {
+        $stmt = $db->prepare('UPDATE User SET UserName = :new_username WHERE UserName = :old_username');
+        $stmt->execute([
+            ':new_username' => $new_username,
+            ':old_username' => $old_username
         ]);
     }
 
