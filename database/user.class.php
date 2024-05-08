@@ -28,6 +28,22 @@ class User {
         return new User((int)$db->lastInsertId(), $username, $email, $type, 0);
     }
 
+    static public function getAllUsersFromDatabase(PDO $db): array {
+        $stmt = $db->prepare('SELECT * FROM User');
+        $stmt->execute();
+        $users = [];
+        while ($user = $stmt->fetch()) {
+            $users[] = new User(
+                (int)$user['UserId'],
+                $user['UserName'],
+                $user['Email'],
+                $user['UserType'],
+                (int)$user['ItemsListed']
+            );
+        }
+        return $users;
+    }
+
     static public function getUserWithPassword(PDO $db, string $emailOrUsername, string $password): ?User {
         $stmt = $db->prepare('
           SELECT UserId, UserName, Email, UserType, ItemsListed, UserPassword
@@ -109,6 +125,7 @@ class User {
         $user = $stmt->fetch();
         return (int)$user['ItemsListed'];
     }
+
 
     static public function changePassword(PDO $db, int $id, string $password): void {
         $hashedPassword = password_hash($password, PASSWORD_DEFAULT, ['cost' => 8]);
@@ -208,6 +225,15 @@ class User {
         $stmt->execute([':username' => $username]);
         return $stmt->fetch() !== false;
     }
-
+    
+    static public function updateUser(PDO $db, int $id, string $username, string $email, string $type): bool {
+        $stmt = $db->prepare('UPDATE User SET UserName = :username, Email = :email, UserType = :type WHERE UserId = :id');
+        return $stmt->execute([
+            ':username' => $username,
+            ':email' => $email,
+            ':type' => $type,
+            ':id' => $id
+        ]);
+    }
 }   
 ?>

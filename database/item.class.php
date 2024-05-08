@@ -50,6 +50,29 @@ class Item {
         return $items;
     }
 
+    static public function getAllItemsFromDatabase(PDO $db): array {
+        $stmt = $db->prepare('SELECT ItemId, ItemName, ItemBrand, ItemDescription, ItemPrice, ItemOwner, ItemCategory, ItemImage, ItemSize, ItemCondition FROM Item');
+        $stmt->execute();
+    
+        $items = array();
+        while ($item = $stmt->fetchObject()) {
+            $items[] = new Item(
+                $item->ItemId,
+                $item->ItemName,
+                $item->ItemBrand,
+                $item->ItemDescription,
+                $item->ItemPrice,
+                $item->ItemOwner,
+                $item->ItemCategory,
+                $item->ItemImage ?? '', // Use the null coalescing operator to provide an empty string if ItemImage is null
+                $item->ItemSize,
+                $item->ItemCondition
+            );
+        }
+    
+        return $items;
+    }
+
     static function getItemsStartingOn(PDO $db, int $startingID, int $count): array {
         $stmt = $db->prepare('SELECT ItemId, ItemName, ItemBrand, ItemDescription, ItemPrice, ItemOwner, ItemCategory, ItemImage, ItemSize, ItemCondition FROM Item WHERE ItemId >= ? LIMIT ?');
         $stmt->execute(array($startingID, $count));
@@ -123,6 +146,11 @@ class Item {
 
     public function getImageUrl() {
         return $this->ItemImage;
+    }
+
+    static public function updateItem(PDO $db, int $itemId, string $itemName, string $itemBrand, string $itemOwner, string $itemDescription, string $itemCategory, int $itemPrice, string $itemCondition, string $itemSize) : bool {
+        $stmt = $db->prepare('UPDATE Item SET ItemName = ?, ItemBrand = ?, ItemOwner = ?, ItemDescription = ?, ItemCategory = ?, ItemPrice = ?, ItemCondition = ?, ItemSize = ? WHERE ItemId = ?');
+        return $stmt->execute(array($itemName, $itemBrand, $itemOwner, $itemDescription, $itemCategory, $itemPrice, $itemCondition, $itemSize, $itemId));
     }
 
 }
