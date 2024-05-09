@@ -26,7 +26,7 @@ $userTypes = ['buyer', 'buyer/seller', 'admin'];
 
 // Display form for editing user details
 ?>
-<form action="action_edit_user.php" method="post">
+<form action="../actions/action_edit_user.php" method="post">
     <input type="hidden" name="id" value="<?= $user->id ?>">
     Username: <input type="text" name="username" value="<?= $user->username ?>"><br>
     Email: <input type="email" name="email" value="<?= $user->email ?>"><br>

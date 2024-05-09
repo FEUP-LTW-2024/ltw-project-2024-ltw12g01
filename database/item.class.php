@@ -148,10 +148,21 @@ class Item {
         return $this->ItemImage;
     }
 
-    static public function updateItem(PDO $db, int $itemId, string $itemName, string $itemBrand, string $itemOwner, string $itemDescription, string $itemCategory, int $itemPrice, string $itemCondition, string $itemSize) : bool {
-        $stmt = $db->prepare('UPDATE Item SET ItemName = ?, ItemBrand = ?, ItemOwner = ?, ItemDescription = ?, ItemCategory = ?, ItemPrice = ?, ItemCondition = ?, ItemSize = ? WHERE ItemId = ?');
-        return $stmt->execute(array($itemName, $itemBrand, $itemOwner, $itemDescription, $itemCategory, $itemPrice, $itemCondition, $itemSize, $itemId));
+    static public function updateItem(PDO $db, int $itemId, string $itemName, string $itemBrand, string $itemOwner, string $itemDescription, string $itemCategory, int $itemPrice, string $itemCondition, string $itemSize): bool {
+        $stmt = $db->prepare('UPDATE Item SET ItemName = :itemName, ItemBrand = :itemBrand, ItemOwner = :itemOwner, ItemDescription = :itemDescription, ItemCategory = :itemCategory, ItemPrice = :itemPrice, ItemCondition = :itemCondition, ItemSize = :itemSize WHERE ItemId = :itemId');
+        return $stmt->execute([
+            ':itemName' => $itemName,
+            ':itemBrand' => $itemBrand,
+            ':itemOwner' => $itemOwner,
+            ':itemDescription' => $itemDescription,
+            ':itemCategory' => $itemCategory,
+            ':itemPrice' => $itemPrice,
+            ':itemCondition' => $itemCondition,
+            ':itemSize' => $itemSize,
+            ':itemId' => $itemId
+        ]);
     }
+    
 
 }
 
