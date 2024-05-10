@@ -1,0 +1,88 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.container {
+    max-width: 500px; 
+    margin: 40px auto;
+    padding: 40px; 
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    display: flex;
+    justify-content: center;
+    text-align: center;
+}
+
+h1 {
+    font-weight: bold;
+    font-size: 28px; 
+    margin-bottom: 20px; 
+}
+
+label {
+    display: block;
+    margin-bottom: 20px; 
+    font-weight: bold;
+    font-size: 18px;
+    color: #666;
+}
+
+input,
+select,
+textarea {
+    width: 100%;
+    padding: 15px; 
+    margin-bottom: 30px;
+    border: 1px solid #ccc;
+    border-radius: 8px; 
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    font-size: 16px; 
+}
+
+select option {
+    font-size: 16px; 
+    padding: 15px; 
+}
+
+input[type="submit"] {
+    background-color: #497aaf;
+    color: #fff;
+    padding: 15px 30px; 
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+input[type="submit"]:hover {
+    background-color: #355e8f;
+}
+
+textarea {
+    height: 150px; 
+    padding: 15px; 
+    border: 1px solid #ccc;
+    border-radius: 8px; 
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+textarea::placeholder {
+    font-size: 16px; 
+    color: #666;
+}
+
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: #666;
+    border-radius: 10px;
+}

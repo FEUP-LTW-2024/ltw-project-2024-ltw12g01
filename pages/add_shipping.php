@@ -16,7 +16,7 @@ if ($user) {
     if (!isset($_POST['submit'])) {
         $shipmentInfo = ShipmentUserInfo::getShipmentInfoUserID($db, $user->id);
         ?>
-        <h1>Edit Shipping Information</h1>
+        <link rel="stylesheet" type="text/css" href="../style/payment.css">
         <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
             <label for="shippingCountry">Shipping Country:</label>
             <select id="country" name="shippingCountry">

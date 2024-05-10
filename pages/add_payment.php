@@ -17,7 +17,7 @@ if ($user) {
     } else {
         if (!isset($_POST['submit'])) {
             ?>
-            <h1>Add Payment Information</h1>
+            <link rel="stylesheet" type="text/css" href="../style/payment.css">
             <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
                 <label for="paymentMethod">Payment Method:</label>
                 <select name="paymentMethod">

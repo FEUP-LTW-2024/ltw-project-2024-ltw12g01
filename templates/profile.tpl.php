@@ -17,6 +17,7 @@ function drawProfile(User $user, Session $session): void {
   $shipmentInfo = ShipmentUserInfo::getShipmentInfoUserID($db, $user->id);
 
   ?>
+    <link rel="stylesheet" href="../style/profile.css">
   <section id="profile-info">
       <div id="profile-username">
           <span id="bold"><strong>Username:</strong></span> <span id="content"><?= $user->username ?></span>
