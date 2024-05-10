@@ -12,7 +12,7 @@ $session = new Session();
 function drawProfile(User $user, Session $session): void {
   $db = getDatabaseConnection();
 
-  $my_type = $session->isLoggedIn() ? User::getUserTypeByUsername($db, $session->getName()) : null;
+    $my_type = $session->isLoggedIn() ? User::getUserTypeByUsername($db, $session->getName()) : null;
 
   $shipmentInfo = ShipmentUserInfo::getShipmentInfoUserID($db, $user->id);
 
@@ -73,6 +73,7 @@ function drawProfile(User $user, Session $session): void {
   <?php
 }
 ?>
+
 
 
 

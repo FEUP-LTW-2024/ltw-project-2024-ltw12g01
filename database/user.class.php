@@ -136,6 +136,7 @@ class User {
         return (int)$user['ItemsListed'];
     }
 
+
     static public function changePassword(PDO $db, int $id, string $password): void {
         $hashedPassword = password_hash($password, PASSWORD_DEFAULT, ['cost' => 8]);
         $stmt = $db->prepare('UPDATE User SET UserPassword = :password WHERE UserId = :id');
