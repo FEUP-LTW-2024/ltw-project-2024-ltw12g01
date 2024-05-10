@@ -54,7 +54,6 @@ CREATE TABLE ShipmentUserInfo (
     UserId INTEGER NOT NULL,
     ShippingAddress NVARCHAR(200) NOT NULL,
     ShippingCity NVARCHAR(50) NOT NULL,
-    ShippingState NVARCHAR(50) NOT NULL,
     ShippingZipCode NVARCHAR(10) NOT NULL,
     ShippingCountry NVARCHAR(50) NOT NULL,
     FOREIGN KEY (UserId) REFERENCES User(UserId)

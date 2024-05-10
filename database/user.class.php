@@ -248,6 +248,10 @@ class User {
         ]);
     }
 
+    public function setPaymentMethod(?string $paymentMethod): void {
+        $this->paymentMethod = $paymentMethod;
+    }
+
     public function setShippingInfo(?string $shippingInfo): void {
         $this->shippingInfo = $shippingInfo;
     }

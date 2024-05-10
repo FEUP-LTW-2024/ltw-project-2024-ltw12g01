@@ -3,19 +3,17 @@ declare(strict_types=1);
 
 class ShipmentUserInfo {
     public int $shipmentUserInfoId;
-    public int $userId;  // Added property for UserId
+    public int $userId; 
     public string $shippingAddress;
     public string $shippingCity;
-    public string $shippingState;
     public string $shippingZipCode;
     public string $shippingCountry;
 
-    public function __construct(int $shipmentUserInfoId, int $userId, string $shippingAddress, string $shippingCity, string $shippingState, string $shippingZipCode, string $shippingCountry) {
+    public function __construct(int $shipmentUserInfoId, int $userId, string $shippingAddress, string $shippingCity, string $shippingZipCode, string $shippingCountry) {
         $this->shipmentUserInfoId = $shipmentUserInfoId;
         $this->userId = $userId; 
         $this->shippingAddress = $shippingAddress;
         $this->shippingCity = $shippingCity;
-        $this->shippingState = $shippingState;
         $this->shippingZipCode = $shippingZipCode;
         $this->shippingCountry = $shippingCountry;
     }
@@ -36,10 +34,6 @@ class ShipmentUserInfo {
         return $this->shippingCity;
     }
 
-    public function getShippingState(): string {
-        return $this->shippingState;
-    }
-
     public function getShippingZipCode(): string {
         return $this->shippingZipCode;
     }
@@ -56,10 +50,6 @@ class ShipmentUserInfo {
         $this->shippingCity = $shippingCity;
     }
 
-    public function setShippingState(string $shippingState): void {
-        $this->shippingState = $shippingState;
-    }
-
     public function setShippingZipCode(string $shippingZipCode): void {
         $this->shippingZipCode = $shippingZipCode;
     }
@@ -74,7 +64,7 @@ class ShipmentUserInfo {
         $stmt->execute();
         $row = $stmt->fetch(PDO::FETCH_ASSOC);
         if ($row) {
-            return new ShipmentUserInfo($row['ShipmentUserInfoId'], $row['UserId'], $row['ShippingAddress'], $row['ShippingCity'], $row['ShippingState'], $row['ShippingZipCode'], $row['ShippingCountry']);
+            return new ShipmentUserInfo($row['ShipmentUserInfoId'], $row['UserId'], $row['ShippingAddress'], $row['ShippingCity'], $row['ShippingZipCode'], $row['ShippingCountry']);
         }
         return null;
     }
