@@ -15,8 +15,13 @@ $maxPrice = isset($_POST['maxPrice']) ? floatval($_POST['maxPrice']) : null;
 $categories = isset($_POST['category']) ? $_POST['category'] : array();
 $condition = isset($_POST['ItemCondition']) ? $_POST['ItemCondition'] : array();
 
-echo 'Categories: ' . implode(', ', $categories) . '<br>';
-echo 'Condition: ' . implode(', ', $condition) . '<br>';
+if(!empty($categories)){
+    echo 'Categories: ' . implode(', ', $categories) . '<br>';
+}
+if(!empty($condition)){   
+    echo 'Condition: ' . implode(', ', $condition) . '<br>';
+}
+
 
 $filteredItems = Item::filterItems($db, $minSize, $maxSize, $minPrice, $maxPrice, $categories, $condition);
 
