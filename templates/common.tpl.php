@@ -33,6 +33,9 @@ $username = $session->getName();
 <?php function drawNavBar() { ?>
     <nav>
         <ul class="nav-bar">
+            <li>
+                <?php drawFilters(); ?>
+            </li>
                 <li>
                     Women
                 </li>
@@ -41,12 +44,6 @@ $username = $session->getName();
                 </li>
                 <li>
                     Kids
-                </li>
-                <li>
-                    Sneakers
-                </li>
-                <li>
-                    Shoes
                 </li>
             </ul>
     </nav>
@@ -134,3 +131,82 @@ function drawLoginForm(Session $session) {
     <?php
 }
 ?>
+
+<?php 
+function drawFilters() {
+    ?>
+    <link rel="stylesheet" href="../style/filters.css">
+    <button class="filter-button"><i class="fas fa-filter"></i> Filters</button>
+    <aside class="filters" style="transform: translateX(-100%); transition: 0.5s;">
+        <button class="close-button"><i class="fas fa-times"></i></button>
+        <h2>Filters</h2>
+        <section class="filter-section">
+            <h3><i class="fas fa-tags"></i> Categories</h3>
+            <label>
+                <input type="checkbox" name="category" value="men">
+                Men
+            </label>
+            <label>
+                <input type="checkbox" name="category" value="women">
+                Women
+            </label>
+            <label>
+                <input type="checkbox" name="category" value="kids">
+                Kids
+            </label>
+        </section>
+        <section class="filter-section">
+            <h3><i class="fas fa-ruler-horizontal"></i> Size Range</h3>
+            <div class="size-range">
+                <select name="minSize">
+                    <?php for ($i = 36; $i <= 46; $i++) { ?>
+                        <option value="<?= $i ?>">EU <?= $i ?></option>
+                    <?php } ?>
+                </select>
+                <span>to</span>
+                <select name="maxSize">
+                    <?php for ($i = 36; $i <= 46; $i++) { ?>
+                        <option value="<?= $i ?>">EU <?= $i ?></option>
+                    <?php } ?>
+                </select>
+            </div>
+        </section>
+        <section class="filter-section">
+            <h3><i class="fas fa-dollar-sign"></i> Price Range</h3>
+            <label>
+                From: <input type="number" name="minPrice" min="0">
+            </label>
+            <label>
+                To: <input type="number" name="maxPrice" min="0">
+            </label>
+        </section>
+    </aside>
+    <?php
+}
+?>
+
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const filterButton = document.querySelector('.filter-button');
+    const closeButton = document.querySelector('.close-button');
+    const filters = document.querySelector('.filters');
+
+    filterButton.addEventListener('click', () => {
+        if (filters.style.transform === 'translateX(-100%)') {
+            filters.style.transform = 'translateX(0)';
+            filterButton.style.visibility = 'visible'; // Hide filter button when filter options are open
+        } else {
+            filters.style.transform = 'translateX(-100%)';
+            filterButton.style.visibility = 'visible'; // Show filter button when filter options are closed
+        }
+    });
+
+    closeButton.addEventListener('click', () => {
+        filters.style.transform = 'translateX(-100%)';
+        filterButton.style.visibility = 'visible'; // Show filter button when filter options are closed
+    });
+});
+
+</script>
+
