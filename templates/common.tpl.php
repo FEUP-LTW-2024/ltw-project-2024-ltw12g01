@@ -62,7 +62,8 @@ function drawSearchBar(Session $session) {
         </a>
         
         <form class="search-form">
-            <input type="text" placeholder="Search for items"></input>
+            <input type="text" id="search-bar"placeholder="Search for items"></input>
+            <div id="search-bar-result"></div>
             <button type="submit">
                 <img src="../imgs/magnify.svg" alt="Search">
             </button>
@@ -109,6 +110,7 @@ function drawLoginForm(Session $session) {
       </div>
       <button type="submit" class="btn btn-primary">Login</button>
   </form>
+  <script src="../search.js"></script>
 
   <p>Don't have an account yet? <a href="../pages/register.php">Register</a></p>
 
