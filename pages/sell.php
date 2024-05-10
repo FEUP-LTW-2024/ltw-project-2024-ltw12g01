@@ -1,8 +1,8 @@
 
-<?php require_once('../templates/common.tpl.php') ?>
+<?php require_once('../templates/common.tpl.php');
 
-<!-- $session = new Session(); -->
-
+$session = new Session();
+?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -12,12 +12,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Main Page</title>
     <link rel="stylesheet" href="style/style.css">
+    <link rel="icon" href="../imgs/logo.jpg" type="image/x-icon">
     <script src="../javascript/UploadImage.js" defer></script>
     <script src="../javascript/Category.js" defer></script>
 </head>
 
 <body>
-    <?php drawHeader(false); ?>
+    <?php drawHeaderForSell($session,true); ?>
     <main class="sell">
         <h1>Sell an article</h1>
 

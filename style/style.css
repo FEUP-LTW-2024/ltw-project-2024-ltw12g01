@@ -159,13 +159,13 @@ nav ul li a {
 #products article:hover {
     transform: translateY(-5px); /* Slight lift effect on hover */
     box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1); /* Deeper shadow on hover for a 'pop' effect */
+    cursor:pointer;
 }
 
 #products article img {
     width: 100%;
     max-width: 180px; /* Slightly smaller images for a more balanced design */
     height: auto; /* Maintain aspect ratio without distorting images */
-    margin-bottom: 15px; /* Adjusted spacing */
     border-radius: 4px; /* Subtle rounded corners for images */
 }
 
@@ -173,6 +173,7 @@ nav ul li a {
     color: #0056b3; /* Theme color for consistency */
     text-decoration: none;
     font-weight: bold;
+    font-size: 20px;
     margin: 10px 0; /* More space around links for better focus */
 }
 
