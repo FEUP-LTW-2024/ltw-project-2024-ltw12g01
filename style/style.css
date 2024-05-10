@@ -210,7 +210,7 @@ footer {
     background-color: white;
     height: 400px;
     padding-top: 50px;
-
+    border-radius: 10px;
 
 }
 
@@ -701,7 +701,8 @@ button:active {
 
 .description {
     background-color: white;
-    height: 420px;
+    height: 370px;
+    border-radius: 10px;
 }
 
 .title {
@@ -969,11 +970,30 @@ button:active {
 }
 
 .category-div {
-    height: 340px;
+    height: 430px;
     background-color: white;
+    border-radius: 10px;
 }
 
 .category {
+    font-size: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 40px;
+    padding-right: 120px;
+}
+
+.category {
+    font-size: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 40px;
+    padding-right: 120px;
+}
+
+.size {
     font-size: 20px;
     display: flex;
     justify-content: space-between;
@@ -991,6 +1011,21 @@ button:active {
     border-bottom: 2px solid #9b9b9b;
 }
 
+.choose-cond {
+    width: 300px;
+    position: relative;
+    display: flex;
+    border-bottom: 2px solid #9b9b9b;
+}
+
+.choose-size {
+    width: 300px;
+    position: relative;
+    display: flex;
+    border-bottom: 2px solid #9b9b9b;
+}
+
+
 
 
 .item-category {
@@ -1004,9 +1039,34 @@ button:active {
   
 }
 
+
+
+.item-condition {
+    padding-left: 5px;
+    border: none;
+    appearance: none;
+    width: 100%;
+    color: #9b9b9b;
+    background-color: white;
+    font-size: 17px;
+  
+}
+
+.item-size {
+    padding-left: 5px;
+    border: none;
+    appearance: none;
+    width: 100%;
+    color: #9b9b9b;
+    background-color: white;
+    font-size: 17px;
+  
+}
+
 .icon-select {
     color: #9b9b9b;
     padding-right: 10px;
+    margin-left: 2px;
 }
 
 .condition {

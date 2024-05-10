@@ -45,7 +45,7 @@
                         <label for="title" class="label">Item Name</label>
                     </div>
                     </div>
-                    <div class="border-descri"></div>
+                    <!-- <div class="border-descri"></div> -->
                     <div class="brand">
                         <span>Brand</span>
                         <div class="brand-input">
@@ -57,7 +57,7 @@
                     <div class="owner-input">
                         <input type="hidden" name="ItemOwner" value="<?php echo $session->getName(); ?>">
                     </div>
-                    <div class="border-descri"></div>
+                    <!-- <div class="border-descri"></div> -->
                     <div class="descricao">
                         <span>Description</span>
                         <div class="descri-input">
@@ -88,7 +88,7 @@
         <div class="condition">
             <span>Condition</span>
             <div class="choose-cond">
-                <select name="ItemCondition">
+                <select name="ItemCondition" class="item-condition">
                     <option value="New with tags">New with tags</option>
                     <option value="New without tags">New without tags.</option>
                     <option value="Very good">Very good</option>
@@ -96,14 +96,17 @@
                     <option value="Satisfactory">Satisfactory</option>
                     <option value="Bad">Bad</option>
                 </select>
+                <div class="border-select"></div>
+                    <div class="icon-select">
+                        <i class = "fa-solid fa-caret-down"></i>
+                    </div>
             </div>
         </div>
 
         <div class="size">
-        <div class="size">
             <span>Size</span>
             <div class="choose-size">
-                <select name="ItemSize">
+                <select name="ItemSize" class="item-size">
                     <option value="36">36</option>
                     <option value="37">37</option>
                     <option value="38">38</option>
@@ -116,6 +119,10 @@
                     <option value="45">45</option>
                     <option value="46">46</option>
                 </select>
+                <div class="border-select"></div>
+                    <div class="icon-select">
+                        <i class = "fa-solid fa-caret-down"></i>
+                    </div>
             </div>
             </div>
             <div class="price">
@@ -125,8 +132,7 @@
                 <label for="title" class="label">Price</label>
             </div>
         </div>
-      <br>
-      <br><br><br>
+     
             <button class="load-btn">Save Item</button>
             </form>
     </main>
