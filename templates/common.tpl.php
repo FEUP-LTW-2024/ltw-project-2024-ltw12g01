@@ -83,6 +83,8 @@ function drawSearchBar(Session $session) {
             <?php endif; ?>
           </section>
     </header>    
+    <script src="../javascript/search.js">
+    </script>
     <?php
 }?>
 
@@ -110,7 +112,6 @@ function drawLoginForm(Session $session) {
       </div>
       <button type="submit" class="btn btn-primary">Login</button>
   </form>
-  <script src="../search.js"></script>
 
   <p>Don't have an account yet? <a href="../pages/register.php">Register</a></p>
 

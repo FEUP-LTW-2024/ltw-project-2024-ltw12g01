@@ -11,13 +11,11 @@ try{
     if(isset($_POST['term'])){
         $searchTerm = $_POST['term'];
         
-        echo($searchTerm);
-
         $results = getSearchedItems($db, $searchTerm);
-
+        
         if (!empty($results)) {
             foreach ($results as $result) {
-                echo '<p class="result-item">' . $result['column_name'] . '</p>';
+                echo '<p class="result-item">' . $result['ItemName'] . '</p>';
             }
         } else {
             echo '<p class="no-result">No results found</p>';

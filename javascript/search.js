@@ -1,3 +1,5 @@
+
+function handleSearch(){
 document.addEventListener("DOMContentLoaded", function() {
     var searchBox = document.getElementById('search-bar');
     var resultDropdown = document.getElementById('search-bar-result');
@@ -18,6 +20,7 @@ document.addEventListener("DOMContentLoaded", function() {
         } else {
             resultDropdown.innerHTML = '';
         }
+    
     });
 
     document.addEventListener("click", function(event) {
@@ -27,3 +30,7 @@ document.addEventListener("DOMContentLoaded", function() {
         }
     });
 });
+}
+
+
+handleSearch();
