@@ -66,6 +66,10 @@
           }
       }
     }
+
+    public function clearCart() {
+        $_SESSION['shopping_cart'] = array();
+    }
   
   public function getNumberItemsInCart(){
     $num_items_in_cart = isset($_SESSION['shopping_cart']) ? count($_SESSION['shopping_cart']) : 0;

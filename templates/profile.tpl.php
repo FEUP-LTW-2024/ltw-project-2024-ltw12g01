@@ -48,7 +48,7 @@ function drawProfile(User $user, Session $session): void {
             <span id="bold"><strong>Shipping Information:</strong></span>
             <?php if ($shipmentInfo !== null): ?>
                 <span id="content">Shipping information is available</span>
-                <a href="edit_shipping.php?username=<?= $user->username ?>">Edit...</a>
+                <a href="add_shipping.php?username=<?= $user->username ?>">Edit...</a>
             <?php else: ?>
                 <span id="content">No shipping information added</span>
                 <a href="add_shipping.php?username=<?= $user->username ?>">Add...</a>
