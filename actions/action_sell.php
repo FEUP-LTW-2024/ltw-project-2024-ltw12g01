@@ -41,7 +41,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     if(!User::isUserAdmin($db, $session->getId())){
         $user_id = $session->getId();
-        $query = "UPDATE User SET ItemsListed = ItemsListed + 1, UserType = CASE WHEN ItemsListed >= 1 THEN 'buyer/seller' ELSE 'buyer' END WHERE UserId = :user_id";
+        $query = "UPDATE User SET ItemsListed = ItemsListed + 1, UserType = CASE WHEN ItemsListed >= 0 THEN 'buyer/seller' ELSE 'buyer' END WHERE UserId = :user_id";
         $stmt = $db->prepare($query);
         $stmt->bindParam(':user_id', $user_id);
         $stmt->execute();
