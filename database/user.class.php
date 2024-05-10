@@ -1,32 +1,40 @@
 <?php
 declare(strict_types = 1);
+require_once('../database/shipment_user.class.php');
 
 class User {
     public int $id;
     public string $username;
     public string $email;
-    public string $type;
-    public int $items_listed;
+    public ?string $type;
+    public ?int $items_listed;
+    public ?string $paymentInfo;
+    public ?string $paymentMethod;
 
-    public function __construct(int $id, string $username, string $email, string $type, int $items_listed) {
+    public function __construct(int $id, string $username, string $email, string $type, int $items_listed, ?string $paymentInfo = null, ?string $paymentMethod = null) {
         $this->id = $id;
         $this->username = $username;
         $this->email = $email;
         $this->type = $type;
         $this->items_listed = $items_listed;
+        $this->paymentInfo = $paymentInfo;
+        $this->paymentMethod = $paymentMethod;
     }
 
-    static public function createAndInsert(PDO $db, string $username, string $email, string $password, string $type): User {
+    static public function createAndInsert(PDO $db, string $username, string $email, string $password, string $type, ?string $paymentInfo = null, ?string $paymentMethod = null): User {
         $hashedPassword = password_hash($password, PASSWORD_DEFAULT, ['cost' => 8]);
-        $stmt = $db->prepare('INSERT INTO User (UserName, Email, UserPassword, UserType) VALUES (:username, :email, :password, :type)');
+        $stmt = $db->prepare('INSERT INTO User (UserName, Email, UserPassword, UserType, PaymentInfo, PaymentMethod) VALUES (:username, :email, :password, :type, :paymentInfo, :paymentMethod)');
         $stmt->execute([
             ':username' => $username,
             ':email' => $email,
             ':password' => $hashedPassword,
-            ':type' => $type
+            ':type' => $type,
+            ':paymentInfo' => $paymentInfo,
+            ':paymentMethod' => $paymentMethod
         ]);
-        return new User((int)$db->lastInsertId(), $username, $email, $type, 0);
+        return new User((int)$db->lastInsertId(), $username, $email, $type, 0, $paymentInfo, $paymentMethod);
     }
+
 
     static public function getAllUsersFromDatabase(PDO $db): array {
         $stmt = $db->prepare('SELECT * FROM User');
@@ -38,7 +46,9 @@ class User {
                 $user['UserName'],
                 $user['Email'],
                 $user['UserType'],
-                (int)$user['ItemsListed']
+                (int)$user['ItemsListed'],
+                $user['PaymentInfo'],
+                $user['PaymentMethod']
             );
         }
         return $users;
@@ -46,22 +56,22 @@ class User {
 
     static public function getUserWithPassword(PDO $db, string $emailOrUsername, string $password): ?User {
         $stmt = $db->prepare('
-          SELECT UserId, UserName, Email, UserType, ItemsListed, UserPassword
+          SELECT UserId, UserName, Email, UserType, ItemsListed, UserPassword, PaymentInfo, PaymentMethod
           FROM User
           WHERE Email = :emailOrUsername OR UserName = :emailOrUsername
         ');
         $stmt->execute([':emailOrUsername' => $emailOrUsername]);
-    
-        // Fetch the user data
+        
         if ($user = $stmt->fetch()) {
-            // Verify the password
             if (password_verify($password, $user['UserPassword'])) {
                 return new User(
                     (int)$user['UserId'],
                     $user['UserName'],
                     $user['Email'],
                     $user['UserType'],
-                    (int)$user['ItemsListed']
+                    (int)$user['ItemsListed'],
+                    $user['PaymentInfo'],
+                    $user['PaymentMethod']
                 );
             }
         }
@@ -75,7 +85,7 @@ class User {
         if ($user === false) {
             return null;
         }
-        return new User((int)$user['UserId'], $user['UserName'], $user['Email'], $user['UserType'], (int)$user['ItemsListed']);
+        return new User((int)$user['UserId'], $user['UserName'], $user['Email'], $user['UserType'], (int)$user['ItemsListed'], $user['PaymentInfo'], $user['PaymentMethod']);
     }
 
     static public function getUserByEmail(PDO $db, string $email): ?User {
@@ -85,7 +95,7 @@ class User {
         if ($user === false) {
             return null;
         }
-        return new User((int)$user['UserId'], $user['UserName'], $user['Email'], $user['UserType'], (int)$user['ItemsListed']);
+        return new User((int)$user['UserId'], $user['UserName'], $user['Email'], $user['UserType'], (int)$user['ItemsListed'], $user['PaymentInfo'], $user['PaymentMethod']);
     }
 
     static public function getEmailByUsername(PDO $db, string $username): string {
@@ -102,7 +112,7 @@ class User {
         if ($user === false) {
             return null;
         }
-        return new User((int)$user['UserId'], $user['UserName'], $user['Email'], $user['UserType'], (int)$user['ItemsListed']);
+        return new User((int)$user['UserId'], $user['UserName'], $user['Email'], $user['UserType'], (int)$user['ItemsListed'], $user['PaymentInfo'], $user['PaymentMethod']);
     }
 
     static public function getUserType(PDO $db, int $id): string {
@@ -125,7 +135,6 @@ class User {
         $user = $stmt->fetch();
         return (int)$user['ItemsListed'];
     }
-
 
     static public function changePassword(PDO $db, int $id, string $password): void {
         $hashedPassword = password_hash($password, PASSWORD_DEFAULT, ['cost' => 8]);
@@ -196,14 +205,14 @@ class User {
         $stmt = $db->prepare('SELECT UserType FROM User WHERE UserId = :id');
         $stmt->execute([':id' => $id]);
         $user = $stmt->fetch();
-        return $user['UserType'] === 'seller';
+        return $user['UserType'] === 'seller' || $user['UserType'] === 'admin';
     }
 
     static public function isUserBuyer(PDO $db, int $id): bool {
-        $stmt = db->prepare('SELECT UserType FROM User WHERE UserId = :id');
+        $stmt = $db->prepare('SELECT UserType FROM User WHERE UserId = :id');
         $stmt->execute([':id' => $id]);
-        $user = stmt->fetch();
-        return $user['UserType'] === 'buyer';
+        $user = $stmt->fetch();
+        return $user['UserType'] === 'buyer' || $user['UserType'] === 'admin';
     }
 
     static public function highestItemsListed(PDO $db): User {
@@ -211,7 +220,7 @@ class User {
         $stmt->execute();
         $user = $stmt->fetch();
         
-        return new User((int)$user['id'], $user['username'], $user['email'], $user['type'], (int)$user['items_listed']);
+        return new User((int)$user['UserId'], $user['UserName'], $user['Email'], $user['UserType'], (int)$user['ItemsListed'], $user['PaymentInfo'], $user['PaymentMethod']);
     }
 
     static public function emailExists(PDO $db, string $email): bool {
@@ -226,14 +235,33 @@ class User {
         return $stmt->fetch() !== false;
     }
     
-    static public function updateUser(PDO $db, int $id, string $username, string $email, string $type): bool {
-        $stmt = $db->prepare('UPDATE User SET UserName = :username, Email = :email, UserType = :type WHERE UserId = :id');
-        return $stmt->execute([
-            ':username' => $username,
-            ':email' => $email,
-            ':type' => $type,
-            ':id' => $id
+    static public function updateUser(PDO $db, User $user): void {
+        $stmt = $db->prepare('UPDATE User SET UserName = :username, Email = :email, UserType = :type, ItemsListed = :items_listed, PaymentInfo = :paymentInfo, PaymentMethod = :paymentMethod WHERE UserId = :id');
+        $stmt->execute([
+            ':username' => $user->username,
+            ':email' => $user->email,
+            ':type' => $user->type,
+            ':items_listed' => $user->items_listed,
+            ':paymentInfo' => $user->paymentInfo,
+            ':paymentMethod' => $user->paymentMethod,
+            ':id' => $user->id
         ]);
+    }
+
+    public function setShippingInfo(?string $shippingInfo): void {
+        $this->shippingInfo = $shippingInfo;
+    }
+
+    public function setPaymentInfo(?string $paymentInfo): void {
+        $this->paymentInfo = $paymentInfo;
+    }
+
+    public function hasPaymentInfo(): bool {
+        return !is_null($this->paymentInfo);
+    }
+
+    public function hasShippingInfo(): bool {
+        return !is_null($this->shippingInfo);
     }
 }   
 ?>
