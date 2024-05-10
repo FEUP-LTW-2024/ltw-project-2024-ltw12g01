@@ -54,21 +54,6 @@ class User {
         return $users;
     }
 
-    static public function getAllUsersFromDatabase(PDO $db): array {
-        $stmt = $db->prepare('SELECT * FROM User');
-        $stmt->execute();
-        $users = [];
-        while ($user = $stmt->fetch()) {
-            $users[] = new User(
-                (int)$user['UserId'],
-                $user['UserName'],
-                $user['Email'],
-                $user['UserType'],
-                (int)$user['ItemsListed']
-            );
-        }
-        return $users;
-    }
 
     static public function getUserWithPassword(PDO $db, string $emailOrUsername, string $password): ?User {
         $stmt = $db->prepare('

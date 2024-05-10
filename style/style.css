@@ -396,7 +396,6 @@ main .addImg {
   
  
 /* Styling for the Cart Products Start Here*/
-/* Style for the main container */
 .cart-products {
     display: flex;
     flex-direction: column;
@@ -410,7 +409,7 @@ main .addImg {
     background-color: #f8f8f8;
     border-radius: 8px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    padding: 10px; /* Reduced padding */
+    padding: 10px; 
 }
 
 .cart-list{
@@ -422,7 +421,6 @@ main .addImg {
     margin: 2rem;
 }
 
-/* Style for product info */
 
 .product-info {
     flex: 1;
@@ -466,6 +464,35 @@ main .addImg {
 .delete-btn i {
     font-size: 16px;
 }
+
+/*Product Page Style*/
+
+
+
+/*End product Page style*/
+/* Style for add to cart Button*/
+#add-to-cart-Button {
+    background-color: #0056B3; 
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    transition-duration: 0.4s;
+    cursor: pointer;
+    border-radius: 8px;
+  }
+
+  #add-to-cart-Button:hover {
+    background-color: #004793; 
+  }
+
+  .fa-cart-plus {
+    margin-right: 5px;
+  }
 
 
 .border {

@@ -115,8 +115,6 @@ function drawCart($session) {
     } elseif (array_key_exists($shippingCity, $ukCities)) {
         $latitude = $ukCities[$shippingCity]['latitude'];
         $longitude = $ukCities[$shippingCity]['longitude'];
-    } else {
-        echo "Error: Unknown shipping city";
     }
 
 

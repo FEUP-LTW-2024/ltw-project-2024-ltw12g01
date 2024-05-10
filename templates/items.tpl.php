@@ -36,7 +36,7 @@
             <p><strong>Vendido por:</strong> <a href="#"> <?php echo $item->itemOwner; ?></a></p>
             <form id="add-to-cart-form" action="../actions/action_cart.php" method="POST">
                 <input type="hidden" name="item_json" value='<?php echo json_encode($item); ?>'>
-                <button type="submit">Add to Cart</button>
+                <button id="add-to-cart-Button" type="submit"> <i class="fa-solid fa-cart-plus"></i> Add to Cart  </button>
             </form>
         </div>
     </section>
