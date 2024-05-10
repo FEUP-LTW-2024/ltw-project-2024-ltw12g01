@@ -1,6 +1,7 @@
 <?php
 require_once('../database/connection.db.php');
 require_once('../session/session.php');
+require_once('../database/user.class.php');
 
 // Start the session
 $session = new Session();
@@ -38,17 +39,16 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $stmt->bindParam(':itemImage', $itemImage);
     $stmt->execute();
 
-    // Update the user's information
-    $user_id = $session->getId();
-    $query = "UPDATE User SET ItemsListed = ItemsListed + 1, UserType = CASE WHEN ItemsListed >= 1 THEN 'buyer/seller' ELSE 'buyer' END WHERE UserId = :user_id";
-    $stmt = $db->prepare($query);
-    $stmt->bindParam(':user_id', $user_id);
-    $stmt->execute();
+    if(!User::isUserAdmin($db, $session->getId())){
+        $user_id = $session->getId();
+        $query = "UPDATE User SET ItemsListed = ItemsListed + 1, UserType = CASE WHEN ItemsListed >= 1 THEN 'buyer/seller' ELSE 'buyer' END WHERE UserId = :user_id";
+        $stmt = $db->prepare($query);
+        $stmt->bindParam(':user_id', $user_id);
+        $stmt->execute();
+    }
 
-    // Close the database connection
     $db = null;
 
-    // Redirect to a success page
     header('Location: ../index.php');
     exit();
 }

@@ -8,36 +8,45 @@ require_once(__DIR__ . '/../session/session.php');
 $session = new Session();
 
 
-function drawProfile(User $user, Session $session) : void {
-  $db = getDatabaseConnection();
+function drawProfile(User $user, Session $session): void {
+    $db = getDatabaseConnection();
 
-  $my_type = $session->isLoggedIn() ? User::getUserTypeByUsername($db, $session->getName()) : null;
+    $my_type = $session->isLoggedIn() ? User::getUserTypeByUsername($db, $session->getName()) : null;
 
-  ?>
-  <section id="profile-info">
-  <div id="profile-username">
-      <span id="bold"> <strong>Username:</strong></span> <span id="content"><?= $user->username ?></span>
-      <a href="change_username.php?username=<?= $user->name ?>">Change...</a>
-  </div>
+    ?>
+    <section id="profile-info">
+        <div id="profile-username">
+            <span id="bold"><strong>Username:</strong></span> <span id="content"><?= $user->username ?></span>
+            <a href="change_username.php?username=<?= $user->name ?>">Change...</a>
+        </div>
 
-  <div id="profile-email">
-      <span id="bold"><strong>Email:</strong> </span> <span id="content"><?= $user->email ?></span>
-      <a href="change_email.php?username=<?= $user->name ?>">Change...</a>
-  </div>
+        <div id="profile-email">
+            <span id="bold"><strong>Email:</strong> </span> <span id="content"><?= $user->email ?></span>
+            <a href="change_email.php?username=<?= $user->name ?>">Change...</a>
+        </div>
 
-  <div id="profile-password">
-      <span id="bold"><strong>Password:</strong></span> <span id="content">(Hidden for security)</span>
-      <a href="change_password.php?username=<?= $user->username ?>">Change...</a>
-  </div>
+        <div id="profile-password">
+            <span id="bold"><strong>Password:</strong></span> <span id="content">(Hidden for security)</span>
+            <a href="change_password.php?username=<?= $user->username ?>">Change...</a>
+        </div>
 
-  <?php if ($my_type == 'buyer/seller' && $user->items_listed >= 1): ?>
-    <div class="items">
-      <span class="bold">Items:</span>
-      <a href="user_items.php?username=<?= $user->name ?>">View all items</a>
-    </div>
-  <?php endif; ?>
-  <?php
+        <?php if ($my_type == 'buyer/seller' && $user->items_listed >= 1): ?>
+            <div class="items">
+                <span class="bold">Items:</span>
+                <a href="user_items.php?username=<?= $user->name ?>">View all items</a>
+            </div>
+        <?php elseif ($my_type == 'admin'): ?>
+            <div id="admin-moderation">
+                <span class="bold">Admin Moderation:</span>
+                <a href="item_management.php">Manage items</a>
+                <a href="user_management.php">Manage users</a>
+                <a href="order_management.php">Manage orders</a>
+            </div>
+        <?php endif; ?>
+    </section>
+    <?php
 }?>
+
 
 <?php function drawRegisterForm($session) { ?>
   <link rel="stylesheet" href="../style/register.css"> <!-- Continues to use the login.css for styling -->

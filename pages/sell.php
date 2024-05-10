@@ -1,6 +1,6 @@
 <?php require_once('../templates/common.tpl.php') ?>
 
- $session = new Session();
+$session = new Session();
 
 <!DOCTYPE html>
 <html lang="en">
@@ -35,63 +35,69 @@
         </div>
         <br>
         <div class="description">
-            <div class="title">
-                <span>Title</span>
-                <form action="../actions/action_sell.php" method="post">
-                <div class="title-input">
-                    <input class="input" type="text" name="ItemName" placeholder="Item Name" required>
-                    <label for="title" class="label">Item Name</label>
-                </div>
-                <div class="brand-input">
-                    <span>Brand</span>
-                    <input class="input" type="text" name="ItemBrand" placeholder="Item Brand" required>
-                    <label for="brand" class="label">Brand</label>
-                </div>
-                <div class="owner-input">
-                    <input type="hidden" name="ItemOwner" value="<?php echo $session->getName(); ?>">
-                </div>
-                <div class="border-descri"></div>
-                <div class="descricao">
-                    <span>Description</span>
-                    <div class="descri-input">
-                    <textarea class="input" name="ItemDescription" placeholder="Item Description" required></textarea>
-                    <label for="description" class="label">Description</label>
-                    </div>
-                </div>
-                <div class="category-div">
-                    <div class="category">
-                    <span>Category</span>
-                    <div class="choose-cat">
-                        <select name="ItemCategory">
-                            <option value="Kids">Kids</option>
-                            <option value="Male">Male</option>
-                            <option value="Female">Female</option>
-                        </select>
+            <form action="../actions/action_sell.php" method="post">
+                <div class="title">
+                    <span>Title</span>
+
+                    <div class="title-input">
+                        <input class="input" type="text" name="ItemName" placeholder="Item Name" required>
+                        <label for="title" class="label">Item Name</label>
                     </div>
                     </div>
-                </div>
-                <div class="price">
-                    <span>Price</span>
-                    <div class="price-input">
-                    <input class="input" type="text" name="ItemPrice" placeholder="€ 0,00" required>
-                    <label for="title" class="label">Price</label>
+                    <div class="brand">
+                        <span>Brand</span>
+                        <div class="brand-input">
+                        <input class="input" type="text" name="ItemBrand" placeholder="Item Brand" required>
+                        <label for="brand" class="label">Brand</label>
+                        </div>
                     </div>
-                </div>
-                <div class="condition">
-                <span>Condition</span>
-                <div class="choose-cond">
-                    <select name="ItemCondition">
-                        <option value="New with tags">New with tags</option>
-                        <option value="New without tags">New without tags.</option>
-                        <option value="Very good">Very good</option>
-                        <option value="Good">Good</option>
-                        <option value="Satisfactory">Satisfactory</option>
-                        <option value="Bad">Bad</option>
+                    <div class="owner-input">
+                        <input type="hidden" name="ItemOwner" value="<?php echo $session->getName(); ?>">
+                    </div>
+                    <div class="border-descri"></div>
+                    <div class="descricao">
+                        <span>Description</span>
+                        <div class="descri-input">
+                            <textarea class="input" name="ItemDescription" placeholder="Item Description" required></textarea>
+                            <label for="description" class="label">Description</label>
+                        </div>
+                    </div>
+                
+        </div>
+        <div class="category-div">
+            <div class="category">
+                <span>Category</span>
+                <div class="choose-cat">
+                    <select name="ItemCategory">
+                        <option value="Kids">Kids</option>
+                        <option value="Male">Male</option>
+                        <option value="Female">Female</option>
                     </select>
                 </div>
             </div>
+        </div>
+        <div class="price">
+            <span>Price</span>
+            <div class="price-input">
+                <input class="input" type="text" name="ItemPrice" placeholder="€ 0,00" required>
+                <label for="title" class="label">Price</label>
+            </div>
+        </div>
+        <div class="condition">
+            <span>Condition</span>
+            <div class="choose-cond">
+                <select name="ItemCondition">
+                    <option value="New with tags">New with tags</option>
+                    <option value="New without tags">New without tags.</option>
+                    <option value="Very good">Very good</option>
+                    <option value="Good">Good</option>
+                    <option value="Satisfactory">Satisfactory</option>
+                    <option value="Bad">Bad</option>
+                </select>
+            </div>
+        </div>
 
-            <div class="size">
+        <div class="size">
             <span>Size</span>
             <div class="choose-size">
                 <select name="ItemSize">
@@ -108,10 +114,10 @@
                     <option value="46">46</option>
                 </select>
             </div>
-        </div>
-                <button class="load-btn">Save Item</button>
-                </form>
-                    </main>
-                </body>
+
+            <button class="load-btn">Save Item</button>
+            </form>
+    </main>
+</body>
 
 </html>
