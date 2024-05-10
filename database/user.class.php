@@ -54,10 +54,6 @@ class User {
         return $users;
     }
 
-<<<<<<< HEAD
-
-=======
->>>>>>> 50131733dc713769fbafc71ce4e443bdbc4816f8
     static public function getUserWithPassword(PDO $db, string $emailOrUsername, string $password): ?User {
         $stmt = $db->prepare('
           SELECT UserId, UserName, Email, UserType, ItemsListed, UserPassword, PaymentInfo, PaymentMethod
