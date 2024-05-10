@@ -24,7 +24,7 @@
 ?>
 
 <?php drawHeader($session, false); ?>
-<h3>Changing <?= $session->getName() ?>'s password</h3>
+<link rel="stylesheet" href="../style/payment.css">
 <form id="changePasswordForm" action="../actions/action_change_password.php" method="post" >
 
 <?php

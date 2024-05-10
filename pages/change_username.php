@@ -22,7 +22,7 @@
     if ($user_type != 'admin') {
         ?>
         <?php drawHeader($session, false); ?>
-        <h3>Changing <?= $session->getName() ?>'s username</h3>
+        <link rel="stylesheet" href="../style/payment.css">
         <form action="../actions/action_change_username.php" method="post" enctype="multipart/form-data">
             <?php if ($user_type != 'admin') { ?>
             <label for="old_password">Old password</label>
