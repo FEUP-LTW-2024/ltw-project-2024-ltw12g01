@@ -1,37 +1,48 @@
 <?php
-declare(strict_types=1);
-
+require_once(__DIR__ . '/../session/session.php');
 require_once(__DIR__ . '/../database/connection.db.php');
-require_once(__DIR__ . '/../database/shopping_cart.class.php');
+require_once(__DIR__ . '/../database/item.class.php');
+require_once(__DIR__ . '/../database/user.class.php');
+require_once(__DIR__ . '/../database/order.class.php');
+require_once(__DIR__ . '/../database/shipment.class.php');
+require_once(__DIR__ . '/../database/shipment_user.class.php');
+require_once(__DIR__ . '/../database/order_item.class.php');
 
-// Process the checkout form
-if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    // Get the shipping address and payment method
-    $shipping_address = $_POST['shipping_address'];
-    $payment_method = $_POST['payment_method'];
+try {
+    $session = new Session();
+    $db = getDatabaseConnection();
 
-    // Create a new order
-    $order = new Order($db);
-    $order->setShippingAddress($shipping_address);
-    $order->setPaymentMethod($payment_method);
+    $shippingCost = floatval($_POST['shippingCost']);
+    $totalAmount = floatval($_POST['totalAmount']);
 
-    // Get the products in the cart
-    $products = ShoppingCart::getInstance()->getProducts();
+    $userId = $session->getId();
 
-    // Create a new order item for each product
-    foreach ($products as $product) {
-        $order_item = new OrderItem($db);
-        $order_item->setProduct($product);
-        $order_item->setQuantity($product->getQuantity());
-        $order->addOrderItem($order_item);
+    $cart = $session->getCart();
+
+    $orderDate = date('Y-m-d');
+    $totalWithShipping = $totalAmount + $shippingCost;
+    $orderId = Order::createOrder($db, $userId, $orderDate, $totalWithShipping);
+
+    if ($orderId) {
+        foreach ($cart as $item) {
+            OrderItem::createOrderItem($db, $orderId, $item->id, 1);
+        }
+
+        $shipmentDate = date('Y-m-d');
+        $shipmentStatus = 'Pending';
+        $shipmentId = Shipment::createShipment($db, $orderId, $shipmentDate, $shipmentStatus);
+
+        $session->clearCart();
+
+        echo "<h2>Order Summary</h2>";
+        echo "<p>Total Amount: $" . $totalAmount . "</p>";
+        echo "<p>Shipping Cost: $" . $shippingCost . "</p>";
+        echo "<p>Total: $" . $totalWithShipping . "</p>";
+
+        header("Location: ../index.php");
+        exit();
     }
-
-    // Save the order
-    $order->save();
-
-    // Clear the shopping cart
-    ShoppingCart::getInstance()->clear();
-
-    // Display a success message
-    echo 'Order placed successfully!';
+} catch (Exception $e) {
+    echo "An error occurred: " . $e->getMessage();
 }
+?>
