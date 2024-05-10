@@ -163,7 +163,62 @@ class Item {
         ]);
     }
     
-
+    static public function filterItems(PDO $db, ?int $minSize, ?int $maxSize, ?float $minPrice, ?float $maxPrice, ?array $categories, ?array $conditions = null): array {
+        $query = 'SELECT ItemId, ItemName, ItemBrand, ItemDescription, ItemPrice, ItemOwner, ItemCategory, ItemImage, ItemSize, ItemCondition FROM Item WHERE 1=1';
+        $params = array();
+    
+        if ($minSize !== null) {
+            $query .= ' AND ItemSize >= ?';
+            $params[] = $minSize;
+        }
+    
+        if ($maxSize !== null) {
+            $query .= ' AND ItemSize <= ?';
+            $params[] = $maxSize;
+        }
+    
+        if ($minPrice !== null) {
+            $query .= ' AND ItemPrice >= ?';
+            $params[] = $minPrice;
+        }
+    
+        if ($maxPrice !== null) {
+            $query .= ' AND ItemPrice <= ?';
+            $params[] = $maxPrice;
+        }
+    
+        if (count($categories) > 0) {
+            $query .= ' AND ItemCategory IN (' . implode(',', array_fill(0, count($categories), '?')) . ')';
+            $params = array_merge($params, $categories);
+        }
+    
+        if (!empty($conditions)) {
+            $query .= ' AND ItemCondition IN (' . implode(',', array_fill(0, count($conditions), '?')) . ')';
+            $params = array_merge($params, $conditions);
+        }
+    
+        $stmt = $db->prepare($query);
+        $stmt->execute($params);
+    
+        $items = array();
+        while ($item = $stmt->fetchObject()) {
+            $items[] = new Item(
+                $item->ItemId,
+                $item->ItemName,
+                $item->ItemBrand,
+                $item->ItemDescription,
+                $item->ItemPrice,
+                $item->ItemOwner,
+                $item->ItemCategory,
+                $item->ItemImage ?? '',
+                $item->ItemSize,
+                $item->ItemCondition
+            );
+        }
+    
+        return $items;
+    }
+    
 }
 
 ?>

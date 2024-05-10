@@ -33,34 +33,26 @@
 
 <script>
 document.addEventListener('DOMContentLoaded', function() {
-    var filterForm = document.getElementById('filters');
-    var itemsContainer = document.getElementById('items');
-    var items = itemsContainer.querySelectorAll('.item');
+    var filterForm = document.getElementById('filters-form');
 
     filterForm.addEventListener('change', function() {
-        var minSize = parseInt(document.getElementById('minSize').value);
-        var maxSize = parseInt(document.getElementById('maxSize').value);
-        var minPrice = parseFloat(document.getElementById('minPrice').value);
-        var maxPrice = parseFloat(document.getElementById('maxPrice').value);
-        var categories = Array.from(document.querySelectorAll('input[name="category"]:checked')).map(function(input) {
-            return input.value;
-        });
+        var formData = new FormData(filterForm);
 
-        items.forEach(function(item) {
-            var size = parseInt(item.getAttribute('data-size'));
-            var price = parseFloat(item.getAttribute('data-price'));
-            var category = item.getAttribute('data-category');
-
-            var sizeInRange = (isNaN(minSize) || size >= minSize) && (isNaN(maxSize) || size <= maxSize);
-            var priceInRange = (isNaN(minPrice) || price >= minPrice) && (isNaN(maxPrice) || price <= maxPrice);
-            var categoryMatch = categories.length === 0 || categories.includes(category);
-
-            if (sizeInRange && priceInRange && categoryMatch) {
-                item.style.display = 'block';
-            } else {
-                item.style.display = 'none';
+        var xhr = new XMLHttpRequest();
+        xhr.onreadystatechange = function() {
+            if (xhr.readyState === XMLHttpRequest.DONE) {
+                if (xhr.status === 200) {
+                    var itemsContainer = document.getElementById('products');
+                    itemsContainer.innerHTML = xhr.responseText;
+                } else {
+                    console.error('Error:', xhr.statusText);
+                }
             }
-        });
+        };
+
+        xhr.open('POST', '../actions/action_filter_items.php', true);
+        xhr.send(formData);
     });
 });
+
 </script>

@@ -140,46 +140,76 @@ function drawFilters() {
     <aside class="filters" style="transform: translateX(-100%); transition: 0.5s;">
         <button class="close-button"><i class="fas fa-times"></i></button>
         <h2>Filters</h2>
-        <section class="filter-section">
-            <h3><i class="fas fa-tags"></i> Categories</h3>
-            <label>
-                <input type="checkbox" name="category" value="men">
-                Men
-            </label>
-            <label>
-                <input type="checkbox" name="category" value="women">
-                Women
-            </label>
-            <label>
-                <input type="checkbox" name="category" value="kids">
-                Kids
-            </label>
-        </section>
-        <section class="filter-section">
-            <h3><i class="fas fa-ruler-horizontal"></i> Size Range</h3>
-            <div class="size-range">
-                <select name="minSize">
-                    <?php for ($i = 36; $i <= 46; $i++) { ?>
-                        <option value="<?= $i ?>">EU <?= $i ?></option>
-                    <?php } ?>
-                </select>
-                <span>to</span>
-                <select name="maxSize">
-                    <?php for ($i = 36; $i <= 46; $i++) { ?>
-                        <option value="<?= $i ?>">EU <?= $i ?></option>
-                    <?php } ?>
-                </select>
-            </div>
-        </section>
-        <section class="filter-section">
-            <h3><i class="fas fa-dollar-sign"></i> Price Range</h3>
-            <label>
-                From: <input type="number" name="minPrice" min="0">
-            </label>
-            <label>
-                To: <input type="number" name="maxPrice" min="0">
-            </label>
-        </section>
+        <form id="filters-form" action="../actions/action_filter_items.php" method="post">
+            <section class="filter-section">
+                <h3><i class="fas fa-tags"></i> Categories</h3>
+                <label>
+                    <input type="checkbox" name="category[]" value="Male">
+                    Men
+                </label>
+                <label>
+                    <input type="checkbox" name="category[]" value="Female">
+                    Women
+                </label>
+                <label>
+                    <input type="checkbox" name="category[]" value="Kids">
+                    Kids
+                </label>
+            </section>
+            <section class="condition">
+                <h3><i class="fas fa-heart"></i> Condition</h3>
+                <label>
+                    <input type="checkbox" name="ItemCondition[]" value="New with tags">
+                    New with tags
+                </label>
+                <label>
+                    <input type="checkbox" name="ItemCondition[]" value="New without tags">
+                    New without tags
+                </label>
+                <label>
+                    <input type="checkbox" name="ItemCondition[]" value="Very good">
+                    Very good
+                </label>
+                <label>
+                    <input type="checkbox" name="ItemCondition[]" value="Good">
+                    Good
+                </label>
+                <label>
+                    <input type="checkbox" name="ItemCondition[]" value="Satisfactory">
+                    Satisfactory
+                </label>
+                <label>
+                    <input type="checkbox" name="ItemCondition[]" value="Bad">
+                    Bad
+                </label>
+            </section>
+            <section class="filter-section">
+                <h3><i class="fas fa-ruler-horizontal"></i> Size Range</h3>
+                <div class="size-range">
+                    <select name="minSize">
+                        <?php for ($i = 36; $i <= 46; $i++) { ?>
+                            <option value="<?= $i ?>" <?php if ($i == 36) echo "selected"; ?>>EU <?= $i ?></option>
+                        <?php } ?>
+                    </select>
+                    <span>to</span>
+                    <select name="maxSize">
+                        <?php for ($i = 36; $i <= 46; $i++) { ?>
+                            <option value="<?= $i ?>" <?php if ($i == 46) echo "selected"; ?>>EU <?= $i ?></option>
+                        <?php } ?>
+                    </select>
+                </div>
+            </section>
+            <section class="filter-section">
+                <h3><i class="fas fa-dollar-sign"></i> Price Range</h3>
+                <label>
+                    From: <input type="number" name="minPrice" min="0" value="0">
+                </label>
+                <label>
+                    To: <input type="number" name="maxPrice" min="0" value="1000">
+                </label>
+            </section>
+            <button type="submit">Apply Filters</button>
+        </form>
     </aside>
     <?php
 }
