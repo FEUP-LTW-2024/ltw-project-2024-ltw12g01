@@ -236,7 +236,7 @@ function drawFilters() {
                     To: <input type="number" name="maxPrice" min="0" value="1000">
                 </label>
             </section>
-            <button type="submit">Apply Filters</button>
+            <button type="submit" class="filters-button">Apply Filters</button>
         </form>
     </aside>
     <?php

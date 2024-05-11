@@ -45,13 +45,14 @@
 }
 
 .close-button i:before {
-    content: "\f00d"; /* Icon for close */
+    content: "\f00d"; 
 }
 
 .condition {
-    padding: 10px;
     border-bottom: 1px solid #ccc;
-    position: relative; /* Added position relative here */
+    display: inline-block;
+    padding: 0;
+    padding-bottom: 1rem;
   }
   
   .choose-cond {
@@ -61,7 +62,6 @@
   
   .item-condition {
     width: 150px;
-    padding: 5px;
     border: 1px solid #ccc;
     border-radius: 5px;
     background-color: #f9f9f9;
@@ -86,4 +86,38 @@
     font-size: 18px;
     color: #666;
     cursor: pointer;
+  }
+  .size-range select{
+    background-color: white;
+    color: black;
+    border-radius: 5px;
+    
+    border-width: 2px;
+    border-color: black;
+    
+  }
+  
+.filter-section label {
+    color: black; 
+}
+
+.filter-section input[type="number"] {
+    border: 1px solid black; 
+    border-radius: 5px; 
+    padding: 5px 10px; 
+}
+
+.filter-section label {
+    margin-right: 10px;
+}
+
+  .filters-button{
+    cursor: pointer;
+    padding: 8px 16px;
+    background-color: #0056b3;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    margin-top: 2rem;
   }
