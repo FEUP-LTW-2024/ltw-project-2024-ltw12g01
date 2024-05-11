@@ -1,6 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap');
 
-/* General Styles */
 html {
     width: 80%;
     margin: 20px auto;
@@ -14,7 +13,6 @@ body {
     background-color: #EDEFF0;
 }
 
-/* Header Styles */
 header {
     margin-bottom: 20px;
     display: flex;
@@ -24,28 +22,31 @@ header {
     background-color: #ffffff;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     border-radius: 10px;
+    position: relative; 
 }
 
-.header-anchors a{
+.header-anchors a {
     text-decoration: none;
-    color: #fff; /* White text */
-    background-color: #0056b3; /* Bootstrap primary blue color */
+    color: #fff; 
+    background-color: #0056b3; 
     padding: 9px 18px;
     border-radius: 4px;
     margin: 0 4px;
     transition: background-color 0.3s ease;
 }
 
-.header-anchors a:hover{
-    background-color: #0056b3; /* Darken background on hover */
+.header-anchors a:hover {
+    background-color: #0056b3; 
 }
+
 header form {
     flex-grow: 1;
     margin: 0 20px;
-    display:flex;
+    display: flex;
+    position: relative; 
 }
 
-header form  input {
+header form input {
     flex-grow: 1;
     padding: 8px 16px;
     border: 2px solid #0056b3;
@@ -53,7 +54,19 @@ header form  input {
     outline: none;
 }
 
-header form  button {
+#search-bar-result {
+    position: absolute;
+    top: 100%; 
+    left: 0;
+    width: 100%; 
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-top: none; 
+    border-radius: 0 0 4px 4px; 
+    z-index: 1000; 
+}
+
+header form button {
     padding: 8px 16px;
     background-color: #0056b3;
     color: white;
@@ -62,12 +75,12 @@ header form  button {
     cursor: pointer;
 }
 
-.cart-icon {
+.cart-icon{
     position: relative;
     display: inline-block;
-  }
+}
   
-  .cart-count {
+.cart-count{
     position: absolute;
     top: 0;
     right: 0;
@@ -78,46 +91,37 @@ header form  button {
     font-weight: bold;
   }
   
-/* Adjustments for search results */
 .search-form .result {
     position: absolute;
     z-index: 999;
-    top: calc(100% + 10px); /* Adjust the spacing between search bar and results */
+    top: calc(100% + 10px); 
     left: 0;
-    width: calc(100% - 40px); /* Adjust the width to match the input field */
-    max-height: 200px; /* Limit the height of results to prevent overflow */
-    overflow-y: auto; /* Add vertical scrollbar if needed */
-    background-color: #ffffff; /* Match header background color */
-    border: 2px solid #0056b3; /* Match input field border color */
+    width: calc(100% - 40px); 
+    max-height: 200px;
+    overflow-y: auto; 
+    background-color: #ffffff; 
+    border: 2px solid #0056b3; 
     border-top: none;
-    border-radius: 0 0 10px 10px; /* Adjust border radius to match input field */
+    border-radius: 0 0 10px 10px; 
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     padding: 0;
 }
 
-.result-item{
+.result-item,
+.no-result{
     margin: 0;
-    padding: 10px; /* Adjust padding for better spacing */
-    border-bottom: 1px solid #CCCCCC; /* Add border between result items */
+    padding: 10px; 
+    border-bottom: 1px solid #CCCCCC; 
     cursor: pointer;
-}
-
-.result-item{
-    border-bottom: none; /* Remove border from last result item */
-}
-
-.result-item{
     background: #f2f2f2;
 }
-
-/* Navigation Bar Styles */
 nav {
-    background-color: #ffffff; /* Clean white background */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05); /* Subtle shadow for depth */
-    border-radius: 20px; /* Rounded corners for a softer look */
-    padding: 0; /* Remove default padding */
-    overflow: hidden; /* Ensures the border-radius clips the child elements */
-    margin-bottom: 20px; /* Space below navbar */
+    background-color: #ffffff; 
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05); 
+    border-radius: 20px; 
+    padding: 0;
+    overflow: hidden; 
+    margin-bottom: 20px;
 }
 
 nav ul {
@@ -129,10 +133,10 @@ nav ul {
 }
 
 nav ul li {
-    position: relative; /* Needed for positioning the pseudo elements */
+    position: relative; 
     padding: 15px 30px;
     cursor: pointer;
-    transition: color 0.3s, background-color 0.3s; /* Smooth transitions for hover effects */
+    transition: color 0.3s, background-color 0.3s; 
     color: #333; /* Darker text color for better readability */
     font-weight: 500; /* Makes text slightly bolder */
 }

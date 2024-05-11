@@ -18,7 +18,7 @@ try{
                 echo '<p class="result-item">' . $result['ItemName'] . '</p>';
             }
         } else {
-            echo '<p class="no-result">No results found</p>';
+            echo '<p class="no-result">No results found.</p>';
         }
     }
 }catch(PDOException $e){
