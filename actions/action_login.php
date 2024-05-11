@@ -12,6 +12,13 @@
     $emailOrUsername = htmlentities($_POST['username-email']);
     $password = htmlentities($_POST['password']);
     
+    if ($session->getCSRF() !== $_POST['csrf']) {
+        $session->addMessage('Error:', 'Request does not appear to be legitimate');
+        sleep(10);
+        header('Location: ' . $_SERVER['HTTP_REFERER']);
+        exit();
+    }
+
     $user = User::getUserWithPassword($db, $emailOrUsername, $password);
     if ($user) {
         $session->setId($user->id);

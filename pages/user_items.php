@@ -10,7 +10,6 @@ $session = new Session();
 $db = getDatabaseConnection();
 
 $username = $session->getName();
-
 $stmt = $db->prepare('SELECT * FROM Item WHERE ItemOwner = ?');
 $stmt->execute([$username]);
 
@@ -45,6 +44,7 @@ while ($item = $stmt->fetch()) {
         
         <form action="../actions/action_delete.php" method="post">
             <input type="hidden" name="item_id" value="<?= $item->id ?>">
+            <input type="hidden" name="csrf" value="<?=$session->getCSRF()?>">
             <button type="submit">Remove</button>
         </form>
     </div>

@@ -32,6 +32,7 @@
             <input type="text" name="new_username" id="new_username">
             <label for="confirm_username">Confirm username</label>
             <input type="text" name="confirm_username" id="confirm_username">
+            <input type="hidden" name="csrf" value="<?=$session->getCSRF()?>">
             <button type="submit">Submit</button>
         </form>
         <?php

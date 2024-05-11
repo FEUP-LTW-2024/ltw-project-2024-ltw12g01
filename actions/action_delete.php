@@ -1,10 +1,20 @@
 <?php
 require_once(__DIR__ . '/../database/connection.db.php');
 require_once(__DIR__ . '/../database/item.class.php');
+require_once(__DIR__ . '/../session/session.php');
+
+
+
+$session = new Session();
 
 if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST['item_id'])) {
-    // Convert item ID to integer
-    $itemId = (int)$_POST['item_id'];
+    if ($session->getCSRF() !== $_POST['csrf']) {
+        $session->addMessage('Error:', 'Request does not appear to be legitimate');
+        sleep(10);
+        header('Location: ' . $_SERVER['HTTP_REFERER']);
+        exit();
+    } 
+    $itemId = (int)htmlentities($_POST['item_id']);
 
     $db = getDatabaseConnection();
 

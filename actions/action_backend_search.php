@@ -9,7 +9,7 @@ $session = new Session();
 
 try{
     if(isset($_POST['term'])){
-        $searchTerm = $_POST['term'];
+        $searchTerm = htmlentities($_POST['term']);
         
         $results = getSearchedItems($db, $searchTerm);
         

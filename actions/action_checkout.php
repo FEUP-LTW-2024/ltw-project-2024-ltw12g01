@@ -11,7 +11,13 @@ require_once(__DIR__ . '/../database/order_item.class.php');
 try {
     $session = new Session();
     $db = getDatabaseConnection();
-
+    
+    if ($session->getCSRF() !== $_POST['csrf']) {
+        $session->addMessage('Error:', 'Request does not appear to be legitimate');
+        sleep(10);
+        header('Location: ' . $_SERVER['HTTP_REFERER']);
+        exit();
+    } 
     $shippingCost = floatval($_POST['shippingCost']);
     $totalAmount = floatval($_POST['totalAmount']);
 

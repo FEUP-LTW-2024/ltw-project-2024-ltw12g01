@@ -22,7 +22,7 @@ function drawPagination(Pagination $pagination){
     }
 
     // Next Page Link
-    if ($pagination->getCurrentPage < $pagination->getTotalPages()) {
+    if ($pagination->getCurrentPage() < $pagination->getTotalPages()) {
         echo '<li><a href="?page=' . ($pagination->getCurrentPage() + 1) . '">Next</a></li>';
     } else {
         echo '<li class="disabled"><span>Next</span></li>';

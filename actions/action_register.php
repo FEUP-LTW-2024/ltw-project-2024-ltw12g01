@@ -9,10 +9,17 @@
 
     $db = getDatabaseConnection();
 
-    $email = htmlentities($_POST['email']);
+    $email = htmlentities($_POST['email']); //XSS
     $username = htmlentities($_POST['username']);
     $password = htmlentities($_POST['password']);
     $confirmPassword = htmlentities($_POST['confirm-password']);
+
+    if ($session->getCSRF() !== $_POST['csrf']) { //CSRF
+        $session->addMessage('Error:', 'Request does not appear to be legitimate');
+        sleep(10);
+        header('Location: ' . $_SERVER['HTTP_REFERER']);
+        exit();
+    }   
 
     if(User::emailExists($db, $email)) {
         $session->addMessage('error', 'Email already exists!');

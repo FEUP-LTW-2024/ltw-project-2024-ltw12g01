@@ -132,7 +132,7 @@
                 <label for="title" class="label">Price</label>
             </div>
         </div>
-     
+        <input type="hidden" name="csrf" value="<?=$session->getCSRF()?>">
             <button class="load-btn">Save Item</button>
             </form>
     </main>

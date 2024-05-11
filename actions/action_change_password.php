@@ -9,6 +9,12 @@ require_once(__DIR__ . '/../database/user.class.php');
 $session = new Session();
 
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+        if ($session->getCSRF() !== $_POST['csrf']) {
+            $session->addMessage('Error:', 'Request does not appear to be legitimate');
+            sleep(10);
+            header('Location: ' . $_SERVER['HTTP_REFERER']);
+            exit();
+        }    
         if ($_POST['new'] != $_POST['new2']) {
             $session->addMessage('Password error', 'Passwords do not match!');
         } else {

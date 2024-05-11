@@ -32,6 +32,7 @@
             <input type="email" name="new_email" id="new_email">
             <label for="confirm_email">Confirm email</label>
             <input type="email" name="confirm_email" id="confirm_email">
+            <input type="hidden" name="csrf" value="<?=$session->getCSRF()?>">
             <button type="submit">Submit</button>
         </form>
         <?php
@@ -41,6 +42,7 @@
         <form action="../actions/action_change_email.php" method="post" enctype="multipart/form-data">
             <label for="new_email">New email</label>
             <input type="email" name="new_email" id="new_email">
+            <input type="hidden" name="csrf" value="<?=$session->getCSRF()?>">
             <button type="submit">Submit</button>
         </form>
         <?php

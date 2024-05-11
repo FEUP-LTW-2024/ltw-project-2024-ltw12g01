@@ -36,6 +36,6 @@ $userTypes = ['buyer', 'buyer/seller', 'admin'];
             <option value="<?= $type ?>"<?= $type === $user->type ? ' selected' : '' ?>><?= ucfirst($type) ?></option>
         <?php endforeach; ?>
     </select><br>
-    <!-- Add other user details fields as needed -->
+    <input type="hidden" name="csrf" value="<?=$session->getCSRF()?>">
     <input type="submit" value="Update">
 </form>

@@ -9,6 +9,12 @@ $session = new Session();
 // Connect to the database
 $db = getDatabaseConnection();
 
+// if ($session->getCSRF() !== $_POST['csrf']) {
+//     $session->addMessage('Error:', 'Request does not appear to be legitimate');
+//     sleep(10);
+//     header('Location: ' . $_SERVER['HTTP_REFERER']);
+//     exit();
+// } 
 // Retrieve form data
 $itemId = isset($_POST['id']) ? (int)$_POST['id'] : 0;
 $itemName = $_POST['itemName'] ?? '';

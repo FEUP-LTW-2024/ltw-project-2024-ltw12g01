@@ -83,6 +83,7 @@ function drawSearchBar(Session $session) {
         <form class="search-form" action="../actions/action_search.php" method="post">
                 <input type="text" id="search-bar"placeholder="Search for items" autocomplete="off" name="name"></input>
                 <div id="search-bar-result"></div>
+                <input type="hidden" name="csrf" value="<?=$session->getCSRF()?>">
             <button type="submit">
                 <img src="../imgs/magnify.svg" alt="Search">
             </button>
@@ -129,6 +130,7 @@ function drawLoginForm(Session $session) {
           <label for="password">Password:</label>
           <input type="password" name="password" id="password" required>
       </div>
+      <input type="hidden" name="csrf" value="<?=$session->getCSRF()?>">
       <button type="submit" class="btn btn-primary">Login</button>
   </form>
 
@@ -152,6 +154,7 @@ function drawLoginForm(Session $session) {
     <form action="../actions/action_logout.php" method="post" class="logout">
         <a href="../pages/profile.php"><?=$session->getName()?></a> 
         <button type="submit">Logout</button>
+        <input type="hidden" name="csrf" value="<?=$session->getCSRF()?>">
     </form>
     <?php
 }

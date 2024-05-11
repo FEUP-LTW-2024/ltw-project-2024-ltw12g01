@@ -9,6 +9,12 @@ $db = getDatabaseConnection();
 $session = new Session();
 
 try{
+    if ($session->getCSRF()  !== $_POST['csrf']) {
+        sleep(10);
+        header('Location: ' . $_SERVER['HTTP_REFERER']);
+        exit();
+    }
+    
     if(isset($_POST['name'])){
         $itemName = $_POST['name'];
 

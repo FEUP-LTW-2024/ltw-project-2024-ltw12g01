@@ -135,6 +135,7 @@ function drawCart($session) {
             echo "<p class='product-category'>Category: {$item->itemCategory}</p>";
             echo "</div>";
             echo "<input type='hidden' name='item_json' value='" . htmlspecialchars(json_encode($item)) . "'>";
+            echo '<input type="hidden" name="csrf" value="' . $session->getCSRF() . '">';
             echo "<button class='delete-btn' type='submit'> <i class='fa-solid fa-trash'></i> </button>"; 
             echo "</div>";
             echo "</form>";
@@ -154,6 +155,7 @@ function drawCart($session) {
         echo "<button class='checkout-btn' type='submit'>Checkout</button>";
         echo "<input type='hidden' name='shippingCost' value='" . $shippingCost . "'>";
         echo "<input type='hidden' name='totalAmount' value='" . $totalAmount . "'>";
+        echo '<input type="hidden" name="csrf" value="' . $session->getCSRF() . '">';
         echo "</form>";
 
         echo "<p>Total: $" . number_format($totalAmount, 2) . "</p>";

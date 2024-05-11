@@ -8,6 +8,12 @@ $session = new Session();
 // Get the database connection
 $db = getDatabaseConnection();
 
+if ($session->getCSRF()  !== $_POST['csrf']) {
+    sleep(10);
+    header('Location: ' . $_SERVER['HTTP_REFERER']);
+    exit();
+}
+
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     // Insert the item into the database
     $itemName = $_POST['ItemName'];

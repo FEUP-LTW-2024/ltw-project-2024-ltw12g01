@@ -39,6 +39,7 @@
     <input type="password" name="new" id="new" required>
     <label for="new2">Confirm new password</label>
     <input type="password" name="new2" id="new2" required>
+    <input type="hidden" name="csrf" value="<?=$session->getCSRF()?>">
     <button type="submit">Submit</button>
 </form>
 <section id="messages">

@@ -36,6 +36,7 @@ function drawItem(Item $item) { ?>
                 <p><strong>Sold by:</strong> <a href="#"> <?php echo $item->itemOwner; ?></a></p>
                 <form id="add-to-cart-form" action="../actions/action_cart.php" method="POST">
                     <input type="hidden" name="item_json" value='<?php echo json_encode($item); ?>'>
+                    <input type="hidden" name="csrf" value="<?=$session->getCSRF()?>">
                     <button id="add-to-cart-Button" type="submit"> <i class="fa-solid fa-cart-plus"></i> Add to Cart  </button>
                 </form>
             </div>

@@ -96,6 +96,7 @@ function drawProfile(User $user, Session $session): void {
       <label for="password2">Confirm the password</label>
       <input type="password" name="confirm-password" id="confirm-password" required>
     </div>
+    <input type="hidden" name="csrf" value="<?=$session->getCSRF()?>">
     <button type="submit" class="btn btn-primary">Register</button>
   </form>
 
