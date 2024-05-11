@@ -40,7 +40,7 @@ while ($item = $stmt->fetch()) {
     <div class="item-details">
         <p>Brand: <?= $item->itemBrand ?></p>
         <p>Description: <?= $item->itemDescription ?></p>
-        <p>Price: <?= $item->itemPrice ?></p>
+        <p>Price: <?= $item->itemPrice ?>$</p>
         <p>Category: <?= $item->itemCategory ?></p>
     </div>
     <img class="item-image" src="<?= $item->getImageUrl() ?>" alt="Item image">

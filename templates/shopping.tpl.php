@@ -123,7 +123,7 @@ function drawCart($session) {
     } else {
         echo "<h1>My Cart</h1>";
         echo "<section class='cart-products'>";
-        echo "<ul class='cart-list'>"; 
+        echo "<ul id='cart-list'>"; 
         foreach ($cart as $item) {
             echo "<li>"; 
             echo "<form id='itemDele' action='../actions/action_cart_removeItem.php' method='post'>";
@@ -131,7 +131,7 @@ function drawCart($session) {
             echo "<div class='product-info'>";
             echo "<h2 class='product-name'>Model:{$item->itemName}</h2>";
             echo "<p class='product-brand'>Brand:{$item->itemBrand}</p>";
-            echo "<p class='product-price'>Price: {$item->itemPrice}</p>";
+            echo "<p class='product-price'>Price: {$item->itemPrice}$</p>";
             echo "<p class='product-category'>Category: {$item->itemCategory}</p>";
             echo "</div>";
             echo "<input type='hidden' name='item_json' value='" . htmlspecialchars(json_encode($item)) . "'>";
@@ -147,19 +147,30 @@ function drawCart($session) {
         foreach ($cart as $item) {
             $totalAmount += $item->itemPrice;
         }
+        $discount = 0;
+        $numberOfItems = count($cart);
+        if ($numberOfItems == 2) {
+            $discount = $totalAmount * 0.10; 
+        } elseif ($numberOfItems == 3) {
+            $discount = $totalAmount * 0.20; 
+        } elseif ($numberOfItems >= 4) {
+            $discount = $totalAmount * 0.35; 
+        }
+    
+        $totalAmount -= $discount;
+    
 
         $distance = calculateDistance($latitude, $longitude, $user->latitude, $user->longitude);
         $shippingCost = calculateShippingCost($weight, $distance);
-
-        echo "<form action='../actions/action_checkout.php' method='post'>";
-        echo "<button class='checkout-btn' type='submit'>Checkout</button>";
-        echo "<input type='hidden' name='shippingCost' value='" . $shippingCost . "'>";
-        echo "<input type='hidden' name='totalAmount' value='" . $totalAmount . "'>";
-        echo '<input type="hidden" name="csrf" value="' . $session->getCSRF() . '">';
-        echo "</form>";
-
-        echo "<p>Total: $" . number_format($totalAmount, 2) . "</p>";
-
+        echo "<div class='infos-checkout'>";
+        echo "<p>Total: " . number_format($totalAmount, 2) . "$</p>";
+        if ($discount > 0) {
+            echo "<p>Discount: " . number_format($discount, 2) . "$</p>";
+        }
+        if ($numberOfItems === 1) {
+            echo "<p>Buy one more item to obtain a 10% discount.</p>";
+        }
+        
         $userId = $session->getId();
         $db = getDatabaseConnection();
         $shipmentUserInfo = ShipmentUserInfo::getShipmentInfoUserID($db, $userId);
@@ -172,6 +183,15 @@ function drawCart($session) {
 
         echo "<p>Estimated Shipping Cost: $" . number_format($shippingCost, 2) . "</p>";
         echo "<p>Total with Shipping: $" . number_format($totalAmount + $shippingCost, 2) . "</p>";
+
+
+        echo "<form action='../actions/action_checkout.php' method='post'>";
+        echo "<button class='checkout-btn' type='submit'>Checkout</button>";
+        echo "<input type='hidden' name='shippingCost' value='" . $shippingCost . "'>";
+        echo "<input type='hidden' name='totalAmount' value='" . $totalAmount . "'>";
+        echo '<input type="hidden" name="csrf" value="' . $session->getCSRF() . '">';
+        echo "</form>";
+        echo "</div>";
 
         echo "</section>";
     }
