@@ -61,9 +61,9 @@ function drawSearchBar(Session $session) {
             <img src="../imgs/logo.jpg" alt="Logo" class="logo">
         </a>
         
-        <form class="search-form">
-            <input type="text" id="search-bar"placeholder="Search for items"></input>
-            <div id="search-bar-result"></div>
+        <form class="search-form" action="../actions/action_search.php" method="post">
+                <input type="text" id="search-bar"placeholder="Search for items" autocomplete="off" name="name"></input>
+                <div id="search-bar-result"></div>
             <button type="submit">
                 <img src="../imgs/magnify.svg" alt="Search">
             </button>

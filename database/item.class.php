@@ -101,6 +101,7 @@ class Item {
         $stmt->execute(array($search . '%', $count));
 
         $items = array();
+        $itemImage = isset($item['ItemImage']) ? $item['ItemImage'] : '';  //TODO
         while ($item = $stmt->fetch()) {
             $items[] = new Item(
                 $item['ItemId'],
@@ -110,7 +111,7 @@ class Item {
                 $item['ItemPrice'],
                 $item['ItemOwner'],
                 $item['ItemCategory'],
-                $item['ItemImage'],
+                $itemImage,
                 $item['ItemSize'],
                 $item['ItemCondition']
             );
