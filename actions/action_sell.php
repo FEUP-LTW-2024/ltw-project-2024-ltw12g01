@@ -16,14 +16,15 @@ if ($session->getCSRF()  !== $_POST['csrf']) {
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     // Insert the item into the database
-    $itemName = $_POST['ItemName'];
-    $itemBrand = $_POST['ItemBrand'];
-    $itemDescription = $_POST['ItemDescription'];
-    $itemCategory = $_POST['ItemCategory'];
-    $itemPrice = $_POST['ItemPrice'];
-    $itemOwner = $_POST['ItemOwner'];
-    $itemSize = $_POST['ItemSize'];
-    $itemCondition = $_POST['ItemCondition'];
+    $itemName = htmlentities($_POST['ItemName']);
+    $itemBrand = htmlentities($_POST['ItemBrand']);
+    $itemDescription = htmlentities($_POST['ItemDescription']);
+    $itemCategory = htmlentities($_POST['ItemCategory']);
+    $itemPrice = htmlentities($_POST['ItemPrice']);
+    $itemOwner = htmlentities($_POST['ItemOwner']);
+    $itemSize = htmlentities($_POST['ItemSize']);
+    $itemCondition = htmlentities($_POST['ItemCondition']);
+
     $itemImage = $_FILES['hiddenInput'];
 
     if (!isset($itemName) || !isset($itemDescription) || !isset($itemCategory) || !isset($itemPrice) || !isset($itemSize) || !isset($itemCondition)) {

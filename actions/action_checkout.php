@@ -18,9 +18,9 @@ try {
         header('Location: ' . $_SERVER['HTTP_REFERER']);
         exit();
     } 
-    $shippingCost = floatval($_POST['shippingCost']);
-    $totalAmount = floatval($_POST['totalAmount']);
-
+    $shippingCost = isset($_POST['shippingCost']) ? floatval($_POST['shippingCost']) : 0.0;
+    $totalAmount = isset($_POST['totalAmount']) ? floatval($_POST['totalAmount']) : 0.0;
+    
     $userId = $session->getId();
 
     $cart = $session->getCart();

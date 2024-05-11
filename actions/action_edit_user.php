@@ -17,9 +17,10 @@ if ($session->getCSRF() !== $_POST['csrf']) {
 } 
 // Retrieve form data
 $userId = isset($_POST['id']) ? (int)$_POST['id'] : 0;
-$username = $_POST['username'] ?? '';
-$email = $_POST['email'] ?? '';
-$userType = $_POST['type'] ?? '';
+$username = isset($_POST['username']) ? htmlentities($_POST['username']) : '';
+$email = isset($_POST['email']) ? htmlentities($_POST['email']) : '';
+$userType = isset($_POST['type']) ? htmlentities($_POST['type']) : '';
+
 
 
 $success = User::updateUser($db, $userId, $username, $email, $userType);
