@@ -9,11 +9,22 @@ $db = getDatabaseConnection();
 
 $items = Item::getAllItemsFromDatabase($db);
 
-if (!empty($items)) {
-    foreach ($items as $item) {
-        echo '<a href="edit_item.php?id=' . $item->id . '">' . $item->itemName . '</a><br>';
-    }
-} else {
-    echo 'No items found.';
-}
 ?>
+<head>
+    <title>Item List</title>
+    <link rel="stylesheet" type="text/css" href="../style/style.css">
+</head>
+<body>
+    <h1>Item List</h1>
+
+    <?php if (!empty($items)): ?>
+        <ul class="user-list">
+            <?php foreach ($items as $item): ?>
+                <li><a href="edit_item.php?id=<?= $item->id ?>" class="item-link"><?= $item->itemName ?></a></li>
+            <?php endforeach; ?>
+        </ul>
+    <?php else: ?>
+        <p>No items found.</p>
+    <?php endif; ?>
+</body>
+</html>

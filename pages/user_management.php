@@ -8,12 +8,23 @@ require_once(__DIR__ . '/../session/session.php');
 $db = getDatabaseConnection();
 
 $users = User::getAllUsersFromDatabase($db); 
-
-if (!empty($users)) {
-    foreach ($users as $user) {
-        echo '<a href="edit_user.php?id=' . $user->id . '">' . $user->username . '</a><br>';
-    }
-} else {
-    echo 'No users found.';
-}
 ?>
+<head>
+    <link rel="stylesheet" type="text/css" href="../style/style.css">
+</head>
+<body>
+
+<h1>User List</h1>
+
+<?php if (!empty($users)): ?>
+    <ul class="user-list">
+        <?php foreach ($users as $user): ?>
+            <li><a href="edit_user.php?id=<?= $user->id ?>"><?= $user->username ?></a></li>
+        <?php endforeach; ?>
+    </ul>
+<?php else: ?>
+    <p>No users found.</p>
+<?php endif; ?>
+
+</body>
+</html>

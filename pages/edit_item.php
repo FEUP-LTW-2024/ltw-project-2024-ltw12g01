@@ -1,8 +1,8 @@
 
-<?php require_once('../templates/common.tpl.php') ?>
+<?php require_once('../templates/common.tpl.php');
 
-<!-- $session = new Session(); -->
-
+$session = new Session();
+?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -12,14 +12,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Main Page</title>
     <link rel="stylesheet" href="style/style.css">
+    <link rel="icon" href="../imgs/logo.jpg" type="image/x-icon">
     <script src="../javascript/UploadImage.js" defer></script>
     <script src="../javascript/Category.js" defer></script>
 </head>
 
 <body>
-    <?php drawHeader(false); ?>
+    <?php drawHeaderForSell($session,false); ?>
     <main class="sell">
-        <h1>Sell an article</h1>
+        <h1>Edit an Item</h1>
 
         <div class="img-load">
             <div class="border">
@@ -32,20 +33,20 @@
                 <button onclick="triggerFileInput()">
                     Upload Images
                 </button>
-                <input type="file" id="hiddenInput" accept=".png,.jpg,.jpeg" multiple>
             </div>
         </div>
         <br>
         <div class="description">
-            <form action="../actions/action_sell.php" method="post">
-                <div class="title">
+            <form action="../actions/action_edit_item.php" method="post" enctype="multipart/form-data">
+            <input type="file" id="hiddenInput" name="hiddenInput" accept=".png,.jpg,.jpeg" multiple>
+    
+            <div class="title">
                     <span>Title</span>
                     <div class="title-input">
                         <input class="input" type="text" name="ItemName" placeholder="Item Name" required>
                         <label for="title" class="label">Item Name</label>
                     </div>
                     </div>
-                    <!-- <div class="border-descri"></div> -->
                     <div class="brand">
                         <span>Brand</span>
                         <div class="brand-input">
@@ -57,7 +58,6 @@
                     <div class="owner-input">
                         <input type="hidden" name="ItemOwner" value="<?php echo $session->getName(); ?>">
                     </div>
-                    <!-- <div class="border-descri"></div> -->
                     <div class="descricao">
                         <span>Description</span>
                         <div class="descri-input">
@@ -132,8 +132,8 @@
                 <label for="title" class="label">Price</label>
             </div>
         </div>
-        <input type="hidden" name="csrf" value="<?=$session->getCSRF()?>">
-            <button class="load-btn">Save Item</button>
+            <input type="hidden" name="csrf" value="<?=$session->getCSRF()?>">
+            <button class="load-btn">Update Item</button>
             </form>
     </main>
 </body>

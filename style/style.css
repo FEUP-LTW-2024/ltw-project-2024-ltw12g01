@@ -1477,3 +1477,30 @@ label {
     background-color: #3e8e41;
 }
 
+.user-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.user-list li {
+    padding: 10px;
+    border-bottom: 1px solid #ccc;
+}
+
+.user-list li a {
+    text-decoration: none;
+    color: #337ab7;
+}
+
+.user-list li a:hover {
+    color: #23527c;
+}
+
+.user-list li a:active {
+    color: #1a1d23;
+}
+
+.user-list li:last-child {
+    border-bottom: none;
+}
