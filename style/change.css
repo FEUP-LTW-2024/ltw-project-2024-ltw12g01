@@ -1,0 +1,79 @@
+/* Resetting default margin and padding */
+body, html {
+    margin: 0;
+    padding: 0;
+    width: 100%; /* Ensure body extends to full width */
+}
+
+/* Centering content horizontally and vertically */
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #f4f4f4; /* Set your desired background color */
+}
+
+/* Styling form container */
+form {
+    background-color: #fff;
+    padding: 40px; /* Increased padding */
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    width: 400px; /* Increased width */
+    text-align: center;
+}
+
+/* Ensure form container is centered */
+form {
+    margin: auto; /* Add this line */
+}
+
+/* Styling form labels */
+label {
+    display: block;
+    margin-bottom: 20px; /* Increased margin */
+    font-weight: bold;
+    font-size: 18px; /* Increased font size */
+}
+
+/* Styling form inputs */
+input[type="text"],
+input[type="password"],
+input[type="email"] {
+    width: calc(100% - 20px);
+    padding: 15px; /* Increased padding */
+    margin-bottom: 30px; /* Increased margin */
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+/* Styling submit button */
+button[type="submit"] {
+    background-color: #497aaf;
+    color: #fff;
+    padding: 15px 30px; /* Increased padding */
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button[type="submit"]:hover {
+    background-color: #405c84; /* Darken the color on hover */
+}
+
+/* Styling error messages */
+.login-register-alert {
+    background-color: #f44336;
+    color: #fff;
+    padding: 10px;
+    margin-bottom: 15px;
+    border-radius: 4px;
+}
+
+/* Styling footer */
+footer {
+    text-align: center;
+    margin-top: 20px;
+}

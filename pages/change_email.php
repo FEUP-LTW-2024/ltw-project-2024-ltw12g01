@@ -22,7 +22,7 @@
     if ($user_type != 'admin') {
         ?>
         <?php drawHeader($session, false); ?>
-        <link rel="stylesheet" href="../style/payment.css">
+        <link rel="stylesheet" href="../style/change.css">
         <form action="../actions/action_change_email.php" method="post" enctype="multipart/form-data">
             <?php if ($user_type != 'admin') { ?>
             <label for="old_password">Old password</label>

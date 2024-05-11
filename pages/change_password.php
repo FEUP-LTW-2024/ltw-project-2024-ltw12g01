@@ -24,7 +24,7 @@
 ?>
 
 <?php drawHeader($session, false); ?>
-<link rel="stylesheet" href="../style/payment.css">
+<link rel="stylesheet" href="../style/change.css">
 <form id="changePasswordForm" action="../actions/action_change_password.php" method="post" >
 
 <?php
@@ -51,7 +51,3 @@
       ?>
   </section>
 
-
-<?php
-    drawFooter();
-?>

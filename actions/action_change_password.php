@@ -9,18 +9,10 @@ require_once(__DIR__ . '/../database/user.class.php');
 $session = new Session();
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    if ($session->getCSRF() !== htmlentities($_POST['csrf'])) {
-        $session->addMessage('Error:', 'Request does not appear to be legitimate');
-        sleep(10);
-        header('Location: ' . htmlentities($_SERVER['HTTP_REFERER']));
-        exit();
-    }
-
+        
     if ($_POST['new'] != $_POST['new2']) {
         $session->addMessage('Password error', 'Passwords do not match!');
     } else {
-        require_once(__DIR__ . '/../database/connection.db.php');
-        require_once(__DIR__ . '/../database/user.class.php');
 
         $email = User::getEmailByUsername($db, $session->getName());
         $user = User::getUserWithPassword($db, $email, $_POST['old']);
