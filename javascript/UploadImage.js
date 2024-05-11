@@ -51,23 +51,48 @@ function handleImageDragAndDrop() {
 
 function handleImageUpload() {
     const image_input = document.querySelector('#hiddenInput');
-    let uploaded_image = "";
 
     image_input.addEventListener("change", function() {
         const reader = new FileReader();
 
         reader.addEventListener("load", ()=> {
-            uploaded_image = reader.result;
-            console.log(uploaded_image);
+            const uploaded_image = reader.result;
+
+            const xhr = new XMLHttpRequest();
+
+            const url = '../actions/actions_image.php';
+
+            const formData = new FormData();
+            formData.append('image', uploaded_image);
+
+            xhr.open('POST', url, true);
+
+            xhr.onload = function() {
+                if (xhr.status === 200) {
+                    console.log('Image uploaded successfully.');
+                } else {
+                    console.error('Image upload failed.');
+                }
+            };
+
+            xhr.onerror = function() {
+                console.error('Error occurred while uploading image.');
+            };
+
+            xhr.send(formData);
+
             document.querySelector('.border').style.backgroundImage = `url(${uploaded_image})`;
             const Display_none = document.querySelectorAll('.border * '); 
             Display_none.forEach(element => {
                 element.style.display = 'none';
             });
         });
+
         reader.readAsDataURL(this.files[0]);
     });
 }
+
+
 
 handleImageUpload();
 
