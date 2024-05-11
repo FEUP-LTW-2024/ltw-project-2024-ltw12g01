@@ -219,6 +219,29 @@ class Item {
     
         return $items;
     }
+
+    static public function getItemsByCategory(PDO $db, string $category): array {
+        $stmt = $db->prepare('SELECT ItemId, ItemName, ItemBrand, ItemDescription, ItemPrice, ItemOwner, ItemCategory, ItemImage, ItemSize, ItemCondition FROM Item WHERE ItemCategory = ?');
+        $stmt->execute(array($category));
+    
+        $items = array();
+        while ($item = $stmt->fetchObject()) {
+            $items[] = new Item(
+                $item->ItemId,
+                $item->ItemName,
+                $item->ItemBrand,
+                $item->ItemDescription,
+                $item->ItemPrice,
+                $item->ItemOwner,
+                $item->ItemCategory,
+                $item->ItemImage ?? '',
+                $item->ItemSize,
+                $item->ItemCondition
+            );
+        }
+    
+        return $items;
+    }
     
 }
 

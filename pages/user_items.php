@@ -31,21 +31,24 @@ while ($item = $stmt->fetch()) {
 
 ?>
 
-<h1>Items listed by <?= $username ?></h1>
+<h1>Items listed : <?= $username ?></h1>
 
 <?php foreach ($items as $item): ?>
-    <div>
-        <h2><?= $item->itemName ?></h2>
+    <link rel="stylesheet" href="../style/item.css">
+    <div class="item-container">
+    <h2 class="item-title"><?= $item->itemName ?></h2>
+    <div class="item-details">
         <p>Brand: <?= $item->itemBrand ?></p>
         <p>Description: <?= $item->itemDescription ?></p>
         <p>Price: <?= $item->itemPrice ?></p>
         <p>Category: <?= $item->itemCategory ?></p>
-        <img src="<?= $item->getImageUrl() ?>" alt="Item image">
-        
-        <form action="../actions/action_delete.php" method="post">
-            <input type="hidden" name="item_id" value="<?= $item->id ?>">
-            <input type="hidden" name="csrf" value="<?=$session->getCSRF()?>">
-            <button type="submit">Remove</button>
-        </form>
     </div>
+    <img class="item-image" src="<?= $item->getImageUrl() ?>" alt="Item image">
+    
+    <form action="../actions/action_delete.php" method="post">
+        <input type="hidden" name="item_id" value="<?= $item->id ?>">
+        <input type="hidden" name="csrf" value="<?=$session->getCSRF()?>">
+        <button type="submit" class="remove-button">Remove</button>
+    </form>
+</div>
 <?php endforeach; ?>

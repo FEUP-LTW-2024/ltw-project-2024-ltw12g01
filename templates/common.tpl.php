@@ -58,15 +58,19 @@ $username = $session->getName();
             <li>
                 <?php drawFilters(); ?>
             </li>
-                <li>
-                    Women
-                </li>
-                <li>
-                    Men
-                </li>
-                <li>
-                    Kids
-                </li>
+            <li>
+                <a href="index.php">All</a> 
+            </li>
+            <li>
+                <a href="index.php?category=Female">Women</a> 
+            </li>
+            <li>
+                <a href="index.php?category=Male">Men</a> 
+            </li>
+            <li>
+                <a href="index.php?category=Kids">Kids</a>
+            </li>
+            
             </ul>
     </nav>
 <?php } ?>
@@ -236,7 +240,6 @@ function drawFilters() {
                     To: <input type="number" name="maxPrice" min="0" value="1000">
                 </label>
             </section>
-            <button type="submit" class="filters-button">Apply Filters</button>
         </form>
     </aside>
     <?php

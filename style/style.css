@@ -115,35 +115,41 @@ header form button {
     cursor: pointer;
     background: #f2f2f2;
 }
+
 nav {
-    background-color: #ffffff; 
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05); 
-    border-radius: 20px; 
-    padding: 0;
-    overflow: hidden; 
+    background-color: #ffffff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    overflow: hidden;
     margin-bottom: 20px;
 }
 
 nav ul {
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
+    align-items: center;
     list-style: none;
-    padding: 0;
+    padding: 0 100px;
     margin: 0;
 }
 
 nav ul li {
-    position: relative; 
-    padding: 15px 30px;
+    padding: 15px 0.5px;
     cursor: pointer;
-    transition: color 0.3s, background-color 0.3s; 
-    color: #333; /* Darker text color for better readability */
-    font-weight: 500; /* Makes text slightly bolder */
+    transition: transform 0.3s, background-color 0.3s, color 0.3s;
+    color: #333;
+    font-weight: 500;
+    border-bottom: 3px solid transparent;
+    margin-right: 5px;
+}
+
+nav ul li:last-child {
+    margin-right: 0;
 }
 
 nav ul li:hover {
-    background-color: #f0f0f0; /* Light gray background on hover */
-    color: #0056b3; /* Change text color on hover for better interaction feedback */
+    background-color: #f0f0f0;
+    color: #0056b3;
 }
 
 nav ul li::after {
@@ -153,21 +159,22 @@ nav ul li::after {
     left: 50%;
     width: 0%;
     height: 2px;
-    background-color: #007BFF; /* Blue bar to indicate hover */
-    transition: width 0.3s ease, left 0.3s ease; /* Smooth transition for the hover effect */
+    background-color: #007BFF;
+    transition: width 0.3s ease, left 0.3s ease;
 }
 
 nav ul li:hover::after {
-    width: 100%; /* Full width on hover */
-    left: 0; /* Align from the left */
+    width: 100%;
+    left: 0;
 }
 
 /* Link styles */
 nav ul li a {
     text-decoration: none;
-    color: inherit; /* Ensures links use current color */
-    display: block; /* Makes the whole area clickable */
+    color: inherit;
+    display: block;
 }
+
 
 
 /* Product Section Styles */

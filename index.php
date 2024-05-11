@@ -23,12 +23,26 @@
     $pagination->setCurrentPage(1);
   }
 
-  $items = Item::getItemsStartingOn($db, $pagination->getOffset(), $pagination->getLimit());
+  if(isset($_POST['category']) && $_POST['category'] != 'All'){
 
-  drawHeader($session,true);
-  drawItems($items);
-  drawPagination($pagination);
-  drawFooter();
+    $category = $_POST['category'];
+    $items = Item::getItemsByCategory($db, $category, $pagination->getOffset(), $pagination->getLimit());
+    
+    drawItems($items);
+    drawPagination($pagination);
+    drawFooter();
+    exit();
+
+  }else {
+
+    $items = Item::getItemsStartingOn($db, $pagination->getOffset(), $pagination->getLimit());
+    
+    drawHeader($session,true);
+    drawItems($items);
+    drawPagination($pagination);
+    drawFooter();
+
+  }
 ?>
 
 <script>
