@@ -66,3 +66,22 @@ CREATE TABLE Shipment (
     ShipmentStatus NVARCHAR(50) NOT NULL,
     FOREIGN KEY (OrdersId) REFERENCES Orders(OrdersId)
 );
+
+CREATE TABLE Message (
+    MessageId INTEGER PRIMARY KEY AUTOINCREMENT,
+    SenderId INTEGER NOT NULL,
+    ReceiverId INTEGER NOT NULL,
+    Content TEXT NOT NULL,
+    Timestamp DATETIME DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (SenderId) REFERENCES User(UserId),
+    FOREIGN KEY (ReceiverId) REFERENCES User(UserId)
+);
+
+CREATE TABLE Conversation (
+    ConversationId INTEGER PRIMARY KEY AUTOINCREMENT,
+    UserId1 INTEGER NOT NULL,
+    UserId2 INTEGER NOT NULL,
+    UNIQUE(UserId1, UserId2),
+    FOREIGN KEY (UserId1) REFERENCES User(UserId),
+    FOREIGN KEY (UserId2) REFERENCES User(UserId)
+);
