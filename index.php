@@ -23,11 +23,12 @@
     $pagination->setCurrentPage(1);
   }
 
-  if(isset($_POST['category']) && $_POST['category'] != 'All'){
+  if(isset($_GET['category']) && $_GET['category'] != 'All'){
 
-    $category = $_POST['category'];
+    $category = $_GET['category'];
     $items = Item::getItemsByCategory($db, $category, $pagination->getOffset(), $pagination->getLimit());
     
+    drawHeader($session,true);
     drawItems($items);
     drawPagination($pagination);
     drawFooter();

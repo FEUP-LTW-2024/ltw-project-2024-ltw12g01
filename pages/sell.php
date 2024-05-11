@@ -33,20 +33,20 @@ $session = new Session();
                 <button onclick="triggerFileInput()">
                     Upload Images
                 </button>
-                <input type="file" id="hiddenInput" accept=".png,.jpg,.jpeg" multiple>
             </div>
         </div>
         <br>
         <div class="description">
-            <form action="../actions/action_sell.php" method="post">
-                <div class="title">
+            <form action="../actions/action_sell.php" method="post" enctype="multipart/form-data">
+            <input type="file" id="hiddenInput" name="hiddenInput" accept=".png,.jpg,.jpeg" multiple>
+    
+            <div class="title">
                     <span>Title</span>
                     <div class="title-input">
                         <input class="input" type="text" name="ItemName" placeholder="Item Name" required>
                         <label for="title" class="label">Item Name</label>
                     </div>
                     </div>
-                    <!-- <div class="border-descri"></div> -->
                     <div class="brand">
                         <span>Brand</span>
                         <div class="brand-input">
@@ -58,7 +58,6 @@ $session = new Session();
                     <div class="owner-input">
                         <input type="hidden" name="ItemOwner" value="<?php echo $session->getName(); ?>">
                     </div>
-                    <!-- <div class="border-descri"></div> -->
                     <div class="descricao">
                         <span>Description</span>
                         <div class="descri-input">

@@ -59,16 +59,16 @@ $username = $session->getName();
                 <?php drawFilters(); ?>
             </li>
             <li>
-                <a href="index.php">All</a> 
+                <a href="/index.php">All</a> 
             </li>
             <li>
-                <a href="index.php?category=Female">Women</a> 
+                <a href="/index.php?category=Female">Women</a> 
             </li>
             <li>
-                <a href="index.php?category=Male">Men</a> 
+                <a href="/index.php?category=Male">Men</a> 
             </li>
             <li>
-                <a href="index.php?category=Kids">Kids</a>
+                <a href="/index.php?category=Kids">Kids</a>
             </li>
             
             </ul>

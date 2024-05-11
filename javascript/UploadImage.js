@@ -5,44 +5,36 @@ function triggerFileInput() {
 
 function handleImageDragAndDrop() {
     const dropArea = document.querySelector('.border');
-    dragText = dropArea.querySelector("p");
+    const dragText = dropArea.querySelector("p");
     
-    let file; 
-    //if user Drag file over drag area
-    dropArea.addEventListener("dragover",(event)=>  {
+    dropArea.addEventListener("dragover", (event) => {
         event.preventDefault();
         dropArea.classList.add("active");
         dragText.textContent = "Release to Upload File";
-
     });
 
-    //if user leave dragged file from DragArea
-    dropArea.addEventListener("dragleave",(event)=>  {
+    dropArea.addEventListener("dragleave", (event) => {
         event.preventDefault();
         dropArea.classList.remove("active");
         dragText.textContent = "Drag and Drop file here";
     });
 
-    //if user drop file on DragArea
-    dropArea.addEventListener("drop",(event)=>  {
+    dropArea.addEventListener("drop", (event) => {
         event.preventDefault();
 
-        //getting user select file and [0] this means if user select 
-        //multiple files then we'll select only the first one 
-        file = event.dataTransfer.files[0];
-        let fileType = file.type;
-        console.log(fileType);
+        const file = event.dataTransfer.files[0];
+        const fileType = file.type;
 
-        let validExtensions = ["image/jpeg", "image/jpg", "image/png"];
-        if(validExtensions.includes(fileType)){
-            let fileReader = new FileReader(); //creating new FileReader object
-            fileReader.onload = ()=>{
-                let fileURL = fileReader.result; //passing user file source in fileURL variable
-                let imgTag = `<img src="${fileURL}" alt="">`; //creating an img tag and passing user selected file source inside src attribute
-                dropArea.innerHTML = imgTag; //adding that created img tag inside dropArea container
-            }
+        const validExtensions = ["image/jpeg", "image/jpg", "image/png"];
+        if (validExtensions.includes(fileType)) {
+            const fileReader = new FileReader(); 
+            fileReader.onload = () => {
+                const fileURL = fileReader.result; 
+                const imgTag = `<img src="${fileURL}" alt="">`; 
+                dropArea.innerHTML = imgTag; 
+            };
             fileReader.readAsDataURL(file);
-        }else{
+        } else {
             alert("This is not an image file");
             dropArea.classList.remove("active");
         }
@@ -50,18 +42,17 @@ function handleImageDragAndDrop() {
 }
 
 function handleImageUpload() {
-    const image_input = document.querySelector('#hiddenInput');
-    let uploaded_image = "";
+    const imageInput = document.querySelector('#hiddenInput');
 
-    image_input.addEventListener("change", function() {
+    imageInput.addEventListener("change", function() {
         const reader = new FileReader();
 
-        reader.addEventListener("load", ()=> {
-            uploaded_image = reader.result;
-            console.log(uploaded_image);
-            document.querySelector('.border').style.backgroundImage = `url(${uploaded_image})`;
-            const Display_none = document.querySelectorAll('.border * '); 
-            Display_none.forEach(element => {
+        reader.addEventListener("load", () => {
+            const uploadedImage = reader.result;
+            console.log(uploadedImage);
+            document.querySelector('.border').style.backgroundImage = `url(${uploadedImage})`;
+            const displayNone = document.querySelectorAll('.border * '); 
+            displayNone.forEach(element => {
                 element.style.display = 'none';
             });
         });
@@ -70,5 +61,4 @@ function handleImageUpload() {
 }
 
 handleImageUpload();
-
 handleImageDragAndDrop();

@@ -20,6 +20,9 @@
 
 <?php 
 function drawItem(Item $item) { ?>
+    <head>
+        <link rel="stylesheet" href="../style/product.css">
+    </head>
     <main>
         <h1><?php echo $item->itemName; ?></h1>
         <section id="product" class="product-grid">
@@ -27,19 +30,21 @@ function drawItem(Item $item) { ?>
                 <img id="product-img" src="<?php echo $item->ItemImage; ?>" alt="<?php echo $item->itemName; ?>">
             </div>
             <div class="product-info">
-                <p><?php echo $item->itemDescription; ?></p>
-                <p><strong>Price:</strong> <?php echo $item->itemPrice; ?>$</p>
-                <p><strong>Brand:</strong> <?php echo $item->itemBrand; ?></p>
-                <p><strong>Category:</strong> <?php echo $item->itemCategory; ?></p>
-                <p><strong>Size:</strong> <?php echo $item->itemSize; ?></p>
-                <p><strong>Condition:</strong> <?php echo $item->itemCondition; ?></p>
-                <p><strong>Sold by:</strong> <a href="#"> <?php echo $item->itemOwner; ?></a></p>
-                <form id="add-to-cart-form" action="../actions/action_cart.php" method="POST">
-                     <!-- <input type="hidden" name="csrf" value=" $session->getCSRF()?>"> -->
-                    <input type="hidden" name="item_json" value='<?php echo json_encode($item); ?>'>
-                    <button id="add-to-cart-Button" type="submit"> <i class="fa-solid fa-cart-plus"></i> Add to Cart  </button>
-                </form>
+                <div class="info-item" id="price"><strong>Price:</strong> <?php echo $item->itemPrice; ?>$</div>
+                <div class="info-item" id="brand"><strong>Brand:</strong> <?php echo $item->itemBrand; ?></div>
+                <div class="info-item" id="category"><strong>Category:</strong> <?php echo $item->itemCategory; ?></div>
+                <div class="info-item" id="size"><strong>Size:</strong> <?php echo $item->itemSize; ?></div>
+                <div class="info-item" id="condition"><strong>Condition:</strong> <?php echo $item->itemCondition; ?></div>
+                <div class="info-item" id="sold-by"><strong>Sold by:</strong> <a href="#"> <?php echo $item->itemOwner; ?></a></div>
+                <div class="description-box">
+                    <p><strong>Description:</strong> <?php echo $item->itemDescription; ?></p>
+                </div>
             </div>
+            </div>
+            <form id="add-to-cart-form" action="../actions/action_cart.php" method="POST">
+                <input type="hidden" name="item_json" value='<?php echo json_encode($item); ?>'>
+                <button id="add-to-cart-Button" type="submit"> <i class="fa-solid fa-cart-plus"></i> Add to Cart  </button>
+            </form>
         </section>
     </main>
 
