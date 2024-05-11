@@ -14,6 +14,19 @@
         }
         return -1;
     }
+    function getSearchedItems(PDO $pdo, $searchTerm) {
+        try {
+            $query = "SELECT * FROM Item WHERE ItemBrand LIKE ? OR ItemName LIKE ? OR ItemDescription LIKE ?";
+            $stmt = $pdo->prepare($query);
+            $searchTerm = '%' . $searchTerm . '%';
+            $stmt->execute([$searchTerm, $searchTerm, $searchTerm]);
+            $results = $stmt->fetchAll();
+            return $results;
+        } catch (Exception $e) {
+            echo "Error: " . $e->getMessage();
+            return false; 
+        }
+    }    
 
 
 ?>

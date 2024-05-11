@@ -42,10 +42,10 @@ header {
 header form {
     flex-grow: 1;
     margin: 0 20px;
-    display: flex;
+    display:flex;
 }
 
-header form > input {
+header form  input {
     flex-grow: 1;
     padding: 8px 16px;
     border: 2px solid #0056b3;
@@ -53,7 +53,7 @@ header form > input {
     outline: none;
 }
 
-header form > button {
+header form  button {
     padding: 8px 16px;
     background-color: #0056b3;
     color: white;
@@ -78,6 +78,38 @@ header form > button {
     font-weight: bold;
   }
   
+/* Adjustments for search results */
+.search-form .result {
+    position: absolute;
+    z-index: 999;
+    top: calc(100% + 10px); /* Adjust the spacing between search bar and results */
+    left: 0;
+    width: calc(100% - 40px); /* Adjust the width to match the input field */
+    max-height: 200px; /* Limit the height of results to prevent overflow */
+    overflow-y: auto; /* Add vertical scrollbar if needed */
+    background-color: #ffffff; /* Match header background color */
+    border: 2px solid #0056b3; /* Match input field border color */
+    border-top: none;
+    border-radius: 0 0 10px 10px; /* Adjust border radius to match input field */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 0;
+}
+
+.result-item{
+    margin: 0;
+    padding: 10px; /* Adjust padding for better spacing */
+    border-bottom: 1px solid #CCCCCC; /* Add border between result items */
+    cursor: pointer;
+}
+
+.result-item{
+    border-bottom: none; /* Remove border from last result item */
+}
+
+.result-item{
+    background: #f2f2f2;
+}
+
 /* Navigation Bar Styles */
 nav {
     background-color: #ffffff; /* Clean white background */
@@ -1366,4 +1398,55 @@ button:active {
     border: none;
     background-color: #0056B3;
     color: white;
+}
+
+#page-title {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+#payment-form {
+    max-width: 300px;
+    margin: 40px auto;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border: 1px solid #ccc;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    padding: 20px;
+}
+
+label {
+    display: block;
+    margin-bottom: 10px;
+}
+
+#payment-method {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+#payment-info {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+#submit-btn {
+    background-color: #4CAF50;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#submit-btn:hover {
+    background-color: #3e8e41;
 }
