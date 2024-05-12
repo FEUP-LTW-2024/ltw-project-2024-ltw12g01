@@ -13,18 +13,21 @@ if (!isset($chatId)) {
 
 $messages = Message::getMessagesForChat($db, $chatId);
 
-// Convert Message objects to associative arrays
 $formattedMessages = [];
 foreach ($messages as $message) {
+    $senderUsername = User::getUsernameById($db, $message->senderId);
+    
     $formattedMessages[] = [
         'messageId' => $message->getMessageId(),
         'chatId' => $message->getChatId(),
         'senderId' => $message->getSenderId(),
         'receiverId' => $message->getReceiverId(),
+        'senderUsername' => $senderUsername, 
         'content' => $message->getContent(),
         'timestamp' => $message->getTimestamp()
     ];
 }
 
 echo json_encode($formattedMessages);
+
 ?>

@@ -74,14 +74,15 @@ $messages = Message::getMessagesForChat($db, $chat_id);
 
         // Function to display messages in the chat interface
         function displayMessages(messages) {
-            var chatMessagesDiv = document.getElementById("chat-messages");
-            chatMessagesDiv.innerHTML = ""; // Clear previous messages
-            messages.forEach(function(message) {
-                var messageDiv = document.createElement("div");
-                messageDiv.textContent = message.sender_username + ": " + message.content;
-                chatMessagesDiv.appendChild(messageDiv);
-            });
-        }
+        var chatMessagesDiv = document.getElementById("chat-messages");
+        chatMessagesDiv.innerHTML = ""; // Clear previous messages
+        messages.forEach(function(message) {
+            var messageDiv = document.createElement("div");
+            messageDiv.textContent = `${message.senderUsername}: ${message.content}`;
+            chatMessagesDiv.appendChild(messageDiv);
+        });
+
+}
 
         // Function to send a message
         function sendMessage() {
