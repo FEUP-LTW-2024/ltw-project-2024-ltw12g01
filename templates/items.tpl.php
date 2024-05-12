@@ -1,11 +1,7 @@
 <?php 
   declare(strict_types = 1); 
 
-  require_once(__DIR__ . '/../session/session.php');
-  require_once(__DIR__ . '/../database/connection.db.php');
-  require_once(__DIR__ . '/../database/user.class.php');
   require_once(__DIR__ . '/../database/item.class.php')
-  
 ?>
 
 <?php function drawItems(array $items) { ?>
@@ -23,8 +19,7 @@
 <?php } ?>
 
 <?php 
-function drawItem(Item $item, Session $session) { ?>
-    <?php $receiver_id = User::getUserIdByUsername(getDatabaseConnection(), $item->itemOwner); ?>
+function drawItem(Item $item) { ?>
     <head>
         <link rel="stylesheet" href="../style/product.css">
     </head>
@@ -44,20 +39,12 @@ function drawItem(Item $item, Session $session) { ?>
                 <div class="description-box">
                     <p><strong>Description:</strong> <?php echo $item->itemDescription; ?></p>
                 </div>
-                <?php if($session->isLoggedIn()): ?>
-                    <form action="../pages/chat.php" method="GET">
-                        <input type="hidden" name="sender_id" value="<?php echo $session->getId(); ?>">
-                        <input type="hidden" name="receiver_id" value="<?php echo $receiver_id ?>">
-                        <button type="submit">Start Chat</button>
-                    </form>
-                <?php endif; ?>
-                <?php if($session->isLoggedIn()): ?>
-                    <form id="add-to-cart-form" action="../actions/action_cart.php" method="POST">
-                        <input type="hidden" name="item_json" value='<?php echo json_encode($item); ?>'>
-                        <button id="add-to-cart-Button" type="submit"> <i class="fa-solid fa-cart-plus"></i> Add to Cart  </button>
-                    </form>
-                <?php endif; ?>
             </div>
+            </div>
+            <form id="add-to-cart-form" action="../actions/action_cart.php" method="POST">
+                <input type="hidden" name="item_json" value='<?php echo json_encode($item); ?>'>
+                <button id="add-to-cart-Button" type="submit"> <i class="fa-solid fa-cart-plus"></i> Add to Cart  </button>
+            </form>
         </section>
     </main>
 

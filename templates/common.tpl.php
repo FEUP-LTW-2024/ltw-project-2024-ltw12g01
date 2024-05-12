@@ -85,9 +85,9 @@ function drawSearchBar(Session $session) {
         </a>
         
         <form class="search-form" action="../actions/action_search.php" method="post">
-            <input type="text" id="search-bar" placeholder="Search for items" autocomplete="off" name="name"></input>
-            <div id="search-bar-result"></div>
-            <input type="hidden" name="csrf" value="<?=$session->getCSRF()?>">
+                <input type="text" id="search-bar"placeholder="Search for items" autocomplete="off" name="name"></input>
+                <div id="search-bar-result"></div>
+                <input type="hidden" name="csrf" value="<?=$session->getCSRF()?>">
             <button type="submit">
                 <img src="../imgs/magnify.svg" alt="Search">
             </button>
@@ -101,18 +101,16 @@ function drawSearchBar(Session $session) {
                 </a>
                 <a href="../pages/profile.php"><i class="fa-solid fa-user"></i></a>
                 <a href="../actions/action_logout.php"><i class="fa-solid fa-right-from-bracket"></i></a>
-                <a href="../pages/chat.php"><i class="fa-solid fa-comment"></i></a>
             <?php else: ?>
                 <a href="../pages/login.php">Login</a>
                 <a href="../pages/register.php">Register</a>
             <?php endif; ?>
-        </section>
+          </section>
     </header>    
-    <script src="../javascript/search.js"></script>
+    <script src="../javascript/search.js">
+    </script>
     <?php
-}
-?>
-
+}?>
 
 
 <?php function drawFooter(){ ?>
