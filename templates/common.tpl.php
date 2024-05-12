@@ -257,16 +257,16 @@ document.addEventListener('DOMContentLoaded', function() {
     filterButton.addEventListener('click', () => {
         if (filters.style.transform === 'translateX(-100%)') {
             filters.style.transform = 'translateX(0)';
-            filterButton.style.visibility = 'visible'; // Hide filter button when filter options are open
+            filterButton.style.visibility = 'visible'; 
         } else {
             filters.style.transform = 'translateX(-100%)';
-            filterButton.style.visibility = 'visible'; // Show filter button when filter options are closed
+            filterButton.style.visibility = 'visible'; 
         }
     });
 
     closeButton.addEventListener('click', () => {
         filters.style.transform = 'translateX(-100%)';
-        filterButton.style.visibility = 'visible'; // Show filter button when filter options are closed
+        filterButton.style.visibility = 'visible'; 
     });
 });
 

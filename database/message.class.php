@@ -105,6 +105,15 @@ class Message {
 
         return $conversations;
     }
+    
+    static public function getItemOwnerId(PDO $db, $chatId) {
+        $stmt = $db->prepare('SELECT SenderId FROM Chat WHERE ChatId = :chatId');
+        $stmt->bindParam(':chatId', $chatId);
+        $stmt->execute();
+    
+        $chat = $stmt->fetchObject();
+        return $chat->SenderId;
+    }
 }
 
 ?>
