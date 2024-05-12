@@ -1,58 +1,51 @@
-/* Resetting default margin and padding */
 body, html {
     margin: 0;
     padding: 0;
-    width: 100%; /* Ensure body extends to full width */
+    width: 100%;
 }
 
-/* Centering content horizontally and vertically */
 body {
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
-    background-color: #f4f4f4; /* Set your desired background color */
+    background-color: #f4f4f4; 
 }
 
-/* Styling form container */
 form {
     background-color: #fff;
-    padding: 40px; /* Increased padding */
+    padding: 40px;
     border-radius: 8px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    width: 400px; /* Increased width */
+    width: 400px; 
     text-align: center;
 }
 
-/* Ensure form container is centered */
 form {
-    margin: auto; /* Add this line */
+    margin: auto; 
 }
 
-/* Styling form labels */
 label {
     display: block;
-    margin-bottom: 20px; /* Increased margin */
+    margin-bottom: 20px;
     font-weight: bold;
-    font-size: 18px; /* Increased font size */
+    font-size: 18px; 
 }
 
-/* Styling form inputs */
 input[type="text"],
 input[type="password"],
 input[type="email"] {
     width: calc(100% - 20px);
-    padding: 15px; /* Increased padding */
-    margin-bottom: 30px; /* Increased margin */
+    padding: 15px; 
+    margin-bottom: 30px; 
     border: 1px solid #ccc;
     border-radius: 4px;
 }
 
-/* Styling submit button */
 button[type="submit"] {
     background-color: #497aaf;
     color: #fff;
-    padding: 15px 30px; /* Increased padding */
+    padding: 15px 30px; 
     border: none;
     border-radius: 4px;
     cursor: pointer;
@@ -60,10 +53,9 @@ button[type="submit"] {
 }
 
 button[type="submit"]:hover {
-    background-color: #405c84; /* Darken the color on hover */
+    background-color: #405c84; 
 }
 
-/* Styling error messages */
 .login-register-alert {
     background-color: #f44336;
     color: #fff;
@@ -72,7 +64,6 @@ button[type="submit"]:hover {
     border-radius: 4px;
 }
 
-/* Styling footer */
 footer {
     text-align: center;
     margin-top: 20px;

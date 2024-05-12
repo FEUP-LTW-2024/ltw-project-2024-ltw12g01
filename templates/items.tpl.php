@@ -52,7 +52,7 @@ function drawItem(Item $item, Session $session) {
                     <form action="../pages/chat.php" method="GET">
                         <input type="hidden" name="sender_id" value="<?php echo $loggedInUserId; ?>">
                         <input type="hidden" name="receiver_id" value="<?php echo $receiver_id ?>">
-                        <button type="submit">Start Chat</button>
+                        <button class="start-chat-button" type="submit">Start Chat</button>
                     </form>
                 <?php endif; ?>
                 <?php if($session->isLoggedIn() && !$isOwner): ?>

@@ -1,33 +1,27 @@
-/* Reset default list styles */
 .user-list {
     list-style: none;
     padding: 0;
     margin: 0;
 }
 
-/* Style list items */
 .user-list li {
     padding: 10px;
     border-bottom: 1px solid #ccc;
 }
 
-/* Style links */
 .user-list li a {
     text-decoration: none;
     color: #337ab7;
 }
 
-/* Hover effect for links */
 .user-list li a:hover {
     color: #23527c;
 }
 
-/* Active state for links */
 .user-list li a:active {
     color: #1a1d23;
 }
 
-/* Remove bottom border for last item */
 .user-list li:last-child {
     border-bottom: none;
 }

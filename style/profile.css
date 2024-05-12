@@ -1,11 +1,9 @@
-/* Reset default browser styles */
 * {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
 }
 
-/* Body styles */
 body {
     font-family: 'Roboto', sans-serif;
     background-color: #f4f4f4;
@@ -15,7 +13,6 @@ body {
     
 }
 
-/* Section styles */
 #profile-info {
     background-color: #fff;
     border-radius: 8px;
@@ -25,7 +22,6 @@ body {
     width: 100%
 }
 
-/* Profile element styles */
 #profile-username,
 #profile-email,
 #profile-password,
@@ -36,12 +32,10 @@ body {
     margin-bottom: 20px;
 }
 
-/* Bold text */
 #profile-info strong {
     font-weight: bold;
 }
 
-/* Link styles */
 #profile-info a {
     color: #007bff;
     text-decoration: none;
@@ -53,7 +47,6 @@ body {
     color: #0056b3;
 }
 
-/* Content styles */
 #profile-info #content {
     color: #777;
 }
@@ -73,8 +66,6 @@ body {
     background-color: #0056b3;
 }
 
-
-/* Input styles */
 input[type="text"],
 input[type="email"],
 input[type="password"] {
@@ -92,7 +83,6 @@ input[type="password"]:focus {
     border-color: #007bff;
 }
 
-/* Textarea styles */
 textarea {
     width: 100%;
     padding: 10px;
@@ -107,7 +97,6 @@ textarea:focus {
     border-color: #007bff;
 }
 
-/* Select styles */
 select {
     width: 100%;
     padding: 10px;
@@ -122,7 +111,6 @@ select:focus {
     border-color: #007bff;
 }
 
-/* Success message */
 .success {
     background-color: #d4edda;
     border-color: #c3e6cb;
@@ -132,7 +120,6 @@ select:focus {
     border-radius: 4px;
 }
 
-/* Error message */
 .error {
     background-color: #f8d7da;
     border-color: #f5c6cb;
