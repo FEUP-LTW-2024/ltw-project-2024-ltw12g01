@@ -1,6 +1,5 @@
 <?php
 declare(strict_types = 1);
-require_once('../database/shipment_user.class.php');
 
 class User {
     public int $id;
@@ -76,6 +75,20 @@ class User {
             }
         }
         return null;
+    }
+
+    static public function getUserIdByUsername(PDO $db, string $username): int {
+        $stmt = $db->prepare('SELECT UserId FROM User WHERE UserName = :username');
+        $stmt->execute([':username' => $username]);
+        $user = $stmt->fetch();
+        return (int)$user['UserId'];
+    }
+
+    static public function getUsernameById(PDO $db, int $id): string {
+        $stmt = $db->prepare('SELECT UserName FROM User WHERE UserId = :id');
+        $stmt->execute([':id' => $id]);
+        $user = $stmt->fetch();
+        return $user['UserName'];
     }
 
     static public function getUserByUsername(PDO $db, string $username): ?User {
