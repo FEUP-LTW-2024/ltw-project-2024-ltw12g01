@@ -117,6 +117,7 @@ function drawCart($session) {
         $longitude = $ukCities[$shippingCity]['longitude'];
     }
 
+    $item_ids = []; 
 
     if (empty($cart)) {
         echo "<p>Your cart is empty.</p>";
@@ -142,7 +143,7 @@ function drawCart($session) {
             echo "</li>"; 
         }
         echo "</ul>"; 
-
+                
         $totalAmount = 0;
         foreach ($cart as $item) {
             $totalAmount += $item->itemPrice;
