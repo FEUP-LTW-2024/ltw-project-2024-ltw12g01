@@ -70,14 +70,15 @@ class Message {
         return $messages;
     }
 
-    static public function createChat(PDO $db, $senderId, $receiverId) {
-        $stmt = $db->prepare('INSERT INTO Chat (SenderId, ReceiverId) VALUES (:senderId, :receiverId)');
+    static public function createChat(PDO $db, $itemId, $senderId, $receiverId) {
+        $stmt = $db->prepare('INSERT INTO Chat (ItemId, SenderId, ReceiverId) VALUES (:itemId, :senderId, :receiverId)');
+        $stmt->bindParam(':itemId', $itemId);
         $stmt->bindParam(':senderId', $senderId);
         $stmt->bindParam(':receiverId', $receiverId);
         $stmt->execute();
     }
 
-    static public function getChatIdSenderReceiver(PDO $db, $senderId, $receiverId) {
+    static public function getChatIdSenderReceiver(PDO $db, $item_id, $senderId, $receiverId) {
         $stmt = $db->prepare('SELECT ChatId FROM Chat WHERE (SenderId = :senderId AND ReceiverId = :receiverId) OR (SenderId = :receiverId AND ReceiverId = :senderId)');
         $stmt->bindParam(':senderId', $senderId);
         $stmt->bindParam(':receiverId', $receiverId);
@@ -85,8 +86,8 @@ class Message {
     
         $chat = $stmt->fetchObject();
         if (!$chat) {
-            self::createChat($db, $senderId, $receiverId);
-            $chatId = self::getChatIdSenderReceiver($db, $senderId, $receiverId);
+            self::createChat($db, $item_id, $senderId, $receiverId);
+            $chatId = self::getChatIdSenderReceiver($db, $item_id, $senderId, $receiverId);
             return $chatId;
         } else {
             return $chat->ChatId;
@@ -113,6 +114,15 @@ class Message {
     
         $chat = $stmt->fetchObject();
         return $chat->SenderId;
+    }
+
+    static public function getItemByChatId(PDO $db, $chatId) {
+        $stmt = $db->prepare('SELECT ItemId FROM Chat WHERE ChatId = :chatId');
+        $stmt->bindParam(':chatId', $chatId);
+        $stmt->execute();
+    
+        $chat = $stmt->fetchObject();
+        return $chat->ItemId;
     }
 }
 
