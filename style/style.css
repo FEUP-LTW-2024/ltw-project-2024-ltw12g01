@@ -133,8 +133,8 @@ nav ul {
     margin: 0;
 }
 
-nav ul li {
-    padding: 15px 0.5px;
+nav ul li a {
+    padding: 30px;
     cursor: pointer;
     transition: transform 0.3s, background-color 0.3s, color 0.3s;
     color: #333;
@@ -147,9 +147,9 @@ nav ul li:last-child {
     margin-right: 0;
 }
 
-nav ul li:hover {
+nav ul li a:hover {
     background-color: #f0f0f0;
-    color: #0056b3;
+    border-bottom-color: #009ef9; 
 }
 
 nav ul li::after {
