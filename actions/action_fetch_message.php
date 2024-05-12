@@ -1,5 +1,6 @@
 <?php
 require_once(__DIR__ . '/../database/connection.db.php');
+require_once(__DIR__ . '/../database/user.class.php');
 require_once(__DIR__ . '/../database/message.class.php');
 
 $db = getDatabaseConnection();
@@ -15,7 +16,7 @@ $messages = Message::getMessagesForChat($db, $chatId);
 
 $formattedMessages = [];
 foreach ($messages as $message) {
-    $senderUsername = User::getUsernameById($db, $message->senderId);
+    $senderUsername = User::getUsernameById($db, $message->getSenderId());
     
     $formattedMessages[] = [
         'messageId' => $message->getMessageId(),

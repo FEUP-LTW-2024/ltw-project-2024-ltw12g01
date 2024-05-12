@@ -75,7 +75,7 @@ $messages = Message::getMessagesForChat($db, $chat_id);
         // Function to display messages in the chat interface
         function displayMessages(messages) {
         var chatMessagesDiv = document.getElementById("chat-messages");
-        chatMessagesDiv.innerHTML = ""; // Clear previous messages
+        chatMessagesDiv.innerHTML = "";
         messages.forEach(function(message) {
             var messageDiv = document.createElement("div");
             messageDiv.textContent = `${message.senderUsername}: ${message.content}`;
