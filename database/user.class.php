@@ -129,6 +129,13 @@ class User {
         return $user['UserType'];
     }
 
+    static public function getUserIdByUsername(PDO $db, string $username): int {
+        $stmt = $db->prepare('SELECT UserId FROM User WHERE UserName = :username');
+        $stmt->execute([':username' => $username]);
+        $user = $stmt->fetch();
+        return (int)$user['UserId'];
+    }
+
     static public function getUserItemsListed(PDO $db, int $id): int {
         $stmt = $db->prepare('SELECT ItemsListed FROM User WHERE UserId = :id');
         $stmt->execute([':id' => $id]);
