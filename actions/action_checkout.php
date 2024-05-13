@@ -17,7 +17,7 @@ try {
         sleep(10);
         header('Location: ' . $_SERVER['HTTP_REFERER']);
         exit();
-    } 
+    }
     $shippingCost = isset($_POST['shippingCost']) ? floatval($_POST['shippingCost']) : 0.0;
     $totalAmount = isset($_POST['totalAmount']) ? floatval($_POST['totalAmount']) : 0.0;
     
@@ -32,6 +32,7 @@ try {
     if ($orderId) {
         foreach ($cart as $item) {
             OrderItem::createOrderItem($db, $orderId, $item->id, 1);
+            Item::deleteItemById($db, $item->id);
         }
 
         $shipmentDate = date('Y-m-d');

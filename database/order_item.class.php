@@ -30,7 +30,7 @@ class OrderItem {
         $stmt->bindParam(3, $quantity);
         $stmt->execute();
     }
-
+    
 }
 
 ?>

@@ -50,4 +50,10 @@ class Order {
         }
         return $orderItems;
     }
+
+    public function getAllOrders(PDO $db) {
+        //TODO
+    }
+    
+    
 }
