@@ -10,7 +10,7 @@ class User {
     public ?string $paymentInfo;
     public ?string $paymentMethod;
 
-    public function __construct(int $id, string $username, string $email, string $type, int $items_listed, ?string $paymentInfo = null, ?string $paymentMethod = null) {
+    public function __construct(int $id, string $username, string $email, string $type, ?int $items_listed = 0, ?string $paymentInfo = null, ?string $paymentMethod = null) {
         $this->id = $id;
         $this->username = $username;
         $this->email = $email;
@@ -118,13 +118,10 @@ class User {
         return $user['Email'];
     }
 
-    static public function getUserById(PDO $db, int $id): ?User {
+    static public function getUserById(PDO $db, int $id): User {
         $stmt = $db->prepare('SELECT * FROM User WHERE UserId = :id');
         $stmt->execute([':id' => $id]);
         $user = $stmt->fetch();
-        if ($user === false) {
-            return null;
-        }
         return new User((int)$user['UserId'], $user['UserName'], $user['Email'], $user['UserType'], (int)$user['ItemsListed'], $user['PaymentInfo'], $user['PaymentMethod']);
     }
 
@@ -249,16 +246,13 @@ class User {
         return $stmt->fetch() !== false;
     }
     
-    static public function updateUser(PDO $db, User $user): void {
-        $stmt = $db->prepare('UPDATE User SET UserName = :username, Email = :email, UserType = :type, ItemsListed = :items_listed, PaymentInfo = :paymentInfo, PaymentMethod = :paymentMethod WHERE UserId = :id');
-        $stmt->execute([
-            ':username' => $user->username,
-            ':email' => $user->email,
-            ':type' => $user->type,
-            ':items_listed' => $user->items_listed,
-            ':paymentInfo' => $user->paymentInfo,
-            ':paymentMethod' => $user->paymentMethod,
-            ':id' => $user->id
+    static public function updateUser(PDO $db, int $id, string $username, string $email, string $type): bool {
+        $stmt = $db->prepare('UPDATE User SET UserName = :username, Email = :email, UserType = :type WHERE UserId = :id');
+        return $stmt->execute([
+            ':username' => $username,
+            ':email' => $email,
+            ':type' => $type,
+            ':id' => $id
         ]);
     }
 

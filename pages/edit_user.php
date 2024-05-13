@@ -2,21 +2,16 @@
 declare(strict_types=1);
 
 require_once(__DIR__ . '/../database/connection.db.php');
+require_once(__DIR__ . '/../session/session.php');
 require_once(__DIR__ . '/../database/user.class.php');
 
-$userId = isset($_GET['id']) ? (int)$_GET['id'] : 0;
-
-if ($userId === 0) {
-    die('User ID not provided or invalid');
-}
+$session = new Session();
 
 $db = getDatabaseConnection();
 
-$user = User::getUserById($db, $userId); 
+$userId = (int)$_GET['id'];
 
-if (!$user) {
-    die('User not found');
-}
+$user = User::getUserById($db, $userId); 
 
 $userTypes = ['buyer', 'buyer/seller', 'admin'];
 

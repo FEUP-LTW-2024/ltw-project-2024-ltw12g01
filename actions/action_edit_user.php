@@ -9,18 +9,11 @@ $session = new Session();
 // Connect to the database
 $db = getDatabaseConnection();
 
-if ($session->getCSRF() !== $_POST['csrf']) {
-    $session->addMessage('Error:', 'Request does not appear to be legitimate');
-    sleep(10);
-    header('Location: ' . $_SERVER['HTTP_REFERER']);
-    exit();
-} 
 // Retrieve form data
 $userId = isset($_POST['id']) ? (int)$_POST['id'] : 0;
-$username = isset($_POST['username']) ? htmlentities($_POST['username']) : '';
-$email = isset($_POST['email']) ? htmlentities($_POST['email']) : '';
-$userType = isset($_POST['type']) ? htmlentities($_POST['type']) : '';
-
+$username = $_POST['username'] ?? '';
+$email = $_POST['email'] ?? '';
+$userType = $_POST['type'] ?? '';
 
 
 $success = User::updateUser($db, $userId, $username, $email, $userType);

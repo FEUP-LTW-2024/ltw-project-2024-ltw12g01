@@ -17,14 +17,15 @@ $db = getDatabaseConnection();
 // } 
 // Retrieve form data
 $itemId = isset($_POST['id']) ? (int)$_POST['id'] : 0;
-$itemName = $_POST['itemName'] ?? '';
-$itemBrand = $_POST['itemBrand'] ?? '';
-$itemOwner = $_POST['itemOwner'] ?? '';
-$itemDescription = $_POST['itemDescription'] ?? '';
-$itemCategory = $_POST['itemCategory'] ?? '';
-$itemPrice = (int)$_POST['itemPrice'] ?? '';
-$itemCondition = $_POST['itemCondition'] ?? '';
-$itemSize = $_POST['itemSize'] ?? '';
+$itemName = $_POST['ItemName'] ?? '';
+$itemBrand = $_POST['ItemBrand'] ?? '';
+$itemOwner = $_POST['ItemOwner'] ?? '';
+$itemDescription = $_POST['ItemDescription'] ?? '';
+$itemCategory = $_POST['ItemCategory'] ?? '';
+$itemPrice = (int)$_POST['ItemPrice'] ?? '';
+$itemCondition = $_POST['ItemCondition'] ?? '';
+$itemSize = $_POST['ItemSize'] ?? '';
+$itemImage = $_POST['ItemImage'] ?? '';
 
 
 $success = Item::updateItem($db, $itemId, $itemName, $itemBrand, $itemOwner, $itemDescription, $itemCategory, $itemPrice, $itemCondition, $itemSize);
