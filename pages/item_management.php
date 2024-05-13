@@ -20,7 +20,10 @@ $items = Item::getAllItemsFromDatabase($db);
     <?php if (!empty($items)): ?>
         <ul class="user-list">
             <?php foreach ($items as $item): ?>
-                <li><a href="edit_item.php?id=<?= $item->id ?>" class="item-link"><?= $item->itemName ?></a></li>
+                <form action="edit_item.php" method="post">
+                    <input type="hidden" name="data" value="<?= htmlspecialchars(json_encode($item)) ?>">
+                    <li><button type="submit" class="item-link"><?= htmlspecialchars($item->itemName) ?></button></li>
+                </form>
             <?php endforeach; ?>
         </ul>
     <?php else: ?>

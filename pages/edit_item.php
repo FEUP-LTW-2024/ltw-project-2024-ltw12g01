@@ -1,7 +1,25 @@
-
-<?php require_once('../templates/common.tpl.php');
+<?php
+require_once('../templates/common.tpl.php');
+require_once('../database/item.class.php');
+require_once('../session/session.php');
 
 $session = new Session();
+
+    $itemData = json_decode($_POST['data'], true);
+
+    $item = new Item(
+        $itemData['id'],
+        $itemData['itemName'],
+        $itemData['itemBrand'],
+        $itemData['itemDescription'],
+        $itemData['itemPrice'],
+        $itemData['itemOwner'],
+        $itemData['itemCategory'],
+        $itemData['ItemImage'],
+        $itemData['itemSize'],
+        $itemData['itemCondition']
+    );
+
 ?>
 
 <!DOCTYPE html>
@@ -38,34 +56,35 @@ $session = new Session();
         <br>
         <div class="description">
             <form action="../actions/action_edit_item.php" method="post" enctype="multipart/form-data">
-            <input type="file" id="hiddenInput" name="hiddenInput" accept=".png,.jpg,.jpeg" multiple>
-    
-            <div class="title">
+                <input type="file" id="hiddenInput" name="hiddenInput" accept=".png,.jpg,.jpeg" multiple>
+
+                <div class="title">
                     <span>Title</span>
                     <div class="title-input">
-                        <input class="input" type="text" name="ItemName" placeholder="Item Name" required>
+                        <input class="input" type="text" name="ItemName" placeholder="Item Name" value="<?php echo $item->itemName; ?>" required>
                         <label for="title" class="label">Item Name</label>
-                    </div>
-                    </div>
-                    <div class="brand">
-                        <span>Brand</span>
-                        <div class="brand-input">
-                        <input class="input" type="text" name="ItemBrand" placeholder="Item Brand" required>
+                    </div>  
+                </div>
+
+                <div class="brand">
+                    <span>Brand</span>
+                    <div class="brand-input">
+                        <input class="input" type="text" name="ItemBrand" placeholder="Item Brand" value="<?php echo $item->itemBrand; ?>" required>
                         <label for="brand" class="label">Brand</label>
-                        </div>
                     </div>
-                    
-                    <div class="owner-input">
-                        <input type="hidden" name="ItemOwner" value="<?php echo $session->getName(); ?>">
+                </div>
+
+                <div class="owner-input">
+                    <input type="hidden" name="ItemOwner" value="<?php echo $session->getName(); ?>">
+                </div>
+                <div class="descricao">
+                    <span>Description</span>
+                    <div class="descri-input">
+                        <textarea class="input" name="ItemDescription" placeholder="Item Description" required><?php echo $item->itemDescription ?></textarea>
+                        <label for="description" class="label">Description</label>
                     </div>
-                    <div class="descricao">
-                        <span>Description</span>
-                        <div class="descri-input">
-                            <textarea class="input" name="ItemDescription" placeholder="Item Description" required></textarea>
-                            <label for="description" class="label">Description</label>
-                        </div>
-                    </div>
-                
+                </div>
+
         </div>
         <br>
         <div class="category-div">
@@ -73,68 +92,69 @@ $session = new Session();
                 <span>Category</span>
                 <div class="choose-cat">
                     <select name="ItemCategory" class="item-category">
-                        <option value="Kids">Kids</option>
-                        <option value="Male">Male</option>
-                        <option value="Female">Female</option>
+                        <option value="Kids" <?php if($itemCategory === 'Kids') echo 'selected' ?>>Kids</option>
+                        <option value="Male" <?php if($itemCategory === 'Male') echo 'selected' ?>>Male</option>
+                        <option value="Female" <?php if($itemCategory === 'Female') echo 'selected' ?>>Female</option>
                     </select>
                     <div class="border-select"></div>
                     <div class="icon-select">
-                        <i class = "fa-solid fa-caret-down"></i>
+                        <i class="fa-solid fa-caret-down"></i>
                     </div>
                 </div>
             </div>
-        
-        
-        <div class="condition">
-            <span>Condition</span>
-            <div class="choose-cond">
-                <select name="ItemCondition" class="item-condition">
-                    <option value="New with tags">New with tags</option>
-                    <option value="New without tags">New without tags.</option>
-                    <option value="Very good">Very good</option>
-                    <option value="Good">Good</option>
-                    <option value="Satisfactory">Satisfactory</option>
-                    <option value="Bad">Bad</option>
-                </select>
-                <div class="border-select"></div>
-                    <div class="icon-select">
-                        <i class = "fa-solid fa-caret-down"></i>
-                    </div>
-            </div>
-        </div>
 
-        <div class="size">
-            <span>Size</span>
-            <div class="choose-size">
-                <select name="ItemSize" class="item-size">
-                    <option value="36">36</option>
-                    <option value="37">37</option>
-                    <option value="38">38</option>
-                    <option value="39">39</option>
-                    <option value="40">40</option>
-                    <option value="41">41</option>
-                    <option value="42">42</option>
-                    <option value="43">43</option>
-                    <option value="44">44</option>
-                    <option value="45">45</option>
-                    <option value="46">46</option>
-                </select>
-                <div class="border-select"></div>
+
+            <div class="condition">
+                <span>Condition</span>
+                <div class="choose-cond">
+                    <select name="ItemCondition" class="item-condition">
+                        <option value="New with tags" <?php if($itemCondition === 'New with tags') echo 'selected' ?>>New with tags</option>
+                        <option value="New without tags" <?php if($itemCondition === 'New without tags') echo 'selected' ?>>New without tags.</option>
+                        <option value="Very good" <?php if($itemCondition === 'Very good') echo 'selected' ?>>Very good</option>
+                        <option value="Good" <?php if($itemCondition === 'Good') echo 'selected' ?>>Good</option>
+                        <option value="Satisfactory" <?php if($itemCondition === 'Satisfactory') echo 'selected' ?>>Satisfactory</option>
+                        <option value="Bad" <?php if($itemCondition === 'Bad') echo 'selected' ?>>Bad</option>
+                    </select>
+                    <div class="border-select"></div>
                     <div class="icon-select">
-                        <i class = "fa-solid fa-caret-down"></i>
+                        <i class="fa-solid fa-caret-down"></i>
                     </div>
+                </div>
             </div>
+
+            <div class="size">
+                <span>Size</span>
+                <div class="choose-size">
+                <select name="ItemSize" class="item-size">
+                    <option value="36" <?php if($item->itemSize === '36') echo 'selected' ?>>36</option>
+                    <option value="37" <?php if($item->itemSize === '37') echo 'selected' ?>>37</option>
+                    <option value="38" <?php if($item->itemSize === '38') echo 'selected' ?>>38</option>
+                    <option value="39" <?php if($item->itemSize === '39') echo 'selected' ?>>39</option>
+                    <option value="40" <?php if($item->itemSize === '40') echo 'selected' ?>>40</option>
+                    <option value="41" <?php if($item->itemSize === '41') echo 'selected' ?>>41</option>
+                    <option value="42" <?php if($item->itemSize === '42') echo 'selected' ?>>42</option>
+                    <option value="43" <?php if($item->itemSize === '43') echo 'selected' ?>>43</option>
+                    <option value="44" <?php if($item->itemSize === '44') echo 'selected' ?>>44</option>
+                    <option value="45" <?php if($item->itemSize === '45') echo 'selected' ?>>45</option>
+                    <option value="46" <?php if($item->itemSize === '46') echo 'selected' ?>>46</option>
+                </select>
+                    <div class="border-select"></div>
+                    <div class="icon-select">
+                        <i class="fa-solid fa-caret-down"></i>
+                    </div>
+                </div>
             </div>
             <div class="price">
-            <span>Price</span>
-            <div class="price-input">
-                <input class="input" type="text" name="ItemPrice" placeholder="€ 0,00" required>
-                <label for="title" class="label">Price</label>
+                <span>Price</span>
+                <div class="price-input">
+                    <input class="input" type="text" name="ItemPrice" placeholder="€ 0,00" value="<?php echo $item->itemPrice ?>" required>
+                    <label for="title" class="label">Price</label>
+                </div>
             </div>
-        </div>
-            <input type="hidden" name="csrf" value="<?=$session->getCSRF()?>">
+            <input type="hidden" name="csrf" value="<?= $session->getCSRF() ?>">
             <button class="load-btn">Update Item</button>
             </form>
+        </div>
     </main>
 </body>
 

@@ -14,7 +14,6 @@ $session = new Session();
     <link rel="stylesheet" href="style/style.css">
     <link rel="icon" href="../imgs/logo.jpg" type="image/x-icon">
     <script src="../javascript/UploadImage.js" defer></script>
-    <script src="../javascript/Category.js" defer></script>
 </head>
 
 <body>
