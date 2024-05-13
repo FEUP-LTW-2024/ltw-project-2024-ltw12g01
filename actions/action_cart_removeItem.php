@@ -17,7 +17,7 @@ if(isset($_POST['item_json'])) {
     $item_data = json_decode($_POST['item_json'], true);
     $session->removeFromCartById($item_data['id']);
 } else {
-    header('Location: ' . $_SERVER['HTTP_REFERER']); //TODO
+    header('Location: ' . $_SERVER['HTTP_REFERER']); 
     exit();
 }
 header('Location: ' . $_SERVER['HTTP_REFERER']);

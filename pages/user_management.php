@@ -19,7 +19,13 @@ $users = User::getAllUsersFromDatabase($db);
 <?php if (!empty($users)): ?>
     <ul class="user-list">
         <?php foreach ($users as $user): ?>
-            <li><a href="edit_user.php?id=<?= $user->id ?>"><?= $user->username ?></a></li>
+            <li>
+                <a href="edit_user.php?id=<?= $user->id ?>"><?= $user->username ?></a>
+                <form action="../actions/action_delete_user.php" method="post" style="display: inline;">
+                    <input type="hidden" name="userId" value="<?= $user->id ?>">
+                    <button type="submit">Delete</button>
+                </form>
+            </li>
         <?php endforeach; ?>
     </ul>
 <?php else: ?>
