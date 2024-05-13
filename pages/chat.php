@@ -67,7 +67,7 @@ $lastSuggestedPrice = Message::getLastSuggestedPrice($db, $chat_id);
     <?php else: ?>
         <?php if ($lastSuggestedPrice != null): ?>
             <form id="add-to-cart-form" action="../actions/action_cart.php" method="POST">
-                <input type="hidden" name="item_json" value='<?php echo json_encode($item); ?>'>
+                <input type="hidden" name="item_json" value='<?php echo json_encode($item_object); ?>'>
                 <input type="hidden" name="last_suggested_price" id="last_suggested_price" value="<?php echo $lastSuggestedPrice; ?>">
                 <button id="add-to-cart-submit" type="submit">Add to Cart $<?php echo $lastSuggestedPrice; ?></button>
             </form>
