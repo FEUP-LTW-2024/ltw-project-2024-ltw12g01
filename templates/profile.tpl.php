@@ -66,7 +66,6 @@ function drawProfile(User $user, Session $session): void {
               <span class="bold">Admin Moderation:</span>
               <a href="item_management.php">Manage items</a>
               <a href="user_management.php">Manage users</a>
-              <a href="order_management.php">Manage orders</a>
           </div>
       <?php endif; ?>
   </section>

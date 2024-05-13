@@ -6,26 +6,25 @@ require_once(__DIR__ . '/../session/session.php');
 require_once(__DIR__ . '/../database/item.class.php');
 
 $session = new Session();
-// Connect to the database
 $db = getDatabaseConnection();
 
-// if ($session->getCSRF() !== $_POST['csrf']) {
-//     $session->addMessage('Error:', 'Request does not appear to be legitimate');
-//     sleep(10);
-//     header('Location: ' . $_SERVER['HTTP_REFERER']);
-//     exit();
-// } 
-// Retrieve form data
-$itemId = isset($_POST['id']) ? (int)$_POST['id'] : 0;
-$itemName = $_POST['ItemName'] ?? '';
-$itemBrand = $_POST['ItemBrand'] ?? '';
-$itemOwner = $_POST['ItemOwner'] ?? '';
-$itemDescription = $_POST['ItemDescription'] ?? '';
-$itemCategory = $_POST['ItemCategory'] ?? '';
+ if ($session->getCSRF() !== $_POST['csrf']) {
+     $session->addMessage('Error:', 'Request does not appear to be legitimate');
+     sleep(10);
+     header('Location: ' . $_SERVER['HTTP_REFERER']);
+     exit();
+ } 
+
+ $itemId = isset($_POST['itemId']) ? (int)$_POST['itemId'] : 0;
+$itemName = htmlentities($_POST['ItemName'] ?? '');
+$itemBrand = htmlentities($_POST['ItemBrand'] ?? '');
+$itemOwner = htmlentities($_POST['ItemOwner'] ?? '');
+$itemDescription = htmlentities($_POST['ItemDescription'] ?? '');
+$itemCategory = htmlentities($_POST['ItemCategory'] ?? '');
 $itemPrice = (int)$_POST['ItemPrice'] ?? '';
-$itemCondition = $_POST['ItemCondition'] ?? '';
-$itemSize = $_POST['ItemSize'] ?? '';
-$itemImage = $_POST['ItemImage'] ?? '';
+$itemCondition = htmlentities($_POST['ItemCondition'] ?? '');
+$itemSize = htmlentities($_POST['ItemSize'] ?? '');
+$itemImage = htmlentities($_POST['ItemImage'] ?? '');
 
 
 $success = Item::updateItem($db, $itemId, $itemName, $itemBrand, $itemOwner, $itemDescription, $itemCategory, $itemPrice, $itemCondition, $itemSize);

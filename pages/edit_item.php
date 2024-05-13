@@ -32,7 +32,6 @@ $session = new Session();
     <link rel="stylesheet" href="style/style.css">
     <link rel="icon" href="../imgs/logo.jpg" type="image/x-icon">
     <script src="../javascript/UploadImage.js" defer></script>
-    <script src="../javascript/Category.js" defer></script>
 </head>
 
 <body>
@@ -57,6 +56,7 @@ $session = new Session();
         <div class="description">
             <form action="../actions/action_edit_item.php" method="post" enctype="multipart/form-data">
                 <input type="file" id="hiddenInput" name="hiddenInput" accept=".png,.jpg,.jpeg" multiple>
+                <input type="hidden" name="itemId" value="<?php echo $item->id; ?>">
 
                 <div class="title">
                     <span>Title</span>
