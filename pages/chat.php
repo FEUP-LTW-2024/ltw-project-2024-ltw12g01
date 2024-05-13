@@ -34,6 +34,8 @@ $item_object = Item::getItem($db, (int)$item);
 
 $is_item_owner = ($sender_id == $item_owner_id);
 
+$lastSuggestedPrice = Message::getLastSuggestedPrice($db, $chat_id); 
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -46,9 +48,7 @@ $is_item_owner = ($sender_id == $item_owner_id);
 <body>
     <h1>Live Chat between <?php echo $sender_username; ?> and <?php echo $receiver_username; ?></h1>
     
-    <div id="chat-messages">
-
-    </div>
+    <div id="chat-messages"></div>
 
     <form id="message-form">
         <input type="hidden" id="chat_id" value="<?php echo $chat_id; ?>">
@@ -60,30 +60,38 @@ $is_item_owner = ($sender_id == $item_owner_id);
 
     <?php if ($is_item_owner): ?>
         <form id="sell-price-suggestion-form">
+            <input type="hidden" id="chat_id" value="<?php echo $chat_id; ?>"> 
             <input type="number" id="sell_price" placeholder="Enter sell price">
             <button type="button" onclick="suggestSellPrice()">Suggest Sell Price</button>
         </form>
     <?php else: ?>
-        <?php if ($lastSuggestedPrice !== null): ?>
-            <button id="add-to-cart-button" type="button" onclick="addToCart()">Add to Cart $<?php echo $lastSuggestedPrice; ?></button>
+        <?php if ($lastSuggestedPrice != null): ?>
+            <form id="add-to-cart-form" action="../actions/action_cart.php" method="POST">
+                <input type="hidden" name="item_json" value='<?php echo json_encode($item); ?>'>
+                <input type="hidden" name="last_suggested_price" id="last_suggested_price" value="<?php echo $lastSuggestedPrice; ?>">
+                <button id="add-to-cart-submit" type="submit">Add to Cart $<?php echo $lastSuggestedPrice; ?></button>
+            </form>
         <?php endif; ?>
     <?php endif; ?>
 
-
-
     <script>
-        
         var lastSuggestedPrice = null;
 
         function suggestSellPrice() {
+
             var sellPrice = document.getElementById("sell_price").value;
+
+            if (sellPrice.trim() === "" || isNaN(sellPrice)) {
+                console.error("Please enter a valid sell price.");
+                return;
+            }
             var content = "Sell price suggestion: $" + sellPrice;
 
             lastSuggestedPrice = sellPrice;
 
             sendMessage(content);
 
-            var chatId = document.getElementById("chat_id").value; // Ensure chatId is defined
+            var chatId = document.getElementById("chat_id").value; 
             var xhr = new XMLHttpRequest();
             xhr.onreadystatechange = function() {
                 if (xhr.readyState === XMLHttpRequest.DONE) {
@@ -96,9 +104,8 @@ $is_item_owner = ($sender_id == $item_owner_id);
             };
             xhr.open("POST", "../actions/action_update_last_suggested_price.php", true);
             xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-            xhr.send("chat_id=" + chatId + "&last_suggested_price=" + sellPrice);
+            xhr.send("chat_id=" + encodeURIComponent(chatId) + "&last_suggested_price=" + encodeURIComponent(lastSuggestedPrice));
         }
-
 
         function addToCart() {
             if (lastSuggestedPrice === null) {
@@ -106,9 +113,9 @@ $is_item_owner = ($sender_id == $item_owner_id);
                 return;
             }
 
+            var chatId = document.getElementById("chat_id_add").value; 
             document.getElementById("add-to-cart-form").submit();
         }
-
 
         function sendMessage(content) {
             if (content.trim() === "") {
@@ -153,40 +160,12 @@ $is_item_owner = ($sender_id == $item_owner_id);
             xhr.send();
         }
 
-        function addToCart() {
-            var itemId = <?php echo json_encode($item_id); ?>;
-            var lastSuggestedPrice = <?php echo json_encode($lastSuggestedPrice); ?>;
-
-            if (lastSuggestedPrice === null) {
-                console.error("No suggested price available");
-                return;
-            }
-
-            var itemJson = JSON.stringify(<?php echo json_encode($item_object); ?>);
-
-            var xhr = new XMLHttpRequest();
-            xhr.onreadystatechange = function() {
-                if (xhr.readyState === XMLHttpRequest.DONE) {
-                    if (xhr.status === 200) {
-                        console.log('Item added to cart successfully.');
-                        // Optionally, you can perform additional actions after adding to cart
-                    } else {
-                        console.error('Error adding item to cart:', xhr.status);
-                    }
-                }
-            };
-            xhr.open("POST", "../actions/action_cart.php", true);
-            xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-            xhr.send("item_json=" + encodeURIComponent(itemJson));
-        }
-
-
         function fetchPrices() {
             var xhr = new XMLHttpRequest();
             xhr.onreadystatechange = function() {
                 if (xhr.readyState === XMLHttpRequest.DONE) {
                     if (xhr.status === 200) {
-                        lastSuggestedPrice = xhr.responseText; // Assign the fetched value to lastSuggestedPrice
+                        lastSuggestedPrice = xhr.responseText; 
                         document.getElementById("add-to-cart-button").textContent = "Add to Cart $" + lastSuggestedPrice;
                     } else {
                         console.error('Error fetching last suggested price:', xhr.status);
@@ -216,7 +195,6 @@ $is_item_owner = ($sender_id == $item_owner_id);
         fetchMessages(); 
         setInterval(fetchPrices, 5000); 
         setInterval(fetchMessages, 5000); 
-        
     </script>
 </body>
 </html>
