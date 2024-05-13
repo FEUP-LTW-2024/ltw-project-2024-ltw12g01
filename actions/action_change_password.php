@@ -7,6 +7,7 @@ require_once(__DIR__ . '/../database/connection.db.php');
 require_once(__DIR__ . '/../database/user.class.php');
 
 $session = new Session();
+$db = getDatabaseConnection();
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         
@@ -17,13 +18,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $email = User::getEmailByUsername($db, $session->getName());
         $user = User::getUserWithPassword($db, $email, $_POST['old']);
 
-        if ($user !== $session->getName() || $user === null) {
+        if ($user->username !== $session->getName() || $user === null) {
             $session->addMessage('Password error', 'Current password Wrong!');
             header('Location: ' . htmlentities($_SERVER['HTTP_REFERER']));
             exit();
         }
-
-        $db = getDatabaseConnection();
 
         $admin = (User::getUserTypeByUsername($db, $session->getName()) == 'admin');
 
