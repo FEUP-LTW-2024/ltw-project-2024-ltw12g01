@@ -10,7 +10,7 @@ class Message {
 
     public function __construct($messageId, $chatId, $senderId, $receiverId, $content, $timestamp) {
         $this->messageId = $messageId;
-        $this->chatId = $chatId; 
+        $this->chatId = $chatId;
         $this->senderId = $senderId;
         $this->receiverId = $receiverId;
         $this->content = $content;
@@ -49,12 +49,12 @@ class Message {
         $stmt->bindParam(':content', $content);
         $stmt->execute();
     }
-
+    
     static public function getMessagesForChat(PDO $db, $chatId) {
         $stmt = $db->prepare('SELECT MessageId, ChatId, SenderId, ReceiverId, Content, Timestamp FROM Message WHERE ChatId = :chatId');
         $stmt->bindParam(':chatId', $chatId);
         $stmt->execute();
-
+    
         $messages = array();
         while ($message = $stmt->fetchObject()) {
             $messages[] = new Message(
@@ -63,10 +63,10 @@ class Message {
                 $message->SenderId,
                 $message->ReceiverId,
                 $message->Content,
-                $message->Timestamp
+                $message->Timestamp,
             );
         }
-
+    
         return $messages;
     }
 
@@ -107,13 +107,22 @@ class Message {
         return $conversations;
     }
     
-    static public function getItemOwnerId(PDO $db, $chatId) {
-        $stmt = $db->prepare('SELECT SenderId FROM Chat WHERE ChatId = :chatId');
-        $stmt->bindParam(':chatId', $chatId);
+    static public function getItemOwnerId(PDO $db, $itemId) {
+        $stmt = $db->prepare('SELECT SenderId, ReceiverId FROM Chat WHERE ItemId = :itemId');
+        $stmt->bindParam(':itemId', $itemId);
         $stmt->execute();
     
         $chat = $stmt->fetchObject();
-        return $chat->SenderId;
+        
+        $itemOwnerId = Item::getOwnerId($db, $itemId);
+    
+        if ($chat->SenderId == $itemOwnerId) {
+            return $chat->SenderId;
+        } elseif ($chat->ReceiverId == $itemOwnerId) { 
+            return $chat->ReceiverId;
+        } else {
+            return null;
+        }
     }
 
     static public function getItemByChatId(PDO $db, $chatId) {
@@ -124,6 +133,15 @@ class Message {
         $chat = $stmt->fetchObject();
         return $chat->ItemId;
     }
+    
+    static public function getLastSuggestedPrice(PDO $db, $chatId) {
+        $stmt = $db->prepare('SELECT LastSuggestedPrice FROM Chat WHERE ChatId = :chatId');
+        $stmt->bindParam(':chatId', $chatId);
+        $stmt->execute();
+    
+        $chat = $stmt->fetchObject();
+        return $chat->LastSuggestedPrice;
+    }
+    
+    
 }
-
-?>

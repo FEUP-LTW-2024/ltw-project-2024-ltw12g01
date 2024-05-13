@@ -4,6 +4,7 @@ declare(strict_types=1);
 require_once(__DIR__ . '/../database/connection.db.php');
 require_once(__DIR__ . '/../database/user.class.php');
 require_once(__DIR__ . '/../database/message.class.php');
+require_once(__DIR__ . '/../database/item.class.php');
 require_once(__DIR__ . '/../session/session.php');
 
 $session = new Session();
@@ -16,17 +17,22 @@ if (!$session->isLoggedIn()) {
 
 $sender_id = $_GET['sender_id'];
 $receiver_id = $_GET['receiver_id'];
+$item_id = $_GET['item_id'];
 
 $sender_username = User::getUsernameById($db, (int)$sender_id);
 $receiver_username = User::getUsernameById($db, (int)$receiver_id);
 
-$chat_id = Message::getChatIdSenderReceiver($db, $sender_id, $receiver_id);
+$chat_id = Message::getChatIdSenderReceiver($db, $item_id, $receiver_id, $sender_id);
 
 $messages = Message::getMessagesForChat($db, $chat_id);
 
 $item_owner_id = Message::getItemOwnerId($db, $chat_id);
 
-$is_item_owner = ($sender_id === $item_owner_id);
+$item = Message::getItemByChatId($db, $chat_id);
+
+$item_object = Item::getItem($db, (int)$item);
+
+$is_item_owner = ($sender_id == $item_owner_id);
 
 ?>
 <!DOCTYPE html>
@@ -53,33 +59,62 @@ $is_item_owner = ($sender_id === $item_owner_id);
     </form>
 
     <?php if ($is_item_owner): ?>
-    <form id="sell-price-suggestion-form">
-        <input type="number" id="sell_price" placeholder="Enter sell price">
-        <button type="button" onclick="suggestSellPrice()">Suggest Sell Price</button>
-    </form>
+        <form id="sell-price-suggestion-form">
+            <input type="number" id="sell_price" placeholder="Enter sell price">
+            <button type="button" onclick="suggestSellPrice()">Suggest Sell Price</button>
+        </form>
     <?php else: ?>
-    <form id="buy-price-suggestion-form">
-        <input type="number" id="buy_price" placeholder="Enter buy price">
-        <button type="button" onclick="suggestBuyPrice()">Suggest Buy Price</button>
-    </form>
+        <?php if ($lastSuggestedPrice !== null): ?>
+            <button id="add-to-cart-button" type="button" onclick="addToCart()">Add to Cart $<?php echo $lastSuggestedPrice; ?></button>
+        <?php endif; ?>
     <?php endif; ?>
 
+
+
     <script>
+        
+        var lastSuggestedPrice = null;
+
         function suggestSellPrice() {
             var sellPrice = document.getElementById("sell_price").value;
             var content = "Sell price suggestion: $" + sellPrice;
 
-            sendMessage(content);
-        }
-
-        function suggestBuyPrice() {
-            var buyPrice = document.getElementById("buy_price").value;
-            var content = "Buy price suggestion: $" + buyPrice;
+            lastSuggestedPrice = sellPrice;
 
             sendMessage(content);
+
+            var chatId = document.getElementById("chat_id").value; // Ensure chatId is defined
+            var xhr = new XMLHttpRequest();
+            xhr.onreadystatechange = function() {
+                if (xhr.readyState === XMLHttpRequest.DONE) {
+                    if (xhr.status === 200) {
+                        console.log('Last suggested price updated successfully.');
+                    } else {
+                        console.error('Error updating last suggested price:', xhr.status);
+                    }
+                }
+            };
+            xhr.open("POST", "../actions/action_update_last_suggested_price.php", true);
+            xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+            xhr.send("chat_id=" + chatId + "&last_suggested_price=" + sellPrice);
         }
+
+
+        function addToCart() {
+            if (lastSuggestedPrice === null) {
+                console.error("No suggested price available");
+                return;
+            }
+
+            document.getElementById("add-to-cart-form").submit();
+        }
+
 
         function sendMessage(content) {
+            if (content.trim() === "") {
+                console.log("Message is empty, not sending.");
+                return; 
+            }
             var chatId = document.getElementById("chat_id").value;
             var senderId = document.getElementById("sender_id").value;
             var receiverId = document.getElementById("receiver_id").value;
@@ -118,6 +153,50 @@ $is_item_owner = ($sender_id === $item_owner_id);
             xhr.send();
         }
 
+        function addToCart() {
+            var itemId = <?php echo json_encode($item_id); ?>;
+            var lastSuggestedPrice = <?php echo json_encode($lastSuggestedPrice); ?>;
+
+            if (lastSuggestedPrice === null) {
+                console.error("No suggested price available");
+                return;
+            }
+
+            var itemJson = JSON.stringify(<?php echo json_encode($item_object); ?>);
+
+            var xhr = new XMLHttpRequest();
+            xhr.onreadystatechange = function() {
+                if (xhr.readyState === XMLHttpRequest.DONE) {
+                    if (xhr.status === 200) {
+                        console.log('Item added to cart successfully.');
+                        // Optionally, you can perform additional actions after adding to cart
+                    } else {
+                        console.error('Error adding item to cart:', xhr.status);
+                    }
+                }
+            };
+            xhr.open("POST", "../actions/action_cart.php", true);
+            xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+            xhr.send("item_json=" + encodeURIComponent(itemJson));
+        }
+
+
+        function fetchPrices() {
+            var xhr = new XMLHttpRequest();
+            xhr.onreadystatechange = function() {
+                if (xhr.readyState === XMLHttpRequest.DONE) {
+                    if (xhr.status === 200) {
+                        lastSuggestedPrice = xhr.responseText; // Assign the fetched value to lastSuggestedPrice
+                        document.getElementById("add-to-cart-button").textContent = "Add to Cart $" + lastSuggestedPrice;
+                    } else {
+                        console.error('Error fetching last suggested price:', xhr.status);
+                    }
+                }
+            };
+            xhr.open("GET", "../actions/action_suggested_prices.php?chat_id=" + document.getElementById("chat_id").value, true);
+            xhr.send();
+        }
+
         function displayMessages(messages) {
             var chatMessagesDiv = document.getElementById("chat-messages");
             chatMessagesDiv.innerHTML = "";
@@ -132,8 +211,10 @@ $is_item_owner = ($sender_id === $item_owner_id);
             event.preventDefault(); 
             sendMessage(document.getElementById("content").value); 
         });
-
+        
+        fetchPrices();
         fetchMessages(); 
+        setInterval(fetchPrices, 5000); 
         setInterval(fetchMessages, 5000); 
         
     </script>

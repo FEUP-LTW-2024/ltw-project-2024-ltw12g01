@@ -14,6 +14,7 @@ $session = new Session();
 // } 
 
 // Check if item_json is set in POST data
+
 if(isset($_POST['item_json'])) {
     $item_data = json_decode($_POST['item_json'], true);
     $item = new Item(

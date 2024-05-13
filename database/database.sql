@@ -72,6 +72,7 @@ CREATE TABLE Chat (
     ItemId INTEGER NOT NULL,
     SenderId INTEGER NOT NULL,
     ReceiverId INTEGER NOT NULL,
+    LastSuggestedPrice DECIMAL(10, 2),
     FOREIGN KEY (SenderId) REFERENCES User(UserId),
     FOREIGN KEY (ReceiverId) REFERENCES User(UserId)
 );

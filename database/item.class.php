@@ -1,6 +1,8 @@
 <?php
 declare(strict_types = 1);
 
+require_once(__DIR__ . '/user.class.php');
+
 class Item {
     public int $id;
     public string $itemName;
@@ -41,7 +43,7 @@ class Item {
                 $item->ItemPrice,
                 $item->ItemOwner,
                 $item->ItemCategory,
-                $item->ItemImage ?? '', // Use the null coalescing operator to provide an empty string if ItemImage is null
+                $item->ItemImage ?? '', 
                 $item->ItemSize,
                 $item->ItemCondition
             );
@@ -50,6 +52,18 @@ class Item {
         return $items;
     }
 
+    static public function getOwnerId(PDO $db, int $itemId) {
+        $stmt = $db->prepare('SELECT ItemOwner FROM Item WHERE ItemId = ?');
+        $stmt->execute(array($itemId));
+    
+        $item = $stmt->fetchObject();
+        $username = $item->ItemOwner;
+    
+        $userId = User::getIdfromUsername($db, $username);
+    
+        return $userId;
+    }    
+    
     static public function getAllItemsFromDatabase(PDO $db): array {
         $stmt = $db->prepare('SELECT ItemId, ItemName, ItemBrand, ItemDescription, ItemPrice, ItemOwner, ItemCategory, ItemImage, ItemSize, ItemCondition FROM Item');
         $stmt->execute();

@@ -262,6 +262,13 @@ class User {
         ]);
     }
 
+    static public function getIdfromUsername($db, $username) {
+        $stmt = $db->prepare('SELECT UserId FROM User WHERE UserName = :username');
+        $stmt->execute([':username' => $username]);
+        $user = $stmt->fetch();
+        return $user['UserId'];
+    }
+
     public function setPaymentMethod(?string $paymentMethod): void {
         $this->paymentMethod = $paymentMethod;
     }
