@@ -12,7 +12,7 @@ $session = new Session();
 function drawProfile(User $user, Session $session): void {
   $db = getDatabaseConnection();
 
-    $my_type = $session->isLoggedIn() ? User::getUserTypeByUsername($db, $session->getName()) : null;
+  $my_type = $session->isLoggedIn() ? User::getUserTypeByUsername($db, $session->getName()) : null;
 
   $shipmentInfo = ShipmentUserInfo::getShipmentInfoUserID($db, $user->id);
 
@@ -55,6 +55,11 @@ function drawProfile(User $user, Session $session): void {
                 <a href="add_shipping.php?username=<?= $user->username ?>">Add...</a>
             <?php endif; ?>
         </div>
+
+        <form action="../actions/action_delete_user.php" method="post" id="delete-user-form">
+            <input type="hidden" name="userId" value="<?= $user->id ?>">
+            <button type="submit" onclick="return confirm('Are you sure you want to delete your account?')">Delete Account</button>
+        </form>
 
       <?php if ($my_type == 'buyer/seller' && $user->items_listed >= 1): ?>
           <div class="items">

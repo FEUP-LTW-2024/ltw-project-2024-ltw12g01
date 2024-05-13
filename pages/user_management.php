@@ -5,9 +5,19 @@ require_once(__DIR__ . '/../database/connection.db.php');
 require_once(__DIR__ . '/../database/user.class.php');
 require_once(__DIR__ . '/../session/session.php');
 
+$session = new Session();
+
 $db = getDatabaseConnection();
 
-$users = User::getAllUsersFromDatabase($db); 
+$currentUserId = $session->getId() ?? null;
+
+$users = User::getAllUsersFromDatabase($db);
+
+if ($currentUserId !== null) {
+    $users = array_filter($users, function($user) use ($currentUserId) {
+        return $user->id !== $currentUserId;
+    });
+}
 ?>
 <head>
     <link rel="stylesheet" type="text/css" href="../style/style.css">

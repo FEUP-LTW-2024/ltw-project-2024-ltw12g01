@@ -20,6 +20,11 @@ if (!($session->isLoggedIn())) {
 
 $user = User::getUserByUsername($db, $session->getName());
 
+if ($user === null) {
+    header('Location: ../index.php');
+    exit();
+}
+
 drawProfile($user,$session);
 
 drawFooter();
