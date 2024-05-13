@@ -29,7 +29,7 @@ CREATE TABLE Item (
     ItemCategory NVARCHAR(50) NOT NULL,
     ItemCondition NVARCHAR(20) NOT NULL,  -- added column for condition
     ItemSize NVARCHAR(20) NOT NULL,  -- added column for size
-    FOREIGN KEY(ItemOwner) REFERENCES User(UserId)
+    FOREIGN KEY(ItemOwner) REFERENCES User(UserId) 
 );
 
 CREATE TABLE Orders (

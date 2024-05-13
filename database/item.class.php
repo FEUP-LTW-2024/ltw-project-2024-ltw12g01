@@ -154,7 +154,7 @@ class Item {
         );
     }
 
-    static public function deleteItemById(PDO $db, int $id) : bool {
+    static public function deleteItem(PDO $db, int $id) : bool {
         $stmt = $db->prepare('DELETE FROM Item WHERE ItemId = ?');
         return $stmt->execute(array($id));
     }
@@ -237,6 +237,29 @@ class Item {
     static public function getItemsByCategory(PDO $db, string $category): array {
         $stmt = $db->prepare('SELECT ItemId, ItemName, ItemBrand, ItemDescription, ItemPrice, ItemOwner, ItemCategory, ItemImage, ItemSize, ItemCondition FROM Item WHERE ItemCategory = ?');
         $stmt->execute(array($category));
+    
+        $items = array();
+        while ($item = $stmt->fetchObject()) {
+            $items[] = new Item(
+                $item->ItemId,
+                $item->ItemName,
+                $item->ItemBrand,
+                $item->ItemDescription,
+                $item->ItemPrice,
+                $item->ItemOwner,
+                $item->ItemCategory,
+                $item->ItemImage ?? '',
+                $item->ItemSize,
+                $item->ItemCondition
+            );
+        }
+    
+        return $items;
+    }
+
+    static public function getItemsFromItemOwner(PDO $db, string $itemOwner): array {
+        $stmt = $db->prepare('SELECT ItemId, ItemName, ItemBrand, ItemDescription, ItemPrice, ItemOwner, ItemCategory, ItemImage, ItemSize, ItemCondition FROM Item WHERE ItemOwner = ?');
+        $stmt->execute(array($itemOwner));
     
         $items = array();
         while ($item = $stmt->fetchObject()) {

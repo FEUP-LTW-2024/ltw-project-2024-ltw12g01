@@ -263,6 +263,11 @@ class User {
         return $user['UserId'];
     }
 
+    static public function deleteUser(PDO $db, int $id): bool {
+        $stmt = $db->prepare('DELETE FROM User WHERE UserId = :id');
+        return $stmt->execute([':id' => $id]);
+    }
+
     public function setPaymentMethod(?string $paymentMethod): void {
         $this->paymentMethod = $paymentMethod;
     }
