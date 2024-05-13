@@ -101,7 +101,7 @@ class Item {
                 $item->ItemPrice,
                 $item->ItemOwner,
                 $item->ItemCategory,
-                $item->ItemImage ?? '', // Use the null coalescing operator to provide an empty string if ItemImage is null
+                $item->ItemImage ?? '', 
                 $item->ItemSize,
                 $item->ItemCondition
             );
@@ -115,7 +115,7 @@ class Item {
         $stmt->execute(array($search . '%', $count));
 
         $items = array();
-        $itemImage = isset($item['ItemImage']) ? $item['ItemImage'] : '';  //TODO
+        $itemImage = isset($item['ItemImage']) ? $item['ItemImage'] : '';  
         while ($item = $stmt->fetch()) {
             $items[] = new Item(
                 $item['ItemId'],

@@ -3,9 +3,7 @@ require_once('../database/connection.db.php');
 require_once('../session/session.php');
 require_once('../database/user.class.php');
 
-// Start the session
 $session = new Session();
-// Get the database connection
 $db = getDatabaseConnection();
 
 if ($session->getCSRF()  !== $_POST['csrf']) {
@@ -15,13 +13,11 @@ if ($session->getCSRF()  !== $_POST['csrf']) {
 }
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    // Handle image upload
-    $targetDirectory = "../uploads/"; // Specify your upload directory
+    $targetDirectory = "../uploads/"; 
     $targetFile = $targetDirectory . basename($_FILES["hiddenInput"]["name"]);
     $uploadOk = 1;
     $imageFileType = strtolower(pathinfo($targetFile, PATHINFO_EXTENSION));
 
-    // Check if image file is a actual image or fake image
     $check = getimagesize($_FILES["hiddenInput"]["tmp_name"]);
     if($check !== false) {
         $uploadOk = 1;
@@ -30,27 +26,21 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $uploadOk = 0;
     }
 
-    // Check file size
     if ($_FILES["hiddenInput"]["size"] > 500000) {
         echo "Sorry, your file is too large.";
         $uploadOk = 0;
     }
 
-    // Allow certain file formats
     if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg") {
         echo "Sorry, only JPG, JPEG, PNG files are allowed.";
         $uploadOk = 0;
     }
 
-    // Check if $uploadOk is set to 0 by an error
     if ($uploadOk == 0) {
         echo "Sorry, your file was not uploaded.";
-    // if everything is ok, try to upload file
     } else {
         if (move_uploaded_file($_FILES["hiddenInput"]["tmp_name"], $targetFile)) {
-            // File uploaded successfully, proceed with database insertion
 
-            // Insert the item into the database
             $itemName = htmlentities($_POST['ItemName']);
             $itemBrand = htmlentities($_POST['ItemBrand']);
             $itemDescription = htmlentities($_POST['ItemDescription']);
@@ -60,7 +50,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $itemSize = htmlentities($_POST['ItemSize']);
             $itemCondition = htmlentities($_POST['ItemCondition']);
 
-            // Get the file path of the uploaded image
             $itemImage = $targetFile;
 
             if (!isset($itemName) || !isset($itemDescription) || !isset($itemCategory) || !isset($itemPrice) || !isset($itemSize) || !isset($itemCondition)) {

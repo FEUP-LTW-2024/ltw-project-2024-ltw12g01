@@ -27,8 +27,8 @@ CREATE TABLE Item (
     ItemImage NVARCHAR(255), 
     ItemDescription NVARCHAR(255),
     ItemCategory NVARCHAR(50) NOT NULL,
-    ItemCondition NVARCHAR(20) NOT NULL,  -- added column for condition
-    ItemSize NVARCHAR(20) NOT NULL,  -- added column for size
+    ItemCondition NVARCHAR(20) NOT NULL, 
+    ItemSize NVARCHAR(20) NOT NULL,  
     FOREIGN KEY(ItemOwner) REFERENCES User(UserId) 
 );
 
