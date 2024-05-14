@@ -25,6 +25,7 @@ if ($user === null) {
     exit();
 }
 
+drawHeaderForSell($session,true);
 drawProfile($user,$session);
 
 drawFooter();
