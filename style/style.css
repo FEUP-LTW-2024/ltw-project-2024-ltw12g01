@@ -240,6 +240,7 @@ footer {
     height: 400px;
     padding-top: 50px;
     border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 
 }
 
@@ -774,6 +775,8 @@ button:active {
     background-color: white;
     height: 370px;
     border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    
 }
 
 .title {
@@ -1044,6 +1047,8 @@ button:active {
     height: 430px;
     background-color: white;
     border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+
 }
 
 .category {
@@ -1465,6 +1470,7 @@ label {
 .user-mng-body {
     background-color: white;
     border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 .user-list {
@@ -1580,4 +1586,5 @@ label {
 .item-mng-body {
     background-color: white;
     border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
