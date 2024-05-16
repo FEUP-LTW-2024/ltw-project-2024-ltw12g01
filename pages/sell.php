@@ -131,7 +131,7 @@ $session = new Session();
                 <label for="title" class="label">Price</label>
             </div>
         </div>
-            <input type="hidden" name="csrf" value="<?=$sesesion->getCSRF()?>">
+            <input type="hidden" name="csrf" value="<?=$ssesion->getCSRF()?>">
             <button class="load-btn">Save Item</button>
             </form>
     </main>
