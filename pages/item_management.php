@@ -14,7 +14,7 @@ $items = Item::getAllItemsFromDatabase($db);
     <title>Item List</title>
     <link rel="stylesheet" type="text/css" href="../style/style.css">
 </head>
-<body>
+<body class="item-mng-body">
     <h1>Item List</h1>
 
     <?php if (!empty($items)): ?>

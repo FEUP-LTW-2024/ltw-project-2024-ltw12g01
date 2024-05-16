@@ -146,7 +146,7 @@ function drawProfile(User $user, Session $session): void {
   <form action="../actions/action_register.php" method="post" class="login-form"> 
     <div class="form-group">
       <label for="username">Username</label>
-      <input type="text" name="username" id="username" required>
+      <input id="user-input" type="text" name="username" id="username" required>
     </div>
     <div class="form-group">
       <label for="email">Email address</label>

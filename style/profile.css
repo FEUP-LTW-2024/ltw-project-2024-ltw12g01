@@ -149,7 +149,7 @@ body {
     padding-top: 20px;
 }
 
-button {
+.delete-account {
     width: 150px;
     height: 50px;
     cursor: pointer;
@@ -163,12 +163,12 @@ button {
     align-self: flex-end;
 }
 
-button,
-button span {
+.delete-account,
+.delete-account span {
     transition: 200ms;
 }
 
-button .text {
+.delete-account .text {
     transform: translateX(10px);
     color: white;
     font-weight: bold;
@@ -176,7 +176,7 @@ button .text {
     justify-self: flex-start;
 }
 
-button .icon {
+.delete-account .icon {
     position: absolute;
     border-left: 1px solid #c41b1b;
     transform: translateX(110px);
@@ -187,30 +187,30 @@ button .icon {
     justify-content: center;
 }
 
-button svg {
+.delete-account svg {
     width: 15px;
     fill: #eee;
 }
 
-button:hover {
+.delete-account:hover {
     background: #ff3636;
 }
 
-button:hover .text {
+.delete-account:hover .text {
     color: transparent;
 }
 
-button:hover .icon {
+.delete-account:hover .icon {
     width: 150px;
     border-left: none;
     transform: translateX(0);
 }
 
-button:focus {
+.delete-account:focus {
     outline: none;
 }
 
-button:active .icon svg {
+.delete-account:active .icon svg {
     transform: scale(0.8);
 }
 
@@ -281,7 +281,7 @@ footer {
     background-color: #0056b3;
 }
 
-input[type="text"],
+#user-input[type="text"],
 input[type="email"],
 input[type="password"] {
     width: 100%;
