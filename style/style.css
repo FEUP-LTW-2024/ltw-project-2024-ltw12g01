@@ -1477,14 +1477,27 @@ label {
     background-color: #3e8e41;
 }
 
+.user-mng-body {
+    background-color: white;
+    border-radius: 10px;
+}
+
 .user-list {
     list-style: none;
     padding: 0;
     margin: 0;
 }
 
+#user-mng {
+    margin-bottom: 0;
+    padding: 0 10px;
+}
 .user-list li {
-    padding: 10px;
+    font-size: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
     border-bottom: 1px solid #ccc;
 }
 
@@ -1503,4 +1516,77 @@ label {
 
 .user-list li:last-child {
     border-bottom: none;
+}
+
+
+.button-container {
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    padding-top: 20px;
+}
+
+button {
+    width: 150px;
+    height: 30px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    background: red;
+    border: none;
+    border-radius: 5px;
+    box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.15);
+    background: #e62222;
+    align-self: flex-end;
+}
+
+button,
+button span {
+    transition: 200ms;
+}
+
+button .text {
+    transform: translateX(7px);
+    color: white;
+    font-weight: bold;
+    align-self: center;
+    justify-self: flex-start;
+}
+
+button .icon {
+    position: absolute;
+    border-left: 1px solid #c41b1b;
+    transform: translateX(110px);
+    height: 30px;
+    width: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+button svg {
+    width: 15px;
+    fill: #eee;
+}
+
+button:hover {
+    background: #ff3636;
+}
+
+button:hover .text {
+    color: transparent;
+}
+
+button:hover .icon {
+    width: 150px;
+    border-left: none;
+    transform: translateX(-5px);
+}
+
+button:focus {
+    outline: none;
+}
+
+button:active .icon svg {
+    transform: scale(0.8);
 }
