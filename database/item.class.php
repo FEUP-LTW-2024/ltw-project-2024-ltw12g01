@@ -15,7 +15,7 @@ class Item {
     public string $itemSize;
     public string $itemCondition;
 
-    public function __construct(int $id, string $itemName, string $itemBrand, string $itemDescription, int $itemPrice, string $itemOwner, string $itemCategory, string $ItemImage,string $itemSize, string $itemCondition)
+    public function __construct(int $id, string $itemName, string $itemBrand, string $itemDescription, int $itemPrice, string $itemOwner,string $itemCategory, string $ItemImage,string $itemSize, string $itemCondition)
     {
         $this->id = $id;
         $this->itemName = $itemName;
@@ -279,6 +279,7 @@ class Item {
     
         return $items;
     }
+    
     
 }
 
