@@ -26,6 +26,7 @@ header {
 }
 
 .header-anchors a {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     text-decoration: none;
     color: #fff; 
     background-color: #0056b3; 
@@ -164,6 +165,8 @@ nav ul li a {
 
 /* Product Section Styles */
 #products {
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
     gap: 20px;
@@ -221,10 +224,11 @@ nav ul li a {
 
 /* Footer Styles */
 footer {
-    margin-top: 20px;
+    margin-top: 140px;
+    margin-bottom: 0;
     padding: 10px;
     text-align: center;
-    background-color: #f1f1f1;
+    background-color: #f4f4f4;
     font-size: 14px; /* Adjusted font size */
     color: #777; /* Adjusted font color */
 }
@@ -260,6 +264,11 @@ footer {
     margin: 0 150px;
     height: 350px;
     width: auto;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    /* display: grid;
+    grid-template-columns: auto auto;
+    position: relative; */
+
 }
 
 .border.active {

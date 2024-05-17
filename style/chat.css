@@ -1,0 +1,26 @@
+/* Chat container */
+.chat-container {
+    width: 100%;
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+/* Individual chat messages */
+.chat-message {
+    margin-bottom: 20px;
+    padding: 10px;
+    border-radius: 5px;
+    background-color: #f0f0f0;
+}
+
+/* Chat message from the user */
+.chat-message.user {
+    background-color: #d0f0d0;
+}
+
+/* Chat message from the other person */
+.chat-message.other {
+    background-color: #f0d0d0;
+}

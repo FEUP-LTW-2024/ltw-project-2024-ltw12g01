@@ -28,12 +28,10 @@
 <form id="changePasswordForm" action="../actions/action_change_password.php" method="post" >
 
 <?php
-    if ($user_type != 'admin') {
 ?>
     <label for="old">Old password</label>
     <input type="password" name="old" id="old" required>
 <?php
-    }
 ?>
     <label for="new">New password</label>
     <input type="password" name="new" id="new" required>

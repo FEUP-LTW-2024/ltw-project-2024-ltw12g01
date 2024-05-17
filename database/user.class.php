@@ -9,6 +9,7 @@ class User {
     public ?int $items_listed;
     public ?string $paymentInfo;
     public ?string $paymentMethod;
+    
 
     public function __construct(int $id, string $username, string $email, string $type, ?int $items_listed = 0, ?string $paymentInfo = null, ?string $paymentMethod = null) {
         $this->id = $id;
@@ -18,11 +19,12 @@ class User {
         $this->items_listed = $items_listed;
         $this->paymentInfo = $paymentInfo;
         $this->paymentMethod = $paymentMethod;
+        
     }
 
     static public function createAndInsert(PDO $db, string $username, string $email, string $password, string $type, ?string $paymentInfo = null, ?string $paymentMethod = null): User {
         $hashedPassword = password_hash($password, PASSWORD_DEFAULT, ['cost' => 8]);
-        $stmt = $db->prepare('INSERT INTO User (UserName, Email, UserPassword, UserType, PaymentInfo, PaymentMethod) VALUES (:username, :email, :password, :type, :paymentInfo, :paymentMethod)');
+        $stmt = $db->prepare('INSERT INTO User (UserName, Email,UserPassword, UserType, PaymentInfo, PaymentMethod) VALUES (:username, :email, :password, :type, :paymentInfo, :paymentMethod)');
         $stmt->execute([
             ':username' => $username,
             ':email' => $email,

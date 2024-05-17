@@ -18,7 +18,6 @@ $userType = $_POST['type'] ?? '';
 
 $success = User::updateUser($db, $userId, $username, $email, $userType);
 
-$session->setName($username);
 
 if ($success) {
     header("Location: ../pages/profile.php");

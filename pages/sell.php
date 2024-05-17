@@ -19,8 +19,6 @@ $session = new Session();
 <body>
     <?php drawHeaderForSell($session,true); ?>
     <main class="sell">
-        <h1>Sell an article</h1>
-
         <div class="img-load">
             <div class="border">
                 <svg xmlns="http://www.w3.org/2000/svg" width="70" height="70" fill="#0056B3" class="upload-icon" viewBox="0 0 16 16">
