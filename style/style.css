@@ -260,10 +260,6 @@ footer {
     margin: 0 150px;
     height: 350px;
     width: auto;
-    /* display: grid;
-    grid-template-columns: auto auto;
-    position: relative; */
-
 }
 
 .border.active {
@@ -425,7 +421,6 @@ main .addImg {
   }
   
  
-/* Styling for the Cart Products Start Here*/
 .cart-products {
     display: flex;
     flex-direction: column;
@@ -434,7 +429,6 @@ main .addImg {
 
 }
 
-/* Style for each product container */
 .cart-product {
     display: flex;
     align-items: center;
@@ -450,11 +444,92 @@ main .addImg {
     padding: 0;
 }
 #cart-list li{
-    margin: 2rem;
+    margin: 2rem 0;
 }
-.infos-checkout{
+.infos-checkout {
+    margin-top: 20px;
+    background-color: #f9f9f9;
     padding: 20px;
-}
+    border: 1px solid #ddd;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+  }
+  
+  .infos-checkout h2 {
+    font-weight: bold;
+    font-size: 18px;
+    margin-bottom: 10px;
+    color: #0056b3;
+  }
+  
+  .infos-checkout p {
+    font-size: 16px;
+    margin-bottom: 10px;
+    color: #666;
+  }
+  
+  .infos-checkout .total {
+    font-weight: bold;
+    font-size: 18px;
+    margin-bottom: 10px;
+    color: #0056b3;
+  }
+  
+  .infos-checkout .total span {
+    font-size: 16px;
+    color: #666;
+  }
+  
+  .infos-checkout .total span strong {
+    font-size: 18px;
+    font-weight: bold;
+    color: #0056b3;
+  }
+  
+  .infos-checkout .shipping {
+    font-size: 16px;
+    margin-bottom: 10px;
+    color: #666;
+  }
+  
+  .infos-checkout .shipping strong {
+    font-size: 18px;
+    font-weight: bold;
+    color: #0056b3;
+  }
+  
+  .infos-checkout .payment {
+    font-size: 16px;
+    margin-bottom: 10px;
+    color: #666;
+  }
+  
+  .infos-checkout .payment strong {
+    font-size: 18px;
+    font-weight: bold;
+    color: #0056b3;
+  }
+  
+  .infos-checkout .checkout-btn {
+    background-color: #0056b3;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 5px;
+  }
+  
+  .infos-checkout .checkout-btn:hover {
+    background-color: #004a8c;
+  }
+
+.product-image {
+    width: 8rem;
+    height: 8rem;
+    margin-right: 20px;
+    border-radius: 10px;
+  }
 .checkout-btn{
     cursor: pointer;
     padding: 10px 20px;
@@ -1588,3 +1663,4 @@ label {
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
+

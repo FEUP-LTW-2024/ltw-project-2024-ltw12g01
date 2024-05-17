@@ -129,6 +129,7 @@ function drawCart($session) {
             echo "<li>"; 
             echo "<form id='itemDele' action='../actions/action_cart_removeItem.php' method='post'>";
             echo "<div class='cart-product'>";
+            echo '<img class="product-image" src="' . $item->getImageUrl() . '" alt="Product Image">';
             echo "<div class='product-info'>";
             echo "<h2 class='product-name'>Model:{$item->itemName}</h2>";
             echo "<p class='product-brand'>Brand:{$item->itemBrand}</p>";
@@ -164,7 +165,7 @@ function drawCart($session) {
         $distance = calculateDistance($latitude, $longitude, $user->latitude, $user->longitude);
         $shippingCost = calculateShippingCost($weight, $distance);
         echo "<div class='infos-checkout'>";
-        echo "<p>Total: " . number_format($totalAmount, 2) . "$</p>";
+        echo "<p> <strong>Total:</strong> " . number_format($totalAmount, 2) . "$</p>";
         if ($discount > 0) {
             echo "<p>Discount: " . number_format($discount, 2) . "$</p>";
         }

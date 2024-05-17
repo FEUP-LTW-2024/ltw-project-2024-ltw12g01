@@ -14,7 +14,7 @@
         <?php foreach($items as $item) { ?> 
         <article>
                     <a href="/pages/product.php?id=<?=$item->id?>"> <?=$item->itemName ?></a>
-                    <a href="/pages/product.php?id=<?=$item->id?>"><img id="product-grid-img" src="<?php echo $item->ItemImage; ?>" alt="<?php echo $item->itemName; ?>" style="max-width: 95%; max-height: 95%; width: auto; height: auto;"></a>                
+                    <a href="/pages/product.php?id=<?=$item->id?>"><img id="product-grid-img" src="<?php echo $item->ItemImage; ?>" alt="<?php echo $item->itemName; ?>"> </a>                
                     <h3> <?=$item->itemBrand ?></h3>
                     <h4>Price: <?=$item->itemPrice ?>$</h4>
         </article>
