@@ -42,6 +42,6 @@
         }
     }
     
-    header('Location: ' . $_SERVER['HTTP_REFERER']);
+    header("Location: ../pages/profile.php");
     exit();
 ?>

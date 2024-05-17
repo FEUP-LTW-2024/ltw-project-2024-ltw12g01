@@ -36,6 +36,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 }
 
-header('Location: ' . htmlentities($_SERVER['HTTP_REFERER']));
-exit();
+    header("Location: ../pages/profile.php");
+    exit();
 ?>

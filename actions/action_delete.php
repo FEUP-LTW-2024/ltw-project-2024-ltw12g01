@@ -18,7 +18,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST['item_id'])) {
 
     $db = getDatabaseConnection();
 
-    $success = Item::deleteItemById($db, $itemId);
+    $success = Item::deleteItem($db, $itemId);
 
     if ($success) {
         header("Location: /../pages/profile.php");

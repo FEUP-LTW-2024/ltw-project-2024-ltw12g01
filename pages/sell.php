@@ -127,11 +127,11 @@ $session = new Session();
             <div class="price">
             <span>Price</span>
             <div class="price-input">
-                <input class="input" type="number" name="ItemPrice" placeholder="€ 0,00" required>
+                <input class="input" type="text" name="ItemPrice" placeholder="€ 0,00" pattern="[0-9]+" required>
                 <label for="title" class="label">Price</label>
             </div>
         </div>
-            <input type="hidden" name="csrf" value="<?=$ssesion->getCSRF()?>">
+            <input type="hidden" name="csrf" value="<?=$session->getCSRF()?>">
             <button class="load-btn">Save Item</button>
             </form>
     </main>
