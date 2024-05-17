@@ -12,9 +12,10 @@ $items = Item::getAllItemsFromDatabase($db);
 ?>
 <head>
     <title>Item List</title>
-    <link rel="stylesheet" type="text/css" href="../style/style.css">
+    <link rel="stylesheet" type="text/css" href="../style/management.css">
 </head>
 <body class="item-mng-body">
+<div class="container">
     <h1>Item List</h1>
 
     <?php if (!empty($items)): ?>
@@ -26,6 +27,7 @@ $items = Item::getAllItemsFromDatabase($db);
                 </form>
             <?php endforeach; ?>
         </ul>
+            </div>
     <?php else: ?>
         <p>No items found.</p>
     <?php endif; ?>

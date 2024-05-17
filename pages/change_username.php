@@ -19,7 +19,6 @@
         exit();
     }
 
-    if ($user_type != 'admin') {
         ?>
         <?php drawHeader($session, false); ?>
         <link rel="stylesheet" href="../style/change.css">
@@ -36,14 +35,4 @@
             <button type="submit">Submit</button>
         </form>
         <?php
-    } else {
-        ?>
-        <h3>Changing <?= $session->getName() ?>'s username</h3>
-        <form action="../actions/action_change_username.php" method="post" enctype="multipart/form-data">
-            <label for="new_username">New username</label>
-            <input type="text" name="new_username" id="new_username">
-            <button type="submit">Submit</button>
-        </form>
-        <?php
-    }
 ?>
