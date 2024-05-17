@@ -26,7 +26,9 @@ $chat_id = Message::getChatIdSenderReceiver($db, $item_id, $receiver_id, $sender
 
 $messages = Message::getMessagesForChat($db, $chat_id);
 
-$item_owner_id = Message::getItemOwnerId($db, $chat_id);
+$item = Item::getItem($db, (int)$item_id);
+
+$item_owner_id = User::getUserIdByUsername($db,$item->itemOwner);
 
 $item = Message::getItemByChatId($db, $chat_id);
 

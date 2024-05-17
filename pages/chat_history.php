@@ -40,12 +40,11 @@ $conversations = Conversation::getUserConversations($db, $currentUserId);
                 $otherUserUsername = User::getUsernameById($db, $otherUserId);
             ?>
             <li>
-                <a href="../pages/chat.php?sender_id=<?= $currentUserId ?>&receiver_id=<?= $otherUserId ?>">
-                    Chat with <?= $otherUserUsername ?>
+                <a href="../pages/chat.php?sender_id=<?= $currentUserId ?>&receiver_id=<?= $otherUserId ?>&item_id=<?= $conversation->itemId ?>">
+                    Chat with <?= $otherUserUsername ?> (Item Name: <?= $conversation->itemId ?>)
                 </a>
             </li>
         <?php endforeach; ?>
     </ul>
 </body>
 </html>
-
