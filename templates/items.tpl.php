@@ -24,10 +24,9 @@
 <?php } ?>
 
 <?php 
-function drawItem(Item $item, Session $session) { 
-    $receiver_id =  $item->itemOwner;
+function drawItem(Item $item, Session $session, String $ownerName) { 
     $loggedInUserId = $session->getId();
-    $isOwner = ($loggedInUserId === $receiver_id);
+    $isOwner = ($loggedInUserId === $item->itemOwner);
 
     ?>
     <head>
@@ -45,7 +44,7 @@ function drawItem(Item $item, Session $session) {
                 <div class="info-item" id="category"><strong>Category:</strong> <?php echo $item->itemCategory; ?></div>
                 <div class="info-item" id="size"><strong>Size:</strong> <?php echo $item->itemSize; ?></div>
                 <div class="info-item" id="condition"><strong>Condition:</strong> <?php echo $item->itemCondition; ?></div>
-                <div class="info-item" id="sold-by"><strong>Sold by:</strong> <a href="#"> <?php echo ; ?></a></div>
+                <div class="info-item" id="sold-by"><strong>Sold by:</strong> <?php echo $ownerName ?></div>
                 <div class="description-box">
                     <p><strong>Description:</strong> <?php echo $item->itemDescription; ?></p>
                 </div>
