@@ -24,7 +24,7 @@ class User {
 
     static public function createAndInsert(PDO $db, string $username, string $email, string $password, string $type, ?string $paymentInfo = null, ?string $paymentMethod = null): User {
         $hashedPassword = password_hash($password, PASSWORD_DEFAULT, ['cost' => 8]);
-        $stmt = $db->prepare('INSERT INTO User (UserName, Email,pro_Image, UserPassword, UserType, PaymentInfo, PaymentMethod) VALUES (:username, :email, :password, :type, :paymentInfo, :paymentMethod)');
+        $stmt = $db->prepare('INSERT INTO User (UserName, Email,UserPassword, UserType, PaymentInfo, PaymentMethod) VALUES (:username, :email, :password, :type, :paymentInfo, :paymentMethod)');
         $stmt->execute([
             ':username' => $username,
             ':email' => $email,
