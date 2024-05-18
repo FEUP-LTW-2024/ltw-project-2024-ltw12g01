@@ -249,7 +249,6 @@ function drawFilters() {
  
 <script>
     //todo meter js em funcao na pasta js
-    //Meter as imagens a apagar do pc quando a foto apaga
 document.addEventListener('DOMContentLoaded', function() {
     var filterForm = document.getElementById('filters-form');
 

@@ -72,6 +72,10 @@ body {
     display: flex;
     justify-content: space-between;
 }
+#profile-items {
+    display: flex;
+    justify-content: space-between;
+}
 
 #profile-password {
     display: flex;
@@ -106,7 +110,8 @@ body {
 #profile-info #a-email,
 #profile-info #a-pass,
 #profile-info #a-payment,
-#profile-info #a-shipping {
+#profile-info #a-shipping,
+#profile-info #a-items{
     color: inherit;
     text-decoration: none;
     color: #0056B3;

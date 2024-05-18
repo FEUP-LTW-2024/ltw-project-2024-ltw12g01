@@ -15,18 +15,36 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST['item_id'])) {
         exit();
     } 
     $itemId = (int)htmlentities($_POST['item_id']);
+    $imageURL = "../uploads/" . htmlentities($_POST['item_image']);
 
     $db = getDatabaseConnection();
 
     $success = Item::deleteItem($db, $itemId);
 
-    if ($success) {
-        header("Location: /../pages/profile.php");
+    if (!file_exists($imageURL)) {
+        echo "File does not exist.";
+        sleep(5);
+        header('Location: ' . $_SERVER['HTTP_REFERER']);
         exit();
-    } else {
-        echo "Failed to delete the item.";
     }
-} else {
+
+    if ($success) {
+        if (unlink($imageURL)) {
+            header("Location: /../pages/profile.php");
+            exit();
+        } else {
+            error_log("Failed to delete the file: " . $imageURL);
+            echo "Failed to delete the file.";
+            sleep(5);
+            header('Location: ' . $_SERVER['HTTP_REFERER']);
+            exit();
+        }
+    }
+ else {
     echo "Invalid request.";
+    sleep(5);
+    header('Location: ' . $_SERVER['HTTP_REFERER']);
+    exit();
+}
 }
 ?>
