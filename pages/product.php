@@ -12,9 +12,12 @@ $item = Item::getItem($db, intval($_GET['id']));
 
 drawHeader($session, true); 
 if (is_numeric($item->itemOwner)) {
+    $itemOwnerId = $item->itemOwner;
     $item->itemOwner = User::getUsernameById($db, $item->itemOwner);
+}else{
+    $itemOwnerId = User::getIdfromUsername($db, $item->itemOwner);
 }
-drawItem($item, $session, $item->itemOwner); 
+drawItem($item, $session, $itemOwnerId); 
 drawFooter(); 
 
 ?>
