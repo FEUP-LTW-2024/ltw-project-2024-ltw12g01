@@ -9,11 +9,11 @@ $session = new Session();
 $db = getDatabaseConnection();
 
 $item = Item::getItem($db, intval($_GET['id']));
-if (!is_string($item->itemOwner)) {
-    $item->itemOwner = User::getUsernameById($db, $item->itemOwner);
-} 
 
 drawHeader($session, true); 
+if (is_numeric($item->itemOwner)) {
+    $item->itemOwner = User::getUsernameById($db, $item->itemOwner);
+}
 drawItem($item, $session, $item->itemOwner); 
 drawFooter(); 
 
