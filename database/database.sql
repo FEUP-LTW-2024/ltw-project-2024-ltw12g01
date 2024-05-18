@@ -91,19 +91,19 @@ CREATE TABLE Message (
 
 INSERT INTO User (UserName, Email, UserType, UserPassword, PaymentMethod, PaymentInfo)
 VALUES
-('JohnDoe', 'johndoe@example.com', 'buyer/seller', '@Password123', 'Credit Card', '4111111111111111'),
-('JaneSmith', 'janesmith@example.com', 'seller', '@Password123', 'PayPal', 'janesmith@paypal.com'),
-('MikeJohnson', 'mikejohnson@example.com', 'buyer/seller', '@Password123', 'Credit Card', '4222222222222222'),
-('EmilyDavis', 'emilydavis@example.com', 'buyer/seller', '@Password123', NULL, NULL),
-('ChrisBrown', 'chrisbrown@example.com', 'buyer', '@Password123', 'Debit Card', '4333333333333333'),
-('AmandaWilson', 'amandawilson@example.com', 'buyer/seller', '@Password123', 'PayPal', 'amandawilson@paypal.com'),
-('DavidMartinez', 'davidmartinez@example.com', 'buyer/seller', '@Password123', 'Credit Card', '4444444444444444'),
-('SarahLee', 'sarahlee@example.com', 'buyer/seller', '@Password123', 'Credit Card', '4555555555555555'),
-('PaulWalker', 'paulwalker@example.com', 'buyer', '@Password123', NULL, NULL),
-('LauraMoore', 'lauramoore@example.com', 'buyer', '@Password123', 'Debit Card', '4666666666666666'),
-('Rebelo', 'rebelo@example.com', 'admin', '@Password123', NULL, NULL),
-('Carlos', 'carlos@example.com', 'admin', '@Password123', NULL, NULL),
-('Tiago' , 'tiago@example.com', 'admin', '@Password123', NULL, NULL);
+('JohnDoe', 'johndoe@example.com', 'buyer/seller', '$2y$08$srXBNaOn/wVHuPPgSUM3U.I2e8b8DNIpltA8jUzAbKCbLVHk1DO2e', 'Credit Card', '4111111111111111'),
+('JaneSmith', 'janesmith@example.com', 'seller', '$2y$08$srXBNaOn/wVHuPPgSUM3U.I2e8b8DNIpltA8jUzAbKCbLVHk1DO2e', 'PayPal', 'janesmith@paypal.com'),
+('MikeJohnson', 'mikejohnson@example.com', 'buyer/seller', '$2y$08$srXBNaOn/wVHuPPgSUM3U.I2e8b8DNIpltA8jUzAbKCbLVHk1DO2e', 'Credit Card', '4222222222222222'),
+('EmilyDavis', 'emilydavis@example.com', 'buyer/seller', '$2y$08$srXBNaOn/wVHuPPgSUM3U.I2e8b8DNIpltA8jUzAbKCbLVHk1DO2e', NULL, NULL),
+('ChrisBrown', 'chrisbrown@example.com', 'buyer', '$2y$08$srXBNaOn/wVHuPPgSUM3U.I2e8b8DNIpltA8jUzAbKCbLVHk1DO2e', 'Debit Card', '4333333333333333'),
+('AmandaWilson', 'amandawilson@example.com', 'buyer/seller', '$2y$08$srXBNaOn/wVHuPPgSUM3U.I2e8b8DNIpltA8jUzAbKCbLVHk1DO2e', 'PayPal', 'amandawilson@paypal.com'),
+('DavidMartinez', 'davidmartinez@example.com', 'buyer/seller', '$2y$08$srXBNaOn/wVHuPPgSUM3U.I2e8b8DNIpltA8jUzAbKCbLVHk1DO2e', 'Credit Card', '4444444444444444'),
+('SarahLee', 'sarahlee@example.com', 'buyer/seller', '$2y$08$srXBNaOn/wVHuPPgSUM3U.I2e8b8DNIpltA8jUzAbKCbLVHk1DO2e', 'Credit Card', '4555555555555555'),
+('PaulWalker', 'paulwalker@example.com', 'buyer', '$2y$08$srXBNaOn/wVHuPPgSUM3U.I2e8b8DNIpltA8jUzAbKCbLVHk1DO2e', NULL, NULL),
+('LauraMoore', 'lauramoore@example.com', 'buyer', '$2y$08$srXBNaOn/wVHuPPgSUM3U.I2e8b8DNIpltA8jUzAbKCbLVHk1DO2e', 'Debit Card', '4666666666666666'),
+('Rebelo', 'rebelo@example.com', 'admin', '$2y$08$srXBNaOn/wVHuPPgSUM3U.I2e8b8DNIpltA8jUzAbKCbLVHk1DO2e', NULL, NULL),
+('Carlos', 'carlos@example.com', 'admin', '$2y$08$srXBNaOn/wVHuPPgSUM3U.I2e8b8DNIpltA8jUzAbKCbLVHk1DO2e', NULL, NULL),
+('Tiago' , 'tiago@example.com', 'admin', '$2y$08$srXBNaOn/wVHuPPgSUM3U.I2e8b8DNIpltA8jUzAbKCbLVHk1DO2e', NULL, NULL);
 
 
 INSERT INTO Item (ItemBrand, ItemName, ItemPrice, ItemOwner, ItemImage, ItemDescription, ItemCategory, ItemCondition, ItemSize)

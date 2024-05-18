@@ -33,7 +33,6 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST['item_id'])) {
             header("Location: /../pages/profile.php");
             exit();
         } else {
-            error_log("Failed to delete the file: " . $imageURL);
             echo "Failed to delete the file.";
             sleep(5);
             header('Location: ' . $_SERVER['HTTP_REFERER']);
