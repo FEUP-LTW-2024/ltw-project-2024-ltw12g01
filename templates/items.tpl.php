@@ -9,7 +9,7 @@
 ?>
 
 <?php function drawItems(array $items) { ?>
- <main>
+ <main> 
         <section id="products">
         <?php foreach($items as $item) { ?> 
         <article>
