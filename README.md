@@ -72,6 +72,12 @@ We have used the following external libraries:
 
 - [X] Edit their profile, including their name, username, password, and email.
 
+- [X] Pagination for a smoother experience.
+
+- [X] Dynamic Searching.
+
+- [X] Dynamic and static Filters.
+
 
 
 **Sellers**  should be able to:
@@ -84,7 +90,7 @@ We have used the following external libraries:
 
 - [X] Respond to inquiries from buyers regarding their items and add further information if needed.
 
-- [ ] Print shipping forms for items that have been sold.
+- [X] Print shipping forms for items that have been sold.
 
 
 
@@ -106,9 +112,9 @@ We have used the following external libraries:
 
 
 
-- [ ] Elevate a user to admin status.
+- [X] Elevate a user to admin status.
 
-- [ ] Introduce new item categories, sizes, conditions, and other pertinent entities.
+- [X] Introduce new item categories, sizes, conditions, and other pertinent entities.
 
 - [X] Oversee and ensure the smooth operation of the entire system.
 
@@ -142,7 +148,7 @@ We also implemented the following additional requirements (you can add more):
 
 - [ ] **Rating and Review System**
 
-- [ ] **Promotional Features**
+- [X] **Promotional Features**
 
 - [ ] **Analytics Dashboard**
 
@@ -150,13 +156,13 @@ We also implemented the following additional requirements (you can add more):
 
 - [ ] **Item Swapping**
 
-- [ ] **API Integration**
+- [X] **API Integration**
 
-- [ ] **Dynamic Promotions**
+- [X] **Dynamic Promotions**
 
 - [ ] **User Preferences**
 
-- [ ] **Shipping Costs**
+- [X] **Shipping Costs**
 
-- [ ] **Real-Time Messaging System**
+- [X] **Real-Time Messaging System**
 
