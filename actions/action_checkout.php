@@ -32,7 +32,10 @@ try {
     if ($orderId) {
         foreach ($cart as $item) {
             OrderItem::createOrderItem($db, $orderId, $item->id, 1);
-            Item::deleteItemById($db, $item->id);
+
+            $imageURL = "../uploads/" . $item->ItemImage;
+            unlink($imageURL);
+            Item::deleteItem($db, $item->id);
         }
 
         $shipmentDate = date('Y-m-d');
@@ -40,13 +43,20 @@ try {
         $shipmentId = Shipment::createShipment($db, $orderId, $shipmentDate, $shipmentStatus);
 
         $session->clearCart();
-
-        echo "<h2>Order Summary</h2>";
+        echo "<link rel='stylesheet' type='text/css' href='../style/style.css'>";
+        echo "<div class='order-summary'>";
+        echo "<h1>We got your order!! </h1>";
+        echo "<h2>Summary:</h2>";
         echo "<p>Total Amount: $" . $totalAmount . "</p>";
         echo "<p>Shipping Cost: $" . $shippingCost . "</p>";
+        echo "<p>Shipping in: ". $shipmentDate .  "</p>";
+        echo "<p>Shipping Status:". $shipmentStatus . "</p>";
         echo "<p>Total: $" . $totalWithShipping . "</p>";
 
-        header("Location: ../index.php");
+        echo "<button class='print-hide' onclick='window.location.href=\"../index.php\"'>Return To the Shop</button>";
+        echo "<button class='print-hide' onclick='window.print()'>Print Receipt</button>";
+        echo "</div>";
+
         exit();
     }
 } catch (Exception $e) {
