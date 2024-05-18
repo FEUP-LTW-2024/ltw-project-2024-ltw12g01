@@ -15,8 +15,8 @@
         <article>
                     <a href="/pages/product.php?id=<?=$item->id?>"> <?=$item->itemName ?></a>
                     <a href="/pages/product.php?id=<?=$item->id?>"><img id="product-grid-img" src="<?php echo $item->ItemImage; ?>" alt="<?php echo $item->itemName; ?>"> </a>                
-                    <h3> <?=$item->itemBrand ?></h3>
-                    <h4>Price: <?=$item->itemPrice ?>$</h4>
+                    <a href="/pages/product.php?id=<?=$item->id?>"><h3> <?=$item->itemBrand ?></h3> </a>
+                    <a href="/pages/product.php?id=<?=$item->id?>"><h4>Price: <?=$item->itemPrice ?>$</h4> </a>
         </article>
         <?php } ?>
     </section>
@@ -65,19 +65,5 @@ function drawItem(Item $item, Session $session, String $ownerName) {
             </div>
         </section>
     </main>
-
-<script>
-    function addToCart(productId) {
-    $.ajax({
-        type: 'POST',
-        url: '/actions/add-to-cart',
-        data: JSON.stringify({ productId: productId }),
-        contentType: 'application/json',
-        success: function(data) {
-            console.log(data);
-        }
-    });
-}
-</script>
 
 <?php } ?>
