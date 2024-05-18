@@ -17,7 +17,7 @@ $user = User::getUserById($db, $userId);
 $userTypes = ['buyer', 'buyer/seller', 'admin'];
 
 ?>
-<link rel="stylesheet" href="../style/register.css">
+<link rel="stylesheet" href="../style/registers.css">
 <form action="../actions/action_edit_user.php" method="post">
     <div class="user-container">
         <input type="hidden" name="id" value="<?= $user->id ?>">

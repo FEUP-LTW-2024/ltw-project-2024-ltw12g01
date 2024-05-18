@@ -21,18 +21,20 @@
 
         ?>
         <?php drawHeader($session, false); ?>
-        <link rel="stylesheet" href="../style/change.css">
+        <link rel="stylesheet" href="../style/registers.css">
         <form action="../actions/action_change_email.php" method="post" enctype="multipart/form-data">
-            <?php if ($user_type != 'admin') { ?>
-            <label for="old_password">Old password</label>
-            <input type="password" name="old_password" id="old_password">
+        <div class="user-container change-container">    
+        <?php if ($user_type != 'admin') { ?>
+            <span>Old password</span>
+            <input type="password" name="old_password" class="user-info">
             <?php } ?>
-            <label for="new_email">New email</label>
-            <input type="email" name="new_email" id="new_email">
+            <span>New email</span>
+            <input type="email" name="new_email" class="user-info">
             <label for="confirm_email">Confirm email</label>
-            <input type="email" name="confirm_email" id="confirm_email">
+            <input type="email" name="confirm_email" class="user-info">
             <input type="hidden" name="csrf" value="<?=$session->getCSRF()?>">
-            <button type="submit">Submit</button>
+            <button class="submit-button" type="submit">Submit</button>
+            </div>
         </form>
         <?php
 ?>

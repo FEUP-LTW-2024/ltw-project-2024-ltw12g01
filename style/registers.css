@@ -4,7 +4,7 @@ html, body {
     font-family: "Roboto", sans-serif;
     color: #333;
     background-color: #f4f4f4;
-    margin: 0;
+   
     padding: 0;
     height: 100vh;
     display: flex;
@@ -15,7 +15,7 @@ html, body {
 .container {
     width: 450px;
     padding: 20px;
-    border-radius: 8px;
+    border-radius: 10px;
     background-color: #ffffff;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
@@ -77,14 +77,25 @@ button:hover {
 
 .user-container {
     background-color: white;
+    width: 300px;
+    height: 270px;
     border-radius: 10px;
     margin: auto; 
     padding: 40px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
+.change-container {
+    height: 230px;
+}
+
+.change-pass-container {
+    height: 300px;
+}
+
+
 .user-info {
-    margin-bottom: 20px;
+    margin-bottom: 30px;
     margin-top: 2px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
@@ -96,7 +107,7 @@ button:hover {
 }
 
 .type-container select {
-    margin-left: 90px;
+    margin-left: 130px;
 }
 
 .submit-button {
@@ -106,5 +117,20 @@ button:hover {
     color: white;
     width: 100%;
     height: 40px;
-    margin-top: 10px;
+    margin: 10px 0;
+    
+}
+
+.change-submit-button {
+    background-color: #0056B3;
+    border: none;
+    border-radius: 10px;
+    color: white;
+    width: 100%;
+    height: 40px;
+    margin: 10px 0;
+}
+
+.change-pass-button {
+    margin-top: 0;
 }

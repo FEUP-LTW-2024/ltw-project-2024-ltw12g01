@@ -24,21 +24,23 @@
 ?>
 
 <?php drawHeader($session, false); ?>
-<link rel="stylesheet" href="../style/change.css">
+<link rel="stylesheet" href="../style/registers.css">
 <form id="changePasswordForm" action="../actions/action_change_password.php" method="post" >
 
 <?php
 ?>
-    <label for="old">Old password</label>
-    <input type="password" name="old" id="old" required>
+    <div class="user-container change-pass-container">
+    <span>Old password</span>
+    <input type="password" name="old" class="user-info" required>
 <?php
 ?>
-    <label for="new">New password</label>
-    <input type="password" name="new" id="new" required>
-    <label for="new2">Confirm new password</label>
-    <input type="password" name="new2" id="new2" required>
+    <span>New password</span>
+    <input type="password" name="new" class="user-info" required>
+    <span>Confirm new password</span>
+    <input type="password" name="new2" class="user-info" required>
     <input type="hidden" name="csrf" value="<?=$session->getCSRF()?>">
-    <button type="submit">Submit</button>
+    <button class="submit-button change-pass-button" type="submit">Submit</button>
+    </div>
 </form>
 <section id="messages">
       <?php 

@@ -88,3 +88,4 @@ CREATE TABLE Message (
     FOREIGN KEY (SenderId) REFERENCES User(UserId),
     FOREIGN KEY (ReceiverId) REFERENCES User(UserId)
 );
+

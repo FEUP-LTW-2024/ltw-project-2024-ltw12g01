@@ -1,38 +1,41 @@
 <?php
-    declare(strict_types=1);
 
-    require_once(__DIR__ . '/../templates/common.tpl.php');
-    require_once(__DIR__ . '/../session/session.php');
-    require_once(__DIR__ . '/../database/connection.db.php');
-    require_once(__DIR__ . '/../database/user.class.php');
+declare(strict_types=1);
 
-    if (!($session->isLoggedIn())) {
-        header('Location: ../index.php');
-        exit();
-    }
+require_once(__DIR__ . '/../templates/common.tpl.php');
+require_once(__DIR__ . '/../session/session.php');
+require_once(__DIR__ . '/../database/connection.db.php');
+require_once(__DIR__ . '/../database/user.class.php');
 
-    $db = getDatabaseConnection();
-    $user_type = $session->isLoggedIn() ? User::getUserTypeByUsername($db, $session->getName()) : null;
+if (!($session->isLoggedIn())) {
+    header('Location: ../index.php');
+    exit();
+}
 
-    if (($user_type != 'admin') && ($session->getName() != $session->getName())) {
-        header('Location: ../index.php');
-        exit();
-    }
+$db = getDatabaseConnection();
+$user_type = $session->isLoggedIn() ? User::getUserTypeByUsername($db, $session->getName()) : null;
 
-        ?>
-        <?php drawHeader($session, false); ?>
-        <link rel="stylesheet" href="../style/change.css">
-        <form action="../actions/action_change_username.php" method="post" enctype="multipart/form-data">
-            <?php if ($user_type != 'admin') { ?>
-            <label for="old_password">Old password</label>
-            <input type="password" name="old_password" id="old_password">
-            <?php } ?>
-            <label for="new_username">New username</label>
-            <input type="text" name="new_username" id="new_username">
-            <label for="confirm_username">Confirm username</label>
-            <input type="text" name="confirm_username" id="confirm_username">
-            <input type="hidden" name="csrf" value="<?=$session->getCSRF()?>">
-            <button type="submit">Submit</button>
-        </form>
-        <?php
+if (($user_type != 'admin') && ($session->getName() != $session->getName())) {
+    header('Location: ../index.php');
+    exit();
+}
+
+?>
+<?php drawHeader($session, false); ?>
+    <link rel="stylesheet" href="../style/registers.css">
+<form action="../actions/action_change_username.php" method="post" enctype="multipart/form-data">
+    <div class="user-container change-container">
+        <?php if ($user_type != 'admin') { ?>
+            <span>Old password</span>
+            <input type="password" name="old_password" class="user-info">
+        <?php } ?>
+        <span>New Username</span>
+        <input type="text" name="new_username" class="user-info">
+        <span>Confirm Username</span>
+        <input type="text" name="confirm_username" class="user-info">
+        <input type="hidden" name="csrf" value="<?= $session->getCSRF() ?>">
+        <button class="change-submit-button" type="submit">Submit</button>
+    </div>
+</form>
+<?php
 ?>
