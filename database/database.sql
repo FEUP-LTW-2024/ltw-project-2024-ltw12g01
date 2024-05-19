@@ -137,53 +137,53 @@ VALUES
 
 INSERT INTO Chat (ItemId, SenderId, ReceiverId, LastSuggestedPrice)
 VALUES
-(1, 2, 3, 65.00),   -- JaneSmith (seller) and AmandaWilson (buyer) discussing Wilson Pro Staff
-(2, 6, 7, 50.00),   -- AmandaWilson (seller) and DavidMartinez (buyer) discussing Sapatilhas em Couro
-(3, 7, 8, 75.00),   -- DavidMartinez (seller) and SarahLee (buyer) discussing Nike Dunk
-(4, 1, 2, 820.00),  -- JohnDoe (seller) and JaneSmith (buyer) discussing Louboutin Seavast 2
-(5, 4, 6, 58.00),   -- EmilyDavis (seller) and AmandaWilson (buyer) discussing Sanjo Amarelas
-(6, 3, 1, 40.00),   -- MikeJohnson (seller) and JohnDoe (buyer) discussing Navy Sanjo
-(7, 8, 3, 60.00),   -- SarahLee (seller) and MikeJohnson (buyer) discussing Adidas Samba
-(8, 3, 2, 110.00);  -- MikeJohnson (seller) and JaneSmith (buyer) discussing Sapatilha Ralph Lauren
+(1, 6, 2, 65.00),   -- JaneSmith (seller) and AmandaWilson (buyer) discussing Wilson Pro Staff
+(2, 7, 6, 50.00),   -- AmandaWilson (seller) and DavidMartinez (buyer) discussing Sapatilhas em Couro
+(3, 8, 7, 75.00),   -- DavidMartinez (seller) and SarahLee (buyer) discussing Nike Dunk
+(4, 2, 1, 820.00),  -- JohnDoe (seller) and JaneSmith (buyer) discussing Louboutin Seavast 2
+(5, 6, 4, 58.00),   -- EmilyDavis (seller) and AmandaWilson (buyer) discussing Sanjo Amarelas
+(6, 1, 3, 40.00),   -- MikeJohnson (seller) and JohnDoe (buyer) discussing Navy Sanjo
+(7, 3, 8, 60.00),   -- SarahLee (seller) and MikeJohnson (buyer) discussing Adidas Samba
+(8, 2, 3, 110.00);  -- MikeJohnson (seller) and JaneSmith (buyer) discussing Sapatilha Ralph Lauren
 
 INSERT INTO Message (ChatId, SenderId, ReceiverId, Content)
 VALUES
-(1, 2, 3, 'Hi, is the Wilson Pro Staff still available?'),
-(1, 3, 2, 'Yes, it is available. Would you like to make an offer?'),
-(1, 2, 3, 'How about $65?'),
-(1, 3, 2, 'That sounds good. Let’s proceed with the transaction.'),
+(1, 6, 2, 'Hi, is the Wilson Pro Staff still available?'),
+(1, 2, 6, 'Yes, it is available. Would you like to make an offer?'),
+(1, 2, 6, 'Last Suggedted Price $65'),
+(1, 6, 2, 'That sounds good. Let’s proceed with the transaction.'),
 
-(2, 6, 7, 'Hello, I am interested in the Sapatilhas em Couro.'),
-(2, 7, 6, 'Great choice! They are very comfortable.'),
-(2, 6, 7, 'Would you accept $50 for them?'),
+(2, 7, 6, 'Hello, I am interested in the Sapatilhas em Couro.'),
+(2, 6, 7, 'Great choice! They are very comfortable.'),
+(2, 6, 7, 'Last Suggedted Price $50?'),
 (2, 7, 6, 'Sure, $50 works for me.'),
 
 (3, 7, 8, 'Hi, are the Nike Dunk shoes still up for sale?'),
 (3, 8, 7, 'Yes, they are.'),
-(3, 7, 8, 'Can you do $75 for them?'),
-(3, 8, 7, 'Yes, $75 is acceptable.'),
+(3, 8, 7, 'Last Suggedted Price $75'),
+(3, 7, 8, 'Yes, $75 is acceptable.'),
 
-(4, 1, 2, 'I am interested in the Louboutin Seavast 2.'),
-(4, 2, 1, 'They are authentic and in great condition.'),
-(4, 1, 2, 'Can we agree on $820?'),
+(4, 2, 1, 'I am interested in the Louboutin Seavast 2.'),
+(4, 1, 2, 'They are authentic and in great condition.'),
+(4, 1, 2, 'Last Suggedted Price $820?'),
 (4, 2, 1, 'That works for me. Let’s finalize it.'),
 
-(5, 4, 6, 'Are the Sanjo Amarelas still available?'),
-(5, 6, 4, 'Yes, they are new and never used.'),
-(5, 4, 6, 'Will you take $58 for them?'),
+(5, 6, 4, 'Are the Sanjo Amarelas still available?'),
+(5, 4, 6, 'Yes, they are new and never used.'),
+(5, 4, 6, 'Last Suggedted Price $58?'),
 (5, 6, 4, 'Yes, that sounds fair.'),
 
-(6, 3, 1, 'Hi, I am interested in the Navy Sanjo shoes.'),
-(6, 1, 3, 'They are still available.'),
-(6, 3, 1, 'How about $40 for them?'),
+(6, 1, 3, 'Hi, I am interested in the Navy Sanjo shoes.'),
+(6, 3, 1, 'They are still available.'),
+(6, 3, 1, 'Last Suggedted Price $40?'),
 (6, 1, 3, 'Deal! Let’s proceed.'),
 
-(7, 8, 3, 'Is the Adidas Samba still available?'),
-(7, 3, 8, 'Yes, they are brand new.'),
-(7, 8, 3, 'Would you accept $60?'),
+(7, 3, 8, 'Is the Adidas Samba still available?'),
+(7, 8, 3, 'Yes, they are brand new.'),
+(7, 8, 3, 'Last Suggedted Price $60?'),
 (7, 3, 8, 'Sure, $60 is fine.'),
 
-(8, 3, 2, 'Hi, I am interested in the Ralph Lauren sneakers.'),
-(8, 2, 3, 'They are new with tags.'),
-(8, 3, 2, 'Would you sell them for $110?'),
+(8, 2, 3, 'Hi, I am interested in the Ralph Lauren sneakers.'),
+(8, 3, 2, 'They are new with tags.'),
+(8, 3, 2, 'Last Suggedted Price $110?'),
 (8, 2, 3, 'Yes, $110 works for me.');
