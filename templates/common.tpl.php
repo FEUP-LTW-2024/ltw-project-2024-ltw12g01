@@ -127,6 +127,7 @@ function drawLoginForm(Session $session) {
   ?>
   <link rel="stylesheet" href="../style/login.css">
   <form action="../actions/action_login.php" method="post" class="login-form">
+    
       <div class="form-group">
           <label for="email">Email address or Username:</label>
           <input type="text" name="username-email" id="username-email" required>
@@ -137,6 +138,7 @@ function drawLoginForm(Session $session) {
       </div>
       <input type="hidden" name="csrf" value="<?=$session->getCSRF()?>">
       <button type="submit" class="btn btn-primary">Login</button>
+
   </form>
 
   <p>Don't have an account yet? <a href="../pages/register.php">Register</a></p>
@@ -149,6 +151,7 @@ function drawLoginForm(Session $session) {
       }
       ?>
   </section>
+
   <?php
 }
 

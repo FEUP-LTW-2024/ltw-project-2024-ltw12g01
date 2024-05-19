@@ -182,7 +182,7 @@ nav ul li a {
     padding: 15px;
     background-color: #f9f9f9; /* Light grey background for a softer look */
     border: none; /* Removing borders for a cleaner design */
-    border-radius: 8px; /* Soft rounded corners */
+    border-radius: 10px; /* Soft rounded corners */
     transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth transition for hover effects */
 }
 
@@ -299,23 +299,6 @@ footer {
     text-align: center;
 }
 
-.border button {
-    padding: 0.5rem 1rem;
-    background-color: rgb(169, 104, 230);
-    color: white;
-    border: none;
-    border-radius: 5px;
-    font-size: 16px;
-    cursor: pointer;
-    background-color: blueviolet;
-    display: block;
-    margin: 0 auto;
-
-}
-
-.img-load button:hover {
-    box-shadow: 0 10px 15px -3px blueviolet, 0 4px 6px -2px blueviolet;
-}
 
 .img-load button:active {
     transform: scale(0.95);
@@ -432,7 +415,7 @@ main .addImg {
     display: flex;
     align-items: center;
     background-color: #f8f8f8;
-    border-radius: 8px;
+    border-radius: 10px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     padding: 10px; 
 }
@@ -602,7 +585,7 @@ main .addImg {
     margin: 4px 2px;
     transition-duration: 0.4s;
     cursor: pointer;
-    border-radius: 8px;
+    border-radius: 10px;
   }
 
   #add-to-cart-Button:hover {

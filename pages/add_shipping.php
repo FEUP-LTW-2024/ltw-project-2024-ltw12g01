@@ -18,6 +18,7 @@ if ($user) {
         ?>
         <link rel="stylesheet" type="text/css" href="../style/payment.css">
         <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
+        <div class="shipping-container">
             <label for="shippingCountry">Shipping Country:</label>
             <select id="country" name="shippingCountry">
                 <option value="">Select Country</option>
@@ -40,6 +41,7 @@ if ($user) {
             <input type="text" name="shippingAddress" value="<?php echo $shipmentInfo ? $shipmentInfo->shippingAddress : ''; ?>">
             <br>
             <input type="submit" name="submit" value="Update Shipping Information">
+    </div>
         </form>
 
         <script src="../javascript/shipping.js">

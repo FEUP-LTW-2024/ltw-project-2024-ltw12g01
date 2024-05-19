@@ -1,16 +1,58 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap');
-
-html{
+html {
+    width: 80%;
+    margin: 20px auto;
     font-family: 'Roboto', sans-serif;
+    color: #333;
+    background-color: #f4f4f4;
 }
+body {
+    padding: 20px;
+    background-color: #f4f4f4;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.item-link {
+    background-color: #0056B3;
+    color: white;
+    padding: 10px;
+    border: none;
+}
+
+.item-list {
+    padding-left: 0;
+}
+.item-list li {
+    font-size: 20px;
+    list-style: none;
+    border-bottom: 1px solid #ccc;
+    padding: 20px 10px;
+    padding-bottom: 40px;
+    
+}
+
+.item-list li button:active {
+    transform: scale(0.95);
+}
+
 .user-list {
     list-style: none;
     padding: 0;
     margin: 0;
 }
 
+#user-mng {
+    margin-bottom: 0;
+    padding: 0 10px;
+}
 .user-list li {
-    padding: 10px;
+    font-size: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
     border-bottom: 1px solid #ccc;
 }
 
@@ -31,134 +73,75 @@ html{
     border-bottom: none;
 }
 
-:root {
-    --primary-color: #337ab7;
-    --primary-hover-color: #23527c;
-    --primary-active-color: #1a1d23;
-    --text-color: #333;
-    --border-color: #ccc;
-    --background-color: #f0f0f0;
-}
 
-body.item-mng-body {
-    background-color: var(--background-color);
-    font-family: Arial, sans-serif;
-    padding: 20px;
-    color: var(--text-color);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    margin: 0;
-}
-
-.container {
-    background-color: white;
-    border: 1px solid var(--border-color);
-    padding: 20px;
-    width: 80%;
-    max-width: 800px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    text-align: center;
-    border-radius: 10px;
-}
-
-:root {
-    --primary-color: #337ab7;
-    --primary-hover-color: #23527c;
-    --primary-active-color: #1a1d23;
-    --text-color: #333;
-    --border-color: #ccc;
-    --background-color: #f0f0f0;
-}
-
-
-h1 {
-    color: var(--text-color);
-    margin-bottom: 20px;
-    font-size: 2em;
-}
-
-.user-list {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-.user-list li {
+.button-container {
     width: 100%;
-    max-width: 400px;
-    padding: 10px;
-    box-sizing: border-box;
     display: flex;
-    justify-content: center;
-    margin-bottom: 10px;
+    justify-content: flex-end;
+    padding-top: 20px;
 }
 
-.user-list li:last-child {
-    margin-bottom: 0;
-}
-
-.user-list li p.item-link {
-    background-color: var(--primary-color);
-    color: white;
-    width: 100%;
-    height: 50px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 10px;
-    margin: 0;
-    border-radius: 10px;
-    font-size: 1em;
+.delete-account {
+    width: 150px;
+    height: 30px;
     cursor: pointer;
-    transition: background-color 0.3s ease, color 0.3s ease;
+    display: flex;
+    align-items: center;
+    background: red;
+    border: none;
+    border-radius: 5px;
+    box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.15);
+    background: #e62222;
+    align-self: flex-end;
 }
 
-.user-list li p.item-link:hover {
-    background-color: var(--primary-hover-color);
+.delete-account,
+.delete-account span {
+    transition: 200ms;
 }
 
-.user-list li p.item-link:active {
-    background-color: var(--primary-active-color);
+.delete-account .text {
+    transform: translateX(7px);
+    color: white;
+    font-weight: bold;
+    align-self: center;
+    justify-self: flex-start;
 }
 
-.user-list li p.item-link:focus {
-    outline: 2px dashed var(--primary-color);
-    outline-offset: 2px;
+.delete-account .icon {
+    position: absolute;
+    border-left: 1px solid #c41b1b;
+    transform: translateX(110px);
+    height: 30px;
+    width: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
-.item-link {
-            background-color: var(--primary-color);
-            border: 1px solid var(--border-color);
-            padding: 10px 20px;
-            margin: 5px 0;
-            display: block;
-            width: 200px;
-            text-align: center;
-            text-decoration: none;
-            color: white;
-            border-radius: 5px;
-            transition: background-color 0.3s ease;
-        }
+.delete-account svg {
+    width: 15px;
+    fill: #eee;
+}
 
-        .item-link:hover {
-            background-color: var(--primary-hover-color);
-        }
+.delete-account:hover {
+    background: #ff3636;
+}
 
-.item-link:focus {
+.delete-account:hover .text {
+    color: transparent;
+}
+
+.delete-account:hover .icon {
+    width: 150px;
+    border-left: none;
+    transform: translateX(-5px);
+}
+
+.delete-account:focus {
     outline: none;
 }
 
-.user-list {
-    list-style-type: none;
-    padding: 0;
-}
-
-.container {
-    max-width: 600px;
-    margin: 0 auto;
+.delete-account:active .icon svg {
+    transform: scale(0.8);
 }

@@ -15,19 +15,18 @@ $items = Item::getAllItemsFromDatabase($db);
     <link rel="stylesheet" type="text/css" href="../style/management.css">
 </head>
 <body class="item-mng-body">
-<div class="container">
+
     <h1>Item List</h1>
 
     <?php if (!empty($items)): ?>
-        <ul class="user-list">
+        <ul class="item-list">
             <?php foreach ($items as $item): ?>
                 <form action="edit_item.php" method="post">
                     <input type="hidden" name="data" value="<?= htmlspecialchars(json_encode($item)) ?>">
-                    <li><button type="submit" class="item-link"><?= htmlspecialchars($item->itemName) ?></button></li>
+                    <li class="item-list"><button type="submit" class="item-link"><?= htmlspecialchars($item->itemName) ?></button></li>
                 </form>
             <?php endforeach; ?>
         </ul>
-            </div>
     <?php else: ?>
         <p>No items found.</p>
     <?php endif; ?>

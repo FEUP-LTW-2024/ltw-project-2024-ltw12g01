@@ -146,7 +146,7 @@ function drawProfile(User $user, Session $session): void {
 
 
 <?php function drawRegisterForm($session) { ?>
-  <link rel="stylesheet" href="../style/register.css">
+  <link rel="stylesheet" href="../style/login.css">
   <form action="../actions/action_register.php" method="post" class="login-form"> 
     <div class="form-group">
       <label for="username">Username</label>

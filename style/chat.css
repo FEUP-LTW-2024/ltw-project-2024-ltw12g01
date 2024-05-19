@@ -1,32 +1,121 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap');
-
-html{
+body {
     font-family: 'Roboto', sans-serif;
+    background-color: #f4f4f9;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
-/* Chat container */
-.chat-container {
-    width: 100%;
-    max-width: 600px;
-    margin: 0 auto;
-    padding: 20px;
-    box-sizing: border-box;
+h1 {
+    color: #333;
+    margin: 70px 0;
 }
 
-/* Individual chat messages */
-.chat-message {
+#chat-messages {
+    width: 80%;
+    max-width: 800px;
+    height: 700px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    background-color: #fff;
+    overflow-y: scroll;
+    padding: 30px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
     margin-bottom: 20px;
+}
+
+/* Message styles */
+.message {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 10px;
     padding: 10px;
+    border-radius: 10px;
+}
+
+.message.sender {
+    background-color: #d1ecf1; /* Light blue for sender */
+    align-self: flex-start;
+}
+
+.message.receiver {
+    background-color: #f8d7da; /* Light red for receiver */
+    align-self: flex-end;
+}
+
+.message .sender-name {
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.message .timestamp {
+    font-size: 0.8em;
+    color: #999;
+    margin-bottom: 5px;
+}
+
+.message .content {
+    font-size: 1em;
+}
+
+/* Form styles */
+form {
+    width: 80%;
+    max-width: 850px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 20px; /* Added margin-bottom for spacing between forms */
+    box-sizing: border-box; /* Ensure padding and border are included in the width */
+}
+
+form textarea, form input[type="number"], form button {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
     border-radius: 5px;
-    background-color: #f0f0f0;
+    resize: none;
+    box-sizing: border-box; /* Ensure padding and border are included in the width */
 }
 
-/* Chat message from the user */
-.chat-message.user {
-    background-color: #d0f0d0;
+form textarea {
+    height: 100px; /* Increased height for the message input box */
 }
 
-/* Chat message from the other person */
-.chat-message.other {
-    background-color: #f0d0d0;
+form button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.3s;
+    margin-top: 10px; /* Added margin-top for spacing between input fields and button */
+}
+
+form button:hover {
+    background-color: #0056b3;
+    transform: translateY(-2px);
+}
+
+/* Add-to-cart button */
+#add-to-cart-submit {
+    background-color: #28a745;
+}
+
+#add-to-cart-submit:hover {
+    background-color: #218838;
+}
+
+/* Media queries for responsiveness */
+@media (max-width: 600px) {
+    #chat-messages {
+        width: 95%;
+    }
+
+    form {
+        width: 95%;
+    }
 }
