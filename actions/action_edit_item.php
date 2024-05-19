@@ -24,7 +24,7 @@ $itemCategory = htmlentities($_POST['ItemCategory'] ?? '');
 $itemPrice = (int)$_POST['ItemPrice'] ?? '';
 $itemCondition = htmlentities($_POST['ItemCondition'] ?? '');
 $itemSize = htmlentities($_POST['ItemSize'] ?? '');
-$itemImage = htmlentities($_POST['ItemImage'] ?? '');
+$itemImage = $_POST['ItemImage'] ?? '';
 
 
 $success = Item::updateItem($db, $itemId, $itemName, $itemBrand, $itemOwner, $itemDescription, $itemCategory, $itemPrice, $itemCondition, $itemSize);

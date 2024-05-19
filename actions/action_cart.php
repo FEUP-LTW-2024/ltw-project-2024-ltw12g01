@@ -7,7 +7,7 @@ require_once(__DIR__ . '/../session/session.php');
 $session = new Session();
 
 if (isset($_POST['item_json'])) {
-    $item_data = json_decode(htmlentities($_POST['item_json']), true);
+    $item_data = json_decode($_POST['item_json'], true);
 
     if (isset($_POST['last_suggested_price'])) {
         $itemPrice = (int)htmlentities($_POST['last_suggested_price']);

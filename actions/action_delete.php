@@ -14,8 +14,8 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST['item_id'])) {
         header('Location: ' . $_SERVER['HTTP_REFERER']);
         exit();
     } 
-    $itemId = (int)htmlentities($_POST['item_id']);
-    $imageURL = "../uploads/" . htmlentities($_POST['item_image']);
+    $itemId = (int)$_POST['item_id'];
+    $imageURL = "../uploads/" . $_POST['item_image'];
 
     $db = getDatabaseConnection();
 
