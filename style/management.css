@@ -145,3 +145,12 @@ body {
 .delete-account:active .icon svg {
     transform: scale(0.8);
 }
+
+.a-usermng{
+    padding: 10px;
+    border-radius: 10px;
+    background-color: #cee8ff;
+}
+.a-usermng:hover{
+    background-color: #b7ddff;
+}

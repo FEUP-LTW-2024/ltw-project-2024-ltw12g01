@@ -30,7 +30,6 @@ if ($currentUserId !== null) {
 
 
     <h1 id="user-mng">User List</h1>
-
     <?php if (!empty($users)) : ?>
         <ul class="user-list">
             <?php foreach ($users as $user) : ?>
