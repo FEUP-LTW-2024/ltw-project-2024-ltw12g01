@@ -26,9 +26,10 @@
 
 ## Screenshots
 
-
-
-(2 or 3 screenshots of your website)
+![Index Page Screenshot](screenshots/screen1.png)
+![Chat Seller-Side](screenshots/chat_seller.png)
+![Chat Buyer-Side](screenshots/chat_buyer.png)
+![Cart Page](screenshots/cart.png)
 
 
 ## Important Topics
