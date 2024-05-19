@@ -59,11 +59,13 @@ header form input {
     top: 100%; 
     left: 0;
     width: 100%; 
+    max-height: 20rem;
     background-color: #fff;
     border: 1px solid #ddd;
     border-top: none; 
     border-radius: 0 0 4px 4px; 
     z-index: 1000; 
+    overflow-y: scroll
 }
 
 header form button {
