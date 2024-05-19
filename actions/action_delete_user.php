@@ -23,6 +23,7 @@ if (isset($_POST['userId'])) {
 
     $deleted = User::deleteUser($db, $userId);
 
+    $session->logout();
 
     header("Location: ../index.php");
     exit();
