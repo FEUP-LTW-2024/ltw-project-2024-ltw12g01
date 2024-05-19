@@ -13,7 +13,7 @@ if (isset($_POST['userId'])) {
 
     $username = User::getUsernameById($db, $userId);
 
-    $items = Item::getItemsFromItemOwner($db, $username);
+    $items = Item::getItemsFromItemOwner($db, $username, $userId);
 
     foreach ($items as $item) {
         $success = Item::deleteItem($db, $item->id);

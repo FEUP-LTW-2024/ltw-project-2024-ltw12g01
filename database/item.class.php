@@ -282,9 +282,9 @@ class Item {
         return $items;
     }
 
-    static public function getItemsFromItemOwner(PDO $db, string $itemOwner): array {
-        $stmt = $db->prepare('SELECT ItemId, ItemName, ItemBrand, ItemDescription, ItemPrice, ItemOwner, ItemCategory, ItemImage, ItemSize, ItemCondition FROM Item WHERE ItemOwner = ?');
-        $stmt->execute(array($itemOwner));
+    static public function getItemsFromItemOwner(PDO $db, string $itemOwner, int $itemOwnerId): array {
+        $stmt = $db->prepare('SELECT ItemId, ItemName, ItemBrand, ItemDescription, ItemPrice, ItemOwner, ItemCategory, ItemImage, ItemSize, ItemCondition FROM Item WHERE ItemOwner = ? or ItemOwner = ?');
+        $stmt->execute(array($itemOwner, $itemOwnerId));
     
         $items = array();
         while ($item = $stmt->fetchObject()) {
