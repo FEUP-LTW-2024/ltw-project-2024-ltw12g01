@@ -16,6 +16,7 @@ if ($user) {
         ?>
         <link rel="stylesheet" type="text/css" href="../style/payment.css">
         <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
+        <div class="payment-container">
             <label for="paymentMethod">Payment Method:</label>
             <select name="paymentMethod">
                 <option value="credit_card" <?php echo ($user->paymentMethod === 'credit_card') ? 'selected' : ''; ?>>Credit Card</option>
@@ -27,6 +28,7 @@ if ($user) {
             <textarea name="paymentInfo" cols="30" rows="10"><?php echo $user->paymentInfo; ?></textarea>
             <br>
             <input type="submit" name="submit" value="Update Payment Information">
+            </div>
         </form>
         <?php
     } else {

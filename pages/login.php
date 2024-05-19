@@ -6,8 +6,10 @@
 
 <main>
   <section class="login-section">
+  <div class="login-container">
     <h2>Login</h2>
     <?php drawLoginForm($session); ?>
+    </div>
   </section>
 </main>
 

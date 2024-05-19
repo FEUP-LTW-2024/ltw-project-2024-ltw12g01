@@ -14,8 +14,10 @@
 ?>
 <main>
   <section class="login-section">
+    <div class="register-container">
     <h2>Register</h2>
     <?php drawRegisterForm($session); ?>
+    </div>
   </section>
 </main>
 <?php
