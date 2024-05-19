@@ -1,6 +1,6 @@
 <?php 
 declare(strict_types = 1);
-$name = "VinhoTinted";
+$name = "SneakerCycle";
 
 require_once(__DIR__ . '/../session/session.php');
 
