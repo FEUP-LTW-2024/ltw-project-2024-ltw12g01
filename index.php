@@ -29,7 +29,6 @@
     
     drawHeader($session,true);
     drawItems($items);
-    drawPagination($pagination);
     drawFooter();
     exit();
 
