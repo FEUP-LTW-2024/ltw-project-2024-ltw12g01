@@ -36,7 +36,7 @@ try {
 
             $imageURL = "../uploads/" . $item->ItemImage;
             unlink($imageURL);
-            $result = Conversation::deleteConversationByItemId($item->id);
+            $result = Conversation::deleteConversationByItemId($db,$item->id);
             Item::deleteItem($db, $item->id);
         }
 

@@ -6,6 +6,8 @@ require_once(__DIR__ . '/../database/user.class.php');
 require_once(__DIR__ . '/../database/item.class.php');
 require_once(__DIR__ . '/../session/session.php');
 
+$session = new Session();
+
 if (isset($_POST['userId'])) {
 
 
