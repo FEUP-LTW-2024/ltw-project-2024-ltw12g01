@@ -39,7 +39,7 @@ class Conversation {
     }
     static public function deleteConversationByuserId(PDO $db, $userId) {
         $stmt = $db->prepare('DELETE FROM Chat WHERE SenderId = :userId OR ReceiverId = :userId');
-        $stmt->bindParam(':itemId', $userId);
+        $stmt->bindParam(':userId', $userId);
         $stmt->execute();
     
         if ($stmt->rowCount() > 0) {
