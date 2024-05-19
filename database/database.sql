@@ -92,7 +92,7 @@ CREATE TABLE Message (
 INSERT INTO User (UserName, Email, UserType, UserPassword, PaymentMethod, PaymentInfo)
 VALUES
 ('JohnDoe', 'johndoe@example.com', 'buyer/seller', '$2y$08$srXBNaOn/wVHuPPgSUM3U.I2e8b8DNIpltA8jUzAbKCbLVHk1DO2e', 'Credit Card', '4111111111111111'),
-('JaneSmith', 'janesmith@example.com', 'seller', '$2y$08$srXBNaOn/wVHuPPgSUM3U.I2e8b8DNIpltA8jUzAbKCbLVHk1DO2e', 'PayPal', 'janesmith@paypal.com'),
+('JaneSmith', 'janesmith@example.com', 'buyer/seller', '$2y$08$srXBNaOn/wVHuPPgSUM3U.I2e8b8DNIpltA8jUzAbKCbLVHk1DO2e', 'PayPal', 'janesmith@paypal.com'),
 ('MikeJohnson', 'mikejohnson@example.com', 'buyer/seller', '$2y$08$srXBNaOn/wVHuPPgSUM3U.I2e8b8DNIpltA8jUzAbKCbLVHk1DO2e', 'Credit Card', '4222222222222222'),
 ('EmilyDavis', 'emilydavis@example.com', 'buyer/seller', '$2y$08$srXBNaOn/wVHuPPgSUM3U.I2e8b8DNIpltA8jUzAbKCbLVHk1DO2e', NULL, NULL),
 ('ChrisBrown', 'chrisbrown@example.com', 'buyer', '$2y$08$srXBNaOn/wVHuPPgSUM3U.I2e8b8DNIpltA8jUzAbKCbLVHk1DO2e', 'Debit Card', '4333333333333333'),
@@ -115,4 +115,9 @@ VALUES
 ('Nike', 'Nike Dunk', 80, 7, '../uploads/sneakersNikeDunk.png', 'Casuais', 'Male', 'Good', '45'),
 ('Sanjo', 'Sanjo Amarelas', 62, 4, '../uploads/sneakersYellowSanjo.jpg', 'Nunca usadas', 'Women', 'Very Good', '40'),
 ('Sanjo', 'Navy Sanjo', 45, 3, '../uploads/sneakersNavySanjo.jpg', 'Nunca usadas', 'Kids', 'New without tags', '36'),
-('Adidas', 'Adidas Samba', 62, 8, '../uploads/sneakersSamba.png', 'Nunca usadas', 'Kids', 'New without tags', '36');
+('Adidas', 'Adidas Samba', 62, 8, '../uploads/sneakersSamba.png', 'Nunca usadas', 'Women', 'New without tags', '36'),
+('Ralph Lauren', 'Sapatilha Ralph Lauren', 120, 3, '../uploads/sneakersRalphLauren.jpg', 'Novas com Etiqueta.', 'Men', 'New with tags', '45'),
+('Asics', 'Asics Japan', 80, 6, '../uploads/sneakersAsics.jpg', 'Novas, com caixa.', 'Women', 'New with tags', '37'),
+('Adidas', 'Adidas Gazelle Pink', 50, 2, '../uploads/sneakersGazelle.jpg', 'Usadas, mas em bom estado.', 'Women', 'Good', '36'),
+('Adidas', 'Adidas Gazelle Black', 80, 2, '../uploads/sneakersGazelle2.jpg', 'Novas, bastante confortáveis', 'Women', 'New without tags', '36'),
+('Christian Louboutin', 'Louboutin Seavast 2', 850, 1, '../uploads/sneakersLouboutin.jpg', 'Authentic.', 'Men', 'New without tags', '42');

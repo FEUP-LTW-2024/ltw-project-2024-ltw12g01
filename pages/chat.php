@@ -32,7 +32,10 @@ $messages = Message::getMessagesForChat($db, $chat_id,$item_id);
 
 $item = Item::getItem($db, (int)$item_id);
 
-$item_owner_id = User::getUserIdByUsername($db,$item->itemOwner);
+if(!is_numeric($item->itemOwner)){
+    $item_owner_id = User::getUserIdByUsername($db,$item->itemOwner);
+}
+$item_owner_id = $item->itemOwner;
 
 $is_item_owner = ($sender_id == $item_owner_id);
 

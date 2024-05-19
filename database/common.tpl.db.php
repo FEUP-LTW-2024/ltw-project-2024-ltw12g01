@@ -3,9 +3,7 @@
 
     function getNumberOfItems(PDO $db): int {
         try {
-            $stmt = $db->prepare("SELECT COUNT(*)
-                                FROM sqlite_master
-                                WHERE type='table' AND name='Item'");
+            $stmt = $db->prepare("SELECT COUNT(*) FROM Item");
             $stmt->execute();
             $result = $stmt->fetchColumn(); 
             return (int) $result; 

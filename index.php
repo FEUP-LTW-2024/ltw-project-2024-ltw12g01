@@ -16,7 +16,6 @@
     exit();
   }
   $pagination = new Pagination($numberItems);
-
   if (isset($_GET['page']) && is_numeric($_GET['page'])) {
     $pagination->setCurrentPage(intval($_GET['page']));
   }else{
