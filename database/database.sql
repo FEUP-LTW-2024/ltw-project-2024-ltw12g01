@@ -135,96 +135,55 @@ VALUES
 ('Merrell', 'Merrell Trail Running Shoes', 110, 1, '../uploads/merrel2.jpg', 'Sturdy and supportive trail running shoes from Merrell.', 'Kids', 'Good', '45'),
 ('Merrell', 'Merrell Hiking Boots', 140, 5, '../uploads/merrel1.jpg', 'Reliable and comfortable hiking boots from Merrell.', 'Male', 'New with tags', '44');
 
-
 INSERT INTO Chat (ItemId, SenderId, ReceiverId, LastSuggestedPrice)
-VALUES (1, 1, 2, 65.00); 
+VALUES
+(1, 2, 3, 65.00),   -- JaneSmith (seller) and AmandaWilson (buyer) discussing Wilson Pro Staff
+(2, 6, 7, 50.00),   -- AmandaWilson (seller) and DavidMartinez (buyer) discussing Sapatilhas em Couro
+(3, 7, 8, 75.00),   -- DavidMartinez (seller) and SarahLee (buyer) discussing Nike Dunk
+(4, 1, 2, 820.00),  -- JohnDoe (seller) and JaneSmith (buyer) discussing Louboutin Seavast 2
+(5, 4, 6, 58.00),   -- EmilyDavis (seller) and AmandaWilson (buyer) discussing Sanjo Amarelas
+(6, 3, 1, 40.00),   -- MikeJohnson (seller) and JohnDoe (buyer) discussing Navy Sanjo
+(7, 8, 3, 60.00),   -- SarahLee (seller) and MikeJohnson (buyer) discussing Adidas Samba
+(8, 3, 2, 110.00);  -- MikeJohnson (seller) and JaneSmith (buyer) discussing Sapatilha Ralph Lauren
 
 INSERT INTO Message (ChatId, SenderId, ReceiverId, Content)
 VALUES
-    (1, 1, 2, 'Hi Jane, I''m interested in your items.'),
-    (1, 2, 1, 'Hello John, sure, what items are you interested in?');
+(1, 2, 3, 'Hi, is the Wilson Pro Staff still available?'),
+(1, 3, 2, 'Yes, it is available. Would you like to make an offer?'),
+(1, 2, 3, 'How about $65?'),
+(1, 3, 2, 'That sounds good. Let’s proceed with the transaction.'),
 
-INSERT INTO Chat (ItemId, SenderId, ReceiverId, LastSuggestedPrice)
-VALUES (2, 2, 3, 50.00); 
+(2, 6, 7, 'Hello, I am interested in the Sapatilhas em Couro.'),
+(2, 7, 6, 'Great choice! They are very comfortable.'),
+(2, 6, 7, 'Would you accept $50 for them?'),
+(2, 7, 6, 'Sure, $50 works for me.'),
 
-INSERT INTO Message (ChatId, SenderId, ReceiverId, Content)
-VALUES
-    (2, 2, 3, 'Hi Mike, I saw your items and I''m interested.'),
-    (2, 3, 2, 'Hi Jane, thanks for your interest. Which items caught your eye?');
+(3, 7, 8, 'Hi, are the Nike Dunk shoes still up for sale?'),
+(3, 8, 7, 'Yes, they are.'),
+(3, 7, 8, 'Can you do $75 for them?'),
+(3, 8, 7, 'Yes, $75 is acceptable.'),
 
-INSERT INTO Chat (ItemId, SenderId, ReceiverId, LastSuggestedPrice)
-VALUES (3, 3, 6, 60.00); 
+(4, 1, 2, 'I am interested in the Louboutin Seavast 2.'),
+(4, 2, 1, 'They are authentic and in great condition.'),
+(4, 1, 2, 'Can we agree on $820?'),
+(4, 2, 1, 'That works for me. Let’s finalize it.'),
 
-INSERT INTO Message (ChatId, SenderId, ReceiverId, Content)
-VALUES
-    (3, 3, 6, 'Hi Amanda, I''m interested in your items.'),
-    (3, 6, 3, 'Hello Mike, sure, which items are you interested in?');
+(5, 4, 6, 'Are the Sanjo Amarelas still available?'),
+(5, 6, 4, 'Yes, they are new and never used.'),
+(5, 4, 6, 'Will you take $58 for them?'),
+(5, 6, 4, 'Yes, that sounds fair.'),
 
-INSERT INTO Chat (ItemId, SenderId, ReceiverId, LastSuggestedPrice)
-VALUES (4, 4, 8, 115.00); 
+(6, 3, 1, 'Hi, I am interested in the Navy Sanjo shoes.'),
+(6, 1, 3, 'They are still available.'),
+(6, 3, 1, 'How about $40 for them?'),
+(6, 1, 3, 'Deal! Let’s proceed.'),
 
-INSERT INTO Message (ChatId, SenderId, ReceiverId, Content)
-VALUES
-    (4, 4, 8, 'Hi Sarah, I''m interested in your items.'),
-    (4, 8, 4, 'Hello Emily, sure, which items are you interested in?');
+(7, 8, 3, 'Is the Adidas Samba still available?'),
+(7, 3, 8, 'Yes, they are brand new.'),
+(7, 8, 3, 'Would you accept $60?'),
+(7, 3, 8, 'Sure, $60 is fine.'),
 
-INSERT INTO Chat (ItemId, SenderId, ReceiverId, LastSuggestedPrice)
-VALUES (5, 5, 7, 75.00); 
-
-INSERT INTO Message (ChatId, SenderId, ReceiverId, Content)
-VALUES
-    (5, 5, 7, 'Hi David, I''m interested in your items.'),
-    (5, 7, 5, 'Hello Chris, which items caught your interest?');
-
-INSERT INTO Chat (ItemId, SenderId, ReceiverId, LastSuggestedPrice)
-VALUES (6, 10, 11, 0.00); 
-
-INSERT INTO Message (ChatId, SenderId, ReceiverId, Content)
-VALUES
-    (6, 10, 11, 'Hi Rebelo, I''m interested in your items.'),
-    (6, 11, 10, 'Hello Laura, sure, which items are you interested in?');
-
-INSERT INTO Chat (ItemId, SenderId, ReceiverId, LastSuggestedPrice)
-VALUES (7, 10, 1, 60.00); 
-
-INSERT INTO Message (ChatId, SenderId, ReceiverId, Content)
-VALUES
-    (7, 10, 1, 'Hi John, I''m interested in your items.'),
-    (7, 1, 10, 'Hello Laura, sure, what items are you interested in?');
-
-INSERT INTO Chat (ItemId, SenderId, ReceiverId, LastSuggestedPrice)
-VALUES (8, 6, 9, 70.00); 
-
-INSERT INTO Message (ChatId, SenderId, ReceiverId, Content)
-VALUES
-    (8, 6, 9, 'Hi Paul, I''m interested in your items.'),
-    (8, 9, 6, 'Hello Amanda, which items caught your interest?');
-
-INSERT INTO Chat (ItemId, SenderId, ReceiverId, LastSuggestedPrice)
-VALUES (9, 12, 13, 0.00); 
-
-INSERT INTO Message (ChatId, SenderId, ReceiverId, Content)
-VALUES
-    (9, 12, 13, 'Hi Tiago, I''m interested in your items.'),
-    (9, 13, 12, 'Hello Carlos, sure, what items are you interested in?');
-
-INSERT INTO Chat (ItemId, SenderId, ReceiverId, LastSuggestedPrice)
-VALUES 
-    (10, 8, 5, 130.00), 
-    (11, 7, 2, 95.00),  
-    (12, 3, 9, 850.00), 
-    (13, 6, 12, 35.00), 
-    (14, 10, 3, 105.00); 
-
-INSERT INTO Message (ChatId, SenderId, ReceiverId, Content)
-VALUES
-    (10, 8, 5, 'Hi Paul, I noticed you have Merrell Trail Running Shoes listed. I''m interested.'),
-    (10, 5, 8, 'Hello David, yes, I have them available. Would you like more information?'),
-    (11, 7, 2, 'Hi Sarah, I''m eyeing your Puma Classic Sneakers Red. Are they still available?'),
-    (11, 2, 7, 'Hello Mike, yes, they are still available. Would you like to discuss the price?'),
-    (12, 3, 9, 'Hi Amanda, I''m interested in your Hermes Low-Top Sneakers Black.'),
-    (12, 9, 3, 'Hello Emily, sure, let''s discuss the details.'),
-    (13, 6, 12, 'Hi Amanda, I''m considering purchasing your Quechua Backpack.'),
-    (13, 12, 6, 'Hello Laura, great! It''s a durable backpack perfect for hiking. Would you like more photos?'),
-    (14, 10, 3, 'Hi Amanda, your Puma Running Shoes Blue caught my eye. Are they still available?'),
-    (14, 3, 10, 'Hello Mike, yes, they''re still available. I can offer you a discount if you''re interested.');
+(8, 3, 2, 'Hi, I am interested in the Ralph Lauren sneakers.'),
+(8, 2, 3, 'They are new with tags.'),
+(8, 3, 2, 'Would you sell them for $110?'),
+(8, 2, 3, 'Yes, $110 works for me.');
