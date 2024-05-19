@@ -6,26 +6,27 @@ require_once(__DIR__ . '/../database/message.class.php');
 $db = getDatabaseConnection();
 
 $chatId = $_GET['chat_id'];
+$item_id = $_GET['item_id'];
 
-if (!isset($chatId)) {
+if (!isset($chatId) || !isset($item_id)) {
     echo json_encode([]);
     exit();
 }
 
-$messages = Message::getMessagesForChat($db, $chatId);
+$messages = Message::getMessagesForChat($db, $chatId, $item_id);
 
 $formattedMessages = [];
 foreach ($messages as $message) {
-    $senderUsername = User::getUsernameById($db, $message->getSenderId());
+    $senderUsername = User::getUsernameById($db, $message->getSenderId()); 
     
     $formattedMessages[] = [
-        'messageId' => $message->getMessageId(),
-        'chatId' => $message->getChatId(),
-        'senderId' => $message->getSenderId(),
-        'receiverId' => $message->getReceiverId(),
+        'messageId' => $message->getMessageId(), 
+        'chatId' => $message->getChatId(), 
+        'senderId' => $message->getSenderId(), 
+        'receiverId' => $message->getReceiverId(), 
         'senderUsername' => $senderUsername, 
-        'content' => $message->getContent(),
-        'timestamp' => $message->getTimestamp()
+        'content' => $message->getContent(), 
+        'timestamp' => $message->getTimestamp() 
     ];
 }
 

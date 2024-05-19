@@ -11,7 +11,13 @@ $db = getDatabaseConnection();
 $item = Item::getItem($db, intval($_GET['id']));
 
 drawHeader($session, true); 
-drawItem($item, $session); 
+if (is_numeric($item->itemOwner)) {
+    $itemOwnerId = $item->itemOwner;
+    $item->itemOwner = User::getUsernameById($db, $item->itemOwner);
+}else{
+    $itemOwnerId = User::getIdfromUsername($db, $item->itemOwner);
+}
+drawItem($item, $session, $itemOwnerId); 
 drawFooter(); 
 
 ?>

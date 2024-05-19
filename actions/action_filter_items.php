@@ -25,7 +25,6 @@ if(!empty($condition)){
 
 
 $filteredItems = Item::filterItems($db, $minSize, $maxSize, $minPrice, $maxPrice, $categories, $condition);
-
 drawItems($filteredItems);
 
 ?>

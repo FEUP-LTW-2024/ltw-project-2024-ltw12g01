@@ -89,3 +89,30 @@ CREATE TABLE Message (
     FOREIGN KEY (ReceiverId) REFERENCES User(UserId)
 );
 
+INSERT INTO User (UserName, Email, UserType, UserPassword, PaymentMethod, PaymentInfo)
+VALUES
+('JohnDoe', 'johndoe@example.com', 'buyer/seller', '$2y$08$srXBNaOn/wVHuPPgSUM3U.I2e8b8DNIpltA8jUzAbKCbLVHk1DO2e', 'Credit Card', '4111111111111111'),
+('JaneSmith', 'janesmith@example.com', 'seller', '$2y$08$srXBNaOn/wVHuPPgSUM3U.I2e8b8DNIpltA8jUzAbKCbLVHk1DO2e', 'PayPal', 'janesmith@paypal.com'),
+('MikeJohnson', 'mikejohnson@example.com', 'buyer/seller', '$2y$08$srXBNaOn/wVHuPPgSUM3U.I2e8b8DNIpltA8jUzAbKCbLVHk1DO2e', 'Credit Card', '4222222222222222'),
+('EmilyDavis', 'emilydavis@example.com', 'buyer/seller', '$2y$08$srXBNaOn/wVHuPPgSUM3U.I2e8b8DNIpltA8jUzAbKCbLVHk1DO2e', NULL, NULL),
+('ChrisBrown', 'chrisbrown@example.com', 'buyer', '$2y$08$srXBNaOn/wVHuPPgSUM3U.I2e8b8DNIpltA8jUzAbKCbLVHk1DO2e', 'Debit Card', '4333333333333333'),
+('AmandaWilson', 'amandawilson@example.com', 'buyer/seller', '$2y$08$srXBNaOn/wVHuPPgSUM3U.I2e8b8DNIpltA8jUzAbKCbLVHk1DO2e', 'PayPal', 'amandawilson@paypal.com'),
+('DavidMartinez', 'davidmartinez@example.com', 'buyer/seller', '$2y$08$srXBNaOn/wVHuPPgSUM3U.I2e8b8DNIpltA8jUzAbKCbLVHk1DO2e', 'Credit Card', '4444444444444444'),
+('SarahLee', 'sarahlee@example.com', 'buyer/seller', '$2y$08$srXBNaOn/wVHuPPgSUM3U.I2e8b8DNIpltA8jUzAbKCbLVHk1DO2e', 'Credit Card', '4555555555555555'),
+('PaulWalker', 'paulwalker@example.com', 'buyer', '$2y$08$srXBNaOn/wVHuPPgSUM3U.I2e8b8DNIpltA8jUzAbKCbLVHk1DO2e', NULL, NULL),
+('LauraMoore', 'lauramoore@example.com', 'buyer', '$2y$08$srXBNaOn/wVHuPPgSUM3U.I2e8b8DNIpltA8jUzAbKCbLVHk1DO2e', 'Debit Card', '4666666666666666'),
+('Rebelo', 'rebelo@example.com', 'admin', '$2y$08$srXBNaOn/wVHuPPgSUM3U.I2e8b8DNIpltA8jUzAbKCbLVHk1DO2e', NULL, NULL),
+('Carlos', 'carlos@example.com', 'admin', '$2y$08$srXBNaOn/wVHuPPgSUM3U.I2e8b8DNIpltA8jUzAbKCbLVHk1DO2e', NULL, NULL),
+('Tiago' , 'tiago@example.com', 'admin', '$2y$08$srXBNaOn/wVHuPPgSUM3U.I2e8b8DNIpltA8jUzAbKCbLVHk1DO2e', NULL, NULL);
+
+
+INSERT INTO Item (ItemBrand, ItemName, ItemPrice, ItemOwner, ItemImage, ItemDescription, ItemCategory, ItemCondition, ItemSize)
+VALUES
+('Wilson', 'Wilson Pro Staff Court tennis shoes White', 70, 2, '../uploads/sneakersWilson.png', 'Sapatilhas usadas para ténis', 'Male', 'Good', '42'),
+('Sanjo', 'Sapatilhas em Couro', 55, 6, '../uploads/sneakersLeather.jpeg', 'Sapatilhas em Couro bastante confortáveis', 'Male', 'Very Good', '44'),
+('Nike', 'Dunk Low', 100, 7, '../uploads/sneakersDunkLow.jpg', 'Sapatilhas confortáveis', 'Male', 'Very Good', '41'),
+('Adidas', 'Adidas Azuis', 25, 6, '../uploads/sneakersBlueAdidas.jpg', 'Muito uso', 'Kids', 'Bad', '36'),
+('Nike', 'Nike Dunk', 80, 7, '../uploads/sneakersNikeDunk.png', 'Casuais', 'Male', 'Good', '45'),
+('Sanjo', 'Sanjo Amarelas', 62, 4, '../uploads/sneakersYellowSanjo.jpg', 'Nunca usadas', 'Women', 'Very Good', '40'),
+('Sanjo', 'Navy Sanjo', 45, 3, '../uploads/sneakersNavySanjo.jpg', 'Nunca usadas', 'Kids', 'New without tags', '36'),
+('Adidas', 'Adidas Samba', 62, 8, '../uploads/sneakersSamba.png', 'Nunca usadas', 'Kids', 'New without tags', '36');

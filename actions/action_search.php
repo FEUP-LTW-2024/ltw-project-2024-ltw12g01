@@ -18,7 +18,7 @@ try {
     if (!empty($_POST['name'])) { 
         $itemName = $_POST['name'];
 
-        $results = Item::searchItems($db, $itemName, 1); // Need to handle if there are 2 items with the same name.
+        $results = Item::searchItems($db, $itemName, 1); 
         if (!empty($results)) {
             header('Location: ../pages/product.php?id=' . $results[0]->id);
             exit();

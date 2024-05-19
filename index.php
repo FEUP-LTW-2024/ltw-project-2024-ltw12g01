@@ -45,29 +45,3 @@
 
   }
 ?>
-
-<script>
-document.addEventListener('DOMContentLoaded', function() {
-    var filterForm = document.getElementById('filters-form');
-
-    filterForm.addEventListener('change', function() {
-        var formData = new FormData(filterForm);
-
-        var xhr = new XMLHttpRequest();
-        xhr.onreadystatechange = function() {
-            if (xhr.readyState === XMLHttpRequest.DONE) {
-                if (xhr.status === 200) {
-                    var itemsContainer = document.getElementById('products');
-                    itemsContainer.innerHTML = xhr.responseText;
-                } else {
-                    console.error('Error:', xhr.statusText);
-                }
-            }
-        };
-
-        xhr.open('POST', '../actions/action_filter_items.php', true);
-        xhr.send(formData);
-    });
-});
-
-</script>
