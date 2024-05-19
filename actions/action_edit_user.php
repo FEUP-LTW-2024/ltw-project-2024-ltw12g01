@@ -7,6 +7,12 @@ require_once(__DIR__ . '/../database/user.class.php');
 
 $session = new Session();
 $db = getDatabaseConnection();
+if ($session->getCSRF() !== $_POST['csrf']) {
+    $session->addMessage('Error:', 'Request does not appear to be legitimate');
+    sleep(10);
+    header('Location: ' . $_SERVER['HTTP_REFERER']);
+    exit();
+}
 
 $userId = isset($_POST['id']) ? (int)htmlentities($_POST['id']) : 0;
 $username = htmlentities($_POST['username']) ?? '';
