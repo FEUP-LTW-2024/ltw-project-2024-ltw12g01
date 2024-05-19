@@ -7,6 +7,7 @@ require_once(__DIR__ . '/../database/order.class.php');
 require_once(__DIR__ . '/../database/shipment.class.php');
 require_once(__DIR__ . '/../database/shipment_user.class.php');
 require_once(__DIR__ . '/../database/order_item.class.php');
+require_once(__DIR__ . '/../database/conversation.class.php');
 
 try {
     $session = new Session();
@@ -35,6 +36,7 @@ try {
 
             $imageURL = "../uploads/" . $item->ItemImage;
             unlink($imageURL);
+            $result = Conversation::deleteConversationByItemId($item->id);
             Item::deleteItem($db, $item->id);
         }
 

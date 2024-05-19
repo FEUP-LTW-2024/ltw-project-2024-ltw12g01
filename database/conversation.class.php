@@ -25,4 +25,17 @@ class Conversation {
 
         return $conversations;
     }
+
+    static public function deleteConversationByItemId(PDO $db, $itemId) {
+        $stmt = $db->prepare('DELETE FROM Chat WHERE ItemId = :itemId');
+        $stmt->bindParam(':itemId', $itemId);
+        $stmt->execute();
+    
+        if ($stmt->rowCount() > 0) {
+            return true; 
+        } else {
+            return false; 
+        }
+    }
+    
 }
