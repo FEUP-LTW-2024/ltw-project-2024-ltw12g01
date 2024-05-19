@@ -16,7 +16,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     } else {
 
         $email = User::getEmailByUsername($db, $session->getName());
-        $user = User::getUserWithPassword($db, $email, $_POST['old']);
+        $user = User::getUserWithPassword($db, $email, htmlentities($_POST['old']));
 
         if ($user->username !== $session->getName() || $user === null) {
             $session->addMessage('Password error', 'Current password Wrong!');

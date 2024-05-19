@@ -4,10 +4,10 @@ require_once(__DIR__ . '/../database/message.class.php');
 
 $db = getDatabaseConnection();
 
-$chat_id = $_POST['chat_id'];
-$sender_id = $_POST['sender_id'];
-$receiver_id = $_POST['receiver_id'];
-$content = $_POST['content'];
+$chat_id = htmlentities($_POST['chat_id']);
+$sender_id = htmlentities($_POST['sender_id']);
+$receiver_id = htmlentities($_POST['receiver_id']);
+$content = htmlentities($_POST['content']);
 
 Message::sendMessage($db, $chat_id, $sender_id, $receiver_id, $content, $content);
 

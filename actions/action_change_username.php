@@ -22,7 +22,7 @@
             require_once(__DIR__ . '/../database/user.class.php');
             
             $email = User::getEmailByUsername($db, $session->getName());
-            $user = User::getUserWithPassword($db, $email, $_POST['old_password']);
+            $user = User::getUserWithPassword($db, $email, htmlentities($_POST['old_password']));
 
             if($user->username !== $session->getName() || $user === null){
                 $session->addMessage('Password error', 'Current password Wrong!');
@@ -35,12 +35,12 @@
             $admin = (User::getUserTypeByUsername($db, $session->getName()) == 'admin');
     
             if ($admin) {
-                User::changePassword($db, $session->getName(), $_POST['new']);
+                User::changePassword($db, $session->getName(), htmlentities($_POST['new']));
             } elseif($_POST['new_username'] == $_POST['confirm_username']) {
                 $email = User::getEmailByUsername($db, $session->getName());
-                $user = User::getUserWithPassword($db, $email, $_POST['old_password']);
-                User::changerUsernameName($db, $session->getName(), $_POST['new_username']);
-                $session->setName($_POST['new_username']);
+                $user = User::getUserWithPassword($db, $email, htmlentities($_POST['old_password']));
+                User::changerUsernameName($db, $session->getName(), htmlentities($_POST['new_username']));
+                $session->setName(htmlentities($_POST['new_username']));
             }
         }
     }

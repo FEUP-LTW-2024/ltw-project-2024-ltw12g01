@@ -10,8 +10,8 @@ ini_set('display_errors', 1);
 
 $db = getDatabaseConnection();
 
-$chat_id = $_GET['chat_id'];
-$item_id = $_GET['item_id'];
+$chat_id = htmlentities($_GET['chat_id']);
+$item_id = htmlentities($_GET['item_id']);
 
 if (!isset($chat_id) || !isset($item_id)) {
     echo json_encode(['error' => 'Invalid parameters']);

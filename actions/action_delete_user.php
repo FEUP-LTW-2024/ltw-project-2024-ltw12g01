@@ -7,7 +7,7 @@ require_once(__DIR__ . '/../database/item.class.php');
 require_once(__DIR__ . '/../session/session.php');
 
 if (isset($_POST['userId'])) {
-    $userId = (int)$_POST['userId'];
+    $userId = (int)htmlentities($_POST['userId']);
 
     $db = getDatabaseConnection();
 

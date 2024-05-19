@@ -15,7 +15,7 @@ $db = getDatabaseConnection();
      exit();
  } 
 
- $itemId = isset($_POST['itemId']) ? (int)$_POST['itemId'] : 0;
+ $itemId = isset($_POST['itemId']) ? (int)htmlentities($_POST['itemId']) : 0;
 $itemName = htmlentities($_POST['ItemName'] ?? '');
 $itemBrand = htmlentities($_POST['ItemBrand'] ?? '');
 $itemOwner = htmlentities($_POST['ItemOwner'] ?? '');
