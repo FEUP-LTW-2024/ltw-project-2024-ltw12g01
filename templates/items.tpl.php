@@ -26,7 +26,7 @@
 <?php 
 function drawItem(Item $item, Session $session, int $itemOwnerId) { 
     $loggedInUserId = $session->getId();
-    $isOwner = ($loggedInUserId === $item->itemOwner);
+    $isOwner = ($loggedInUserId === $itemOwnerId);
 
 
     ?>
