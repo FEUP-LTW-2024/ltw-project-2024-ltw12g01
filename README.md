@@ -18,7 +18,7 @@
 
     git checkout final-delivery-v1
 
-    sqlite database/database.db < database/database.sql
+    sqlite3 database/database.db < database/database.sql
 
     php -S localhost:9000
 
