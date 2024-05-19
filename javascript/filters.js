@@ -1,8 +1,18 @@
 document.addEventListener('DOMContentLoaded', function() {
     var filterForm = document.getElementById('filters-form');
 
+    var pagination = document.getElementsByClassName("pagination");
+
     filterForm.addEventListener('change', function() {
         var formData = new FormData(filterForm);
+
+        for (var i = 0; i < pagination.length; i++) {
+            if(pagination[i].style.display == ""){
+                pagination[i].style.display = "none";
+            }else{
+                pagination[i].style.display = ""
+            }
+        }
 
         var xhr = new XMLHttpRequest();
         xhr.onreadystatechange = function() {
