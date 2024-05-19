@@ -52,13 +52,12 @@ while ($item = $stmt->fetch()) {
     </div>
     <form action="../actions/action_delete.php" method="post">
         <input type="hidden" name="item_id" value="<?= $item->id ?>">
-        <input type="hidden" name="item_image" value="<?= $imageURL ?>">
+        <input type="hidden" name="item_image" value="<?= $item->ItemImage ?>">
         <input type="hidden" name="csrf" value="<?=$session->getCSRF()?>">
         <button type="submit" class="remove-button">Remove</button>
     </form>
 </div>
-    <?php $imageURL = $item->getImageUrl(); ?>
-    <img class="item-image" src="<?= $imageURL ?>" alt="Item image">
+    <img class="item-image" src="<?= $item->ItemImage ?>" alt="Item image">
     
 </div>
 <?php endforeach; ?>

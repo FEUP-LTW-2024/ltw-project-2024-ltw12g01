@@ -7,12 +7,12 @@ require_once(__DIR__ . '/../session/session.php');
 $session = new Session();
 
 if (isset($_POST['item_json'])) {
-    $item_data = json_decode($_POST['item_json'], true);
+    $item_data = htmlentities(json_decode($_POST['item_json'], true));
 
     if (isset($_POST['last_suggested_price'])) {
-        $itemPrice = (int)$_POST['last_suggested_price'];
+        $itemPrice = htmlentities((int)$_POST['last_suggested_price']);
     } else {
-        $itemPrice = $item_data['itemPrice'];
+        $itemPrice = htmlentities($item_data['itemPrice']);
     }
 
     $item = new Item(
