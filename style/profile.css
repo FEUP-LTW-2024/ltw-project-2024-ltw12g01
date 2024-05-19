@@ -126,6 +126,7 @@ body {
     background: #00A6CF;
     background: linear-gradient(to right, #00A6CF 0%, #0056B3 39%);
     -webkit-background-clip: text;
+    background-clip: text;
     -webkit-text-fill-color: transparent;
 }
 
@@ -347,4 +348,18 @@ select:focus {
     padding: 15px;
     margin-bottom: 20px;
     border-radius: 4px;
+}
+
+#username{
+    padding: 0;
+    font-weight: bold;
+
+}
+#my-items{
+    display: flex;
+    justify-content: space-between; 
+}
+
+.b-div{
+    justify-content: flex-end;
 }

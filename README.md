@@ -14,39 +14,15 @@
 
 
 
-## Install Instructions
+## Install Instructionscom
 
-
-
-(adapt this)
-
-
-
-    git clone <your_repo_url>
+    git clone <git@github.com:FEUP-LTW-2024/ltw-project-2024-ltw12g01.git>
 
     git checkout final-delivery-v1
 
     sqlite database/database.db < database/script.sql
 
     php -S localhost:9000
-
-
-
-## External Libraries
-
-
-
-(you can remove this section if it doesn't apply to you)
-
-
-
-We have used the following external libraries:
-
-
-
-- Library 1
-
-- Library 2
 
 
 
@@ -57,6 +33,12 @@ We have used the following external libraries:
 (2 or 3 screenshots of your website)
 
 
+## Important Topics
+    For being easier to interact with all the features, we are evidianting some topics:
+#### Our user privelege system has 3 classes, buyer,  buyer/seller and admin.
+    -All users start being buyers only, when they list a product they, gain the status buyer/seller beign able to see and manage their posted products.
+    -Admins, can edit/delete posted products and edit/delete users information and status.
+    -All accounts have the same password ('@Password123')
 
 ## Implemented Features
 

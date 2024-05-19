@@ -47,12 +47,9 @@ function drawProfile(User $user, Session $session): void {
       </div>
       <?php if (($my_type === 'seller' || $my_type === 'buyer/seller') && $user->items_listed >= 1): ?>
       <div id="my-items">
-        <span id="username"><strong>My Items:</strong></span>
-        <div class="a-div">
-          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="#0056B3" class="bi bi-eye" viewBox="0 0 16 16">
-              <path d="M16 8s-3-5.333-8-5.333S0 8 0 8s3 5.333 8 5.333S16 8 16 8zm-8 4.667A4.667 4.667 0 1 1 8 3.333a4.667 4.667 0 0 1 0 9.334zm0-1.334a3.333 3.333 0 1 0 0-6.666 3.333 3.333 0 0 0 0 6.666z"/>
-          </svg>
-          <a id="a-items" href="user_items.php?username=<?= $user->name ?>">View my posted items!</a>
+        <span id="username">My Items:</span>
+        <div class="b-div">
+          <a id="a-items" href="user_items.php?username=<?= $user->name ?>"><i class="fa-solid fa-eye"></i>View my posted items</a>
         </div>
        </div>
        <?php endif; ?>
