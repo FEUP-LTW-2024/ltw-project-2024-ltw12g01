@@ -12,7 +12,7 @@
 
 
 
-## Install Instructionscom
+## Install Instructions
 
     git clone git@github.com:FEUP-LTW-2024/ltw-project-2024-ltw12g01.git
 
