@@ -22,7 +22,7 @@ function drawProfile(User $user, Session $session): void {
   <section id="profile-info">
       <div class="profile-container">
       <div id="profile-img">
-          <img src="../uploads/profilepick.png"></img>
+          <img src="../imgs/profilepick.png"></img>
       </div>
       <div class="info-container">
       <div id="profile-username">
@@ -45,7 +45,15 @@ function drawProfile(User $user, Session $session): void {
           <a id="a-email" href="change_email.php?username=<?= $user->username ?>">Change</a>
         </div>
       </div>
-      
+      <?php if (($my_type === 'seller' || $my_type === 'buyer/seller') && $user->items_listed >= 1): ?>
+      <div id="my-items">
+        <span id="username">My Items:</span>
+        <div class="b-div">
+          <a id="a-items" href="user_items.php?username=<?= $user->name ?>"><i class="fa-solid fa-eye"></i>View my posted items</a>
+        </div>
+       </div>
+       <?php endif; ?>
+
       <div id="profile-password">
         <div class="span">
           <span id="bold"><strong>Password:</strong></span> 
@@ -109,12 +117,8 @@ function drawProfile(User $user, Session $session): void {
             </div>
         </form>
       </section>
-      <?php if ($my_type == 'buyer/seller' && $user->items_listed >= 1): ?>
-          <div class="items">
-              <span class="bold">Items:</span>
-              <a href="user_items.php?username=<?= $user->name ?>">View all items</a>
-          </div>
-      <?php elseif ($my_type == 'admin'): ?>
+      
+      <?php if ($my_type == 'admin'): ?>
           <div class="admin-moderation">
               <span class="bold">Admin Moderation</span>
               <div class="admin-manage">

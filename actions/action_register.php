@@ -50,7 +50,7 @@
         header('Location: ' . $_SERVER['HTTP_REFERER']);
         exit();
     } else {
-        $user = User::createAndInsert($db, $username, $email, $password, 'buyer'); 
+        $user = User::createAndInsert($db, $username, $email, $password, 'seller'); 
         $session->addMessage('Register success', 'Welcome, ' . $user->name . '!');
         header('Location: ../index.php');
     }

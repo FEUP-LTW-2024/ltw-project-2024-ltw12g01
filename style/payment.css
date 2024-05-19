@@ -29,7 +29,7 @@ h1 {
 
 label {
     display: block;
-    margin-bottom: 20px; 
+    padding-bottom: 10px;
     font-weight: bold;
     font-size: 18px;
     color: #666;
@@ -53,9 +53,10 @@ select option {
 }
 
 input[type="submit"] {
-    background-color: #497aaf;
+    background-color: #0056B3;
     color: #fff;
     padding: 15px 30px; 
+    margin-bottom: 0;
     border: none;
     border-radius: 8px;
     cursor: pointer;

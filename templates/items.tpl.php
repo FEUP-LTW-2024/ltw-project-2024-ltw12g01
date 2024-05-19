@@ -9,14 +9,14 @@
 ?>
 
 <?php function drawItems(array $items) { ?>
- <main>
+ <main> 
         <section id="products">
         <?php foreach($items as $item) { ?> 
         <article>
                     <a href="/pages/product.php?id=<?=$item->id?>"> <?=$item->itemName ?></a>
                     <a href="/pages/product.php?id=<?=$item->id?>"><img id="product-grid-img" src="<?php echo $item->ItemImage; ?>" alt="<?php echo $item->itemName; ?>"> </a>                
-                    <h3> <?=$item->itemBrand ?></h3>
-                    <h4>Price: <?=$item->itemPrice ?>$</h4>
+                    <a href="/pages/product.php?id=<?=$item->id?>"><h3> <?=$item->itemBrand ?></h3> </a>
+                    <a href="/pages/product.php?id=<?=$item->id?>"><h4>Price: <?=$item->itemPrice ?>$</h4> </a>
         </article>
         <?php } ?>
     </section>
@@ -24,10 +24,10 @@
 <?php } ?>
 
 <?php 
-function drawItem(Item $item, Session $session) { 
-    $receiver_id = User::getUserIdByUsername(getDatabaseConnection(), $item->itemOwner);
+function drawItem(Item $item, Session $session, int $itemOwnerId) { 
     $loggedInUserId = $session->getId();
-    $isOwner = ($loggedInUserId === $receiver_id);
+    $isOwner = ($loggedInUserId === $item->itemOwner);
+
 
     ?>
     <head>
@@ -45,14 +45,14 @@ function drawItem(Item $item, Session $session) {
                 <div class="info-item" id="category"><strong>Category:</strong> <?php echo $item->itemCategory; ?></div>
                 <div class="info-item" id="size"><strong>Size:</strong> <?php echo $item->itemSize; ?></div>
                 <div class="info-item" id="condition"><strong>Condition:</strong> <?php echo $item->itemCondition; ?></div>
-                <div class="info-item" id="sold-by"><strong>Sold by:</strong> <a href="#"> <?php echo $item->itemOwner; ?></a></div>
+                <div class="info-item" id="sold-by"><strong>Sold by:</strong> <?php echo $item->itemOwner?></div>
                 <div class="description-box">
                     <p><strong>Description:</strong> <?php echo $item->itemDescription; ?></p>
                 </div>
                 <?php if($session->isLoggedIn() && !$isOwner): ?>
                     <form action="../pages/chat.php" method="GET">
                         <input type="hidden" name="sender_id" value="<?php echo $loggedInUserId; ?>">
-                        <input type="hidden" name="receiver_id" value="<?php echo $receiver_id ?>">
+                        <input type="hidden" name="receiver_id" value="<?php echo $itemOwnerId ?>">
                         <input type="hidden" name="item_id" value="<?php echo $item->id; ?>">
                         <button class="start-chat-button" type="submit">Start Chat</button>
                     </form>
@@ -66,19 +66,5 @@ function drawItem(Item $item, Session $session) {
             </div>
         </section>
     </main>
-
-<script>
-    function addToCart(productId) {
-    $.ajax({
-        type: 'POST',
-        url: '/actions/add-to-cart',
-        data: JSON.stringify({ productId: productId }),
-        contentType: 'application/json',
-        success: function(data) {
-            console.log(data);
-        }
-    });
-}
-</script>
 
 <?php } ?>

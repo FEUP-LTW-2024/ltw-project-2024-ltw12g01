@@ -72,6 +72,10 @@ body {
     display: flex;
     justify-content: space-between;
 }
+#profile-items {
+    display: flex;
+    justify-content: space-between;
+}
 
 #profile-password {
     display: flex;
@@ -106,7 +110,8 @@ body {
 #profile-info #a-email,
 #profile-info #a-pass,
 #profile-info #a-payment,
-#profile-info #a-shipping {
+#profile-info #a-shipping,
+#profile-info #a-items{
     color: inherit;
     text-decoration: none;
     color: #0056B3;
@@ -121,6 +126,7 @@ body {
     background: #00A6CF;
     background: linear-gradient(to right, #00A6CF 0%, #0056B3 39%);
     -webkit-background-clip: text;
+    background-clip: text;
     -webkit-text-fill-color: transparent;
 }
 
@@ -342,4 +348,18 @@ select:focus {
     padding: 15px;
     margin-bottom: 20px;
     border-radius: 4px;
+}
+
+#username{
+    padding: 0;
+    font-weight: bold;
+
+}
+#my-items{
+    display: flex;
+    justify-content: space-between; 
+}
+
+.b-div{
+    justify-content: flex-end;
 }

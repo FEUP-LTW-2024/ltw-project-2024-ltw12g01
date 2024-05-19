@@ -246,29 +246,7 @@ function drawFilters() {
     <?php
 }
 ?>
-
-
-<script>
-document.addEventListener('DOMContentLoaded', function() {
-    const filterButton = document.querySelector('.filter-button');
-    const closeButton = document.querySelector('.close-button');
-    const filters = document.querySelector('.filters');
-
-    filterButton.addEventListener('click', () => {
-        if (filters.style.transform === 'translateX(-100%)') {
-            filters.style.transform = 'translateX(0)';
-            filterButton.style.visibility = 'visible'; 
-        } else {
-            filters.style.transform = 'translateX(-100%)';
-            filterButton.style.visibility = 'visible'; 
-        }
-    });
-
-    closeButton.addEventListener('click', () => {
-        filters.style.transform = 'translateX(-100%)';
-        filterButton.style.visibility = 'visible'; 
-    });
-});
-
+ 
+<script src="../javascript/filters.js">
 </script>
 

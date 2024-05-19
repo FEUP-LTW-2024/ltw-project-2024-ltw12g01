@@ -26,6 +26,7 @@ header {
 }
 
 .header-anchors a {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     text-decoration: none;
     color: #fff; 
     background-color: #0056b3; 
@@ -164,6 +165,8 @@ nav ul li a {
 
 /* Product Section Styles */
 #products {
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
     gap: 20px;
@@ -221,10 +224,11 @@ nav ul li a {
 
 /* Footer Styles */
 footer {
-    margin-top: 20px;
+    margin-top: 140px;
+    margin-bottom: 0;
     padding: 10px;
     text-align: center;
-    background-color: #f1f1f1;
+    background-color: #f4f4f4;
     font-size: 14px; /* Adjusted font size */
     color: #777; /* Adjusted font color */
 }
@@ -260,6 +264,11 @@ footer {
     margin: 0 150px;
     height: 350px;
     width: auto;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    /* display: grid;
+    grid-template-columns: auto auto;
+    position: relative; */
+
 }
 
 .border.active {
@@ -272,16 +281,6 @@ footer {
     object-fit: contain;
     border-radius: 5px;
 }
-
-
-/* .border > div {
-    background-color: #8a2be2;
-    border: 1px solid #8a2be2;
-    padding: 20px;
-    font-size: 30px;
-    text-align: center;
-    position: absolute;
-} */
 
 .border .upload-icon {
     margin: 20px 240px;
@@ -1664,3 +1663,43 @@ label {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
+.order-summary {
+    max-width: 600px;
+    margin: 20px auto;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+}
+.order-summary h2 {
+    color: #333;
+}
+.order-summary h1{
+    text-align: center;
+    color: #333;
+}
+.order-summary p {
+    font-size: 16px;
+    color: #555;
+}
+.order-summary button {
+    display: inline-block;
+    margin: 10px 5px;
+    padding: 10px 20px;
+    font-size: 16px;
+    color: #fff;
+    background-color: #007BFF;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+.order-summary button:hover {
+    background-color: #0056b3;
+}
+
+@media print {
+    .print-hide {
+      display: none;
+    }
+  }
