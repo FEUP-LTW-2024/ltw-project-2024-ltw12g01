@@ -11,20 +11,48 @@ function drawPagination(Pagination $pagination){
         echo '<li><a href="?page=' . ($pagination->getCurrentPage() - 1) . '">Previous</a></li>';
     }
 
-    for ($i = 1; $i <= $pagination->getTotalPages(); $i++) {
-        echo '<li';
-        if ($i === $pagination->getCurrentPage()) {
-            echo ' class="active"';
+    $totalPages = $pagination->getTotalPages();
+    $currentPage = $pagination->getCurrentPage();
+    $numPagesToShow = 7; 
+    $numPagesBeforeAfter = floor(($numPagesToShow - 3) / 2); 
+    if ($totalPages <= $numPagesToShow) {
+        for ($i = 1; $i <= $totalPages; $i++) {
+            echoPageLink($i, $currentPage);
         }
-        echo '><a href="?page=' . $i . '">' . $i . '</a></li>';
+    } else {
+        echoPageLink(1, $currentPage);
+
+        if ($currentPage > ($numPagesBeforeAfter + 2)) {
+            echo '<li><span>...</span></li>';
+        }
+
+        $start = max(2, $currentPage - $numPagesBeforeAfter);
+        $end = min($totalPages - 1, $currentPage + $numPagesBeforeAfter);
+        for ($i = $start; $i <= $end; $i++) {
+            echoPageLink($i, $currentPage);
+        }
+
+        if ($currentPage < ($totalPages - $numPagesBeforeAfter - 1)) {
+            echo '<li><span>...</span></li>';
+        }
+
+        echoPageLink($totalPages, $currentPage);
     }
 
-    if ($pagination->getCurrentPage() < $pagination->getTotalPages()) {
-        echo '<li><a href="?page=' . ($pagination->getCurrentPage() + 1) . '">Next</a></li>';
+    if ($currentPage < $totalPages) {
+        echo '<li><a href="?page=' . ($currentPage + 1) . '">Next</a></li>';
     } else {
         echo '<li class="disabled"><span>Next</span></li>';
     }
 
     echo '</ul>';
+}
+
+function echoPageLink($pageNumber, $currentPage) {
+    echo '<li';
+    if ($pageNumber === $currentPage) {
+        echo ' class="active"';
+    }
+    echo '><a href="?page=' . $pageNumber . '">' . $pageNumber . '</a></li>';
 }
 ?>
