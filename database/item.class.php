@@ -62,7 +62,17 @@ class Item {
         $userId = User::getIdfromUsername($db, $username);
     
         return $userId;
-    }    
+    }
+    
+    static public function getOwnerUsernameId(PDO $db, int $itemId) {
+        $stmt = $db->prepare('SELECT ItemOwner FROM Item WHERE ItemId = ?');
+        $stmt->execute(array($itemId));
+    
+        $item = $stmt->fetchObject();
+        $username = $item->ItemOwner;
+    
+        return $username;
+    }
     
     static public function getAllItemsFromDatabase(PDO $db): array {
         $stmt = $db->prepare('SELECT ItemId, ItemName, ItemBrand, ItemDescription, ItemPrice, ItemOwner, ItemCategory, ItemImage, ItemSize, ItemCondition FROM Item');
@@ -163,8 +173,22 @@ class Item {
         return $this->ItemImage;
     }
 
-    static public function updateItem(PDO $db, int $itemId, string $itemName, string $itemBrand, string $itemOwner, string $itemDescription, string $itemCategory, int $itemPrice, string $itemCondition, string $itemSize): bool {
-        $stmt = $db->prepare('UPDATE Item SET ItemName = :itemName, ItemBrand = :itemBrand, ItemOwner = :itemOwner, ItemDescription = :itemDescription, ItemCategory = :itemCategory, ItemPrice = :itemPrice, ItemCondition = :itemCondition, ItemSize = :itemSize WHERE ItemId = :itemId');
+    static public function updateItem(PDO $db, int $itemId, string $itemName, string $itemBrand, string $itemOwner, string $itemDescription, string $itemCategory, int $itemPrice, string $itemCondition, string $itemSize, string $image): bool {
+        $stmt = $db->prepare('
+            UPDATE Item 
+            SET 
+                ItemName = :itemName, 
+                ItemBrand = :itemBrand, 
+                ItemOwner = :itemOwner, 
+                ItemDescription = :itemDescription, 
+                ItemCategory = :itemCategory, 
+                ItemPrice = :itemPrice, 
+                ItemCondition = :itemCondition, 
+                ItemSize = :itemSize,
+                ItemImage = :image 
+            WHERE 
+                ItemId = :itemId
+        ');
         return $stmt->execute([
             ':itemName' => $itemName,
             ':itemBrand' => $itemBrand,
@@ -174,6 +198,7 @@ class Item {
             ':itemPrice' => $itemPrice,
             ':itemCondition' => $itemCondition,
             ':itemSize' => $itemSize,
+            ':image' => $image,
             ':itemId' => $itemId
         ]);
     }

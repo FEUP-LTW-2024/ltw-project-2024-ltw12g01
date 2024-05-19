@@ -22,7 +22,7 @@
             require_once(__DIR__ . '/../database/user.class.php');
             
             $email = User::getEmailByUsername($db, $session->getName());
-            $user = User::getUserWithPassword($db, $email, $_POST['old_password']);
+            $user = User::getUserWithPassword($db, $email, htmlentities($_POST['old_password']));
 
             if($user->username !== $session->getName() || $user === null){
                 $session->addMessage('Password error', 'Current password Wrong!');
@@ -35,9 +35,9 @@
             $admin = (User::getUserTypeByUsername($db, $session->getName()) == 'admin');
     
             if ($admin) {
-                User::changePassword($db, $session->getName(), $_POST['new']);
+                User::changePassword($db, $session->getName(), htmlentities($_POST['new']));
             } elseif($_POST['new_email'] == $_POST['confirm_email']){
-                User::changeEmailName($db, $session->getName(), $_POST['new_email']);
+                User::changeEmailName($db, $session->getName(), htmlentities($_POST['new_email']));
             }
         }
     }

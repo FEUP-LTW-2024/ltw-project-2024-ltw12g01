@@ -16,7 +16,7 @@ try {
     }
 
     if (!empty($_POST['name'])) { 
-        $itemName = $_POST['name'];
+        $itemName = htmlentities($_POST['name']);
 
         $results = Item::searchItems($db, $itemName, 1); 
         if (!empty($results)) {

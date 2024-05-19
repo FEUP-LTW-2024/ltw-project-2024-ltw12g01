@@ -6,7 +6,7 @@ require_once(__DIR__ . '/../session/session.php');
 
 $session = new Session();
 
-if ($session->getCSRF() !== $_POST['csrf']) {
+if ($session->getCSRF() !== htmlentities($_POST['csrf'])) {
     $session->addMessage('Error:', 'Request does not appear to be legitimate');
     sleep(10);
     header('Location: ' . $_SERVER['HTTP_REFERER']);

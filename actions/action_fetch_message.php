@@ -5,8 +5,8 @@ require_once(__DIR__ . '/../database/message.class.php');
 
 $db = getDatabaseConnection();
 
-$chatId = $_GET['chat_id'];
-$item_id = $_GET['item_id'];
+$chatId = htmlentities($_GET['chat_id']);
+$item_id = htmlentities($_GET['item_id']);
 
 if (!isset($chatId) || !isset($item_id)) {
     echo json_encode([]);
