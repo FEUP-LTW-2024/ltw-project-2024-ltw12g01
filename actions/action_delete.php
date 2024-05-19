@@ -14,13 +14,8 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST['item_id'])) {
         header('Location: ' . $_SERVER['HTTP_REFERER']);
         exit();
     } 
-<<<<<<< HEAD
     $itemId = (int)htmlentities($_POST['item_id']);
     $imageURL = htmlentities($_POST['item_image']);
-=======
-    $itemId = (int)$_POST['item_id'];
-    $imageURL = "../uploads/" . $_POST['item_image'];
->>>>>>> 1c682ef7d558d4a73c2f91727e78a28936e659e7
 
     $db = getDatabaseConnection();
     $success = Item::deleteItem($db, $itemId);

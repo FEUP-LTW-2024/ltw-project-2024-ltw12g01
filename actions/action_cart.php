@@ -10,11 +10,7 @@ if (isset($_POST['item_json'])) {
     $item_data = htmlentities(json_decode($_POST['item_json'], true));
 
     if (isset($_POST['last_suggested_price'])) {
-<<<<<<< HEAD
-        $itemPrice = htmlentities((int)$_POST['last_suggested_price']);
-=======
         $itemPrice = (int)htmlentities($_POST['last_suggested_price']);
->>>>>>> 1c682ef7d558d4a73c2f91727e78a28936e659e7
     } else {
         $itemPrice = htmlentities($item_data['itemPrice']);
     }
