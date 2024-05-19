@@ -124,3 +124,75 @@ VALUES
 ('Adidas', 'Adidas Gazelle Pink', 50, 2, '../uploads/sneakersGazelle.jpg', 'Usadas, mas em bom estado.', 'Women', 'Good', '36'),
 ('Adidas', 'Adidas Gazelle Black', 80, 2, '../uploads/sneakersGazelle2.jpg', 'Novas, bastante confortáveis', 'Women', 'New without tags', '36'),
 ('Christian Louboutin', 'Louboutin Seavast 2', 850, 1, '../uploads/sneakersLouboutin.jpg', 'Authentic.', 'Men', 'New without tags', '42');
+
+INSERT INTO Chat (ItemId, SenderId, ReceiverId, LastSuggestedPrice)
+VALUES (1, 1, 2, 65.00); 
+
+INSERT INTO Message (ChatId, SenderId, ReceiverId, Content)
+VALUES
+    (1, 1, 2, 'Hi Jane, I''m interested in your items.'),
+    (1, 2, 1, 'Hello John, sure, what items are you interested in?');
+
+INSERT INTO Chat (ItemId, SenderId, ReceiverId, LastSuggestedPrice)
+VALUES (2, 2, 3, 50.00); 
+
+INSERT INTO Message (ChatId, SenderId, ReceiverId, Content)
+VALUES
+    (2, 2, 3, 'Hi Mike, I saw your items and I''m interested.'),
+    (2, 3, 2, 'Hi Jane, thanks for your interest. Which items caught your eye?');
+
+INSERT INTO Chat (ItemId, SenderId, ReceiverId, LastSuggestedPrice)
+VALUES (3, 3, 6, 60.00); 
+
+INSERT INTO Message (ChatId, SenderId, ReceiverId, Content)
+VALUES
+    (3, 3, 6, 'Hi Amanda, I''m interested in your items.'),
+    (3, 6, 3, 'Hello Mike, sure, which items are you interested in?');
+
+INSERT INTO Chat (ItemId, SenderId, ReceiverId, LastSuggestedPrice)
+VALUES (4, 4, 8, 115.00); 
+
+INSERT INTO Message (ChatId, SenderId, ReceiverId, Content)
+VALUES
+    (4, 4, 8, 'Hi Sarah, I''m interested in your items.'),
+    (4, 8, 4, 'Hello Emily, sure, which items are you interested in?');
+
+INSERT INTO Chat (ItemId, SenderId, ReceiverId, LastSuggestedPrice)
+VALUES (5, 5, 7, 75.00); 
+
+INSERT INTO Message (ChatId, SenderId, ReceiverId, Content)
+VALUES
+    (5, 5, 7, 'Hi David, I''m interested in your items.'),
+    (5, 7, 5, 'Hello Chris, which items caught your interest?');
+
+INSERT INTO Chat (ItemId, SenderId, ReceiverId, LastSuggestedPrice)
+VALUES (6, 10, 11, 0.00); 
+
+INSERT INTO Message (ChatId, SenderId, ReceiverId, Content)
+VALUES
+    (6, 10, 11, 'Hi Rebelo, I''m interested in your items.'),
+    (6, 11, 10, 'Hello Laura, sure, which items are you interested in?');
+
+INSERT INTO Chat (ItemId, SenderId, ReceiverId, LastSuggestedPrice)
+VALUES (7, 10, 1, 60.00); 
+
+INSERT INTO Message (ChatId, SenderId, ReceiverId, Content)
+VALUES
+    (7, 10, 1, 'Hi John, I''m interested in your items.'),
+    (7, 1, 10, 'Hello Laura, sure, what items are you interested in?');
+
+INSERT INTO Chat (ItemId, SenderId, ReceiverId, LastSuggestedPrice)
+VALUES (8, 6, 9, 70.00); 
+
+INSERT INTO Message (ChatId, SenderId, ReceiverId, Content)
+VALUES
+    (8, 6, 9, 'Hi Paul, I''m interested in your items.'),
+    (8, 9, 6, 'Hello Amanda, which items caught your interest?');
+
+INSERT INTO Chat (ItemId, SenderId, ReceiverId, LastSuggestedPrice)
+VALUES (9, 12, 13, 0.00); 
+
+INSERT INTO Message (ChatId, SenderId, ReceiverId, Content)
+VALUES
+    (9, 12, 13, 'Hi Tiago, I''m interested in your items.'),
+    (9, 13, 12, 'Hello Carlos, sure, what items are you interested in?');
