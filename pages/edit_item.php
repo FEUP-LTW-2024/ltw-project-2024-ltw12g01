@@ -54,9 +54,9 @@ $session = new Session();
         </div>
         <br>
         <div class="description">
-            <form action="../actions/action_edit_item.php" method="post" enctype="multipart/form-data">
-                <input type="file" id="hiddenInput" name="hiddenInput" accept=".png,.jpg,.jpeg" multiple>
-                <input type="hidden" name="itemId" value="<?php echo $item->id; ?>">
+        <form action="../actions/action_edit_item.php" method="post" enctype="multipart/form-data">
+            <input type="file" id="hiddenInput" name="ItemImage" accept=".png,.jpg,.jpeg" multiple>
+            <input type="hidden" name="itemId" value="<?php echo $item->id; ?>">
 
                 <div class="title">
                     <span>Title</span>

@@ -18,7 +18,6 @@ function drawProfile(User $user, Session $session): void {
 
   ?>
   <link rel="stylesheet" href="../style/profile.css">
-  <script src="../javascript/editInfo.js" defer></script>
   <section id="profile-info">
       <div class="profile-container">
       <div id="profile-img">
