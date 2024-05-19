@@ -34,11 +34,11 @@
 
 
 ## Important Topics
-    For being easier to interact with all the features, we are evidianting some topics:
+    For being easier to interact with all the features, we are showcasing some topics:
 #### Our user privelege system has 3 classes, buyer,  buyer/seller and admin.
-    -All users start being buyers only, when they list a product they, gain the status buyer/seller beign able to see and manage their posted products.
+    -All users start being buyers only, when they list a product they, gain the status buyer/seller being able to see and manage their posted products.
     -Admins, can edit/delete posted products and edit/delete users information and status.
-    -All accounts have the same password ('@Password123')
+    -All accounts have the same password ('@Password123').
 
 ## Implemented Features
 
