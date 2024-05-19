@@ -1,16 +1,14 @@
-# Your Project Name
+# SneakerCycle
 
+- SneakerCycle is a dynamic online platform dedicated to the buying and selling of pre-loved sneakers. Our website offers users a platform allowing them to easily list their sneakers for sale, browse through a diverse range of options, communicate and transact with other users. 
 
+## Group ltw12g01
 
-## Group ltw00g00
+- Carlos Filipe Oliveira Sanches Pinto (up202107694) 34%
 
+- João Maria Correia Rebelo (up202107209) 33%
 
-
-- John Doe (up202012345) 40%
-
-- Jane Doe (up202012345) 30%
-
-- Carl Doe (up202012345) 30%
+- Tiago Campos Lourenço (up202004374) 33%
 
 
 
@@ -20,7 +18,7 @@
 
     git checkout final-delivery-v1
 
-    sqlite database/database.db < database/script.sql
+    sqlite database/database.db < database/database.sql
 
     php -S localhost:9000
 
@@ -39,10 +37,9 @@
     -All users start being buyers only, when they list a product they, gain the status buyer/seller being able to see and manage their posted products.
     -Admins, can edit/delete posted products and edit/delete users information and status.
     -All accounts have the same password ('@Password123').
+    -Admin accounts: rebelo@example.com, carlos@example.com, tiago@example.com
 
 ## Implemented Features
-
-
 
 **General**:
 
@@ -116,35 +113,24 @@ We have been careful with the following security aspects:
 
 
 
-**Password Storage Mechanism**: md5 / sha1 / sha256 / hash_password&verify_password
+**Password Storage Mechanism**: hash_password&verify_password
 
 
 
 **Aditional Requirements**:
 
-
-
-We also implemented the following additional requirements (you can add more):
-
-
-
-- [ ] **Rating and Review System**
+We also implemented the following additional requirements:
 
 - [X] **Promotional Features**
-
-- [ ] **Analytics Dashboard**
-
-- [ ] **Multi-Currency Support**
-
-- [ ] **Item Swapping**
 
 - [X] **API Integration**
 
 - [X] **Dynamic Promotions**
 
-- [ ] **User Preferences**
-
 - [X] **Shipping Costs**
 
 - [X] **Real-Time Messaging System**
 
+- [X] **Sellers can suggest prices in real-time inside the chat to the other user**
+
+- [X] **Inside the chat Buyers can add to cart the product with the suggested seller price**
