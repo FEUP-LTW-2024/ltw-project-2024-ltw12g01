@@ -49,7 +49,7 @@ function drawProfile(User $user, Session $session): void {
       <div id="my-items">
         <span id="username">My Items:</span>
         <div class="b-div">
-          <a id="a-items" href="user_items.php?username=<?= $user->name ?>"><i class="fa-solid fa-eye"></i>View my posted items</a>
+          <a id="a-items" href="user_items.php?username=<?= $user->username ?>"><i class="fa-solid fa-eye"></i>View my posted items</a>
         </div>
        </div>
        <?php endif; ?>
