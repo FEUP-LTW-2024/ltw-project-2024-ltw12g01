@@ -22,17 +22,18 @@ if (($user_type != 'admin') && ($session->getName() != $session->getName())) {
 
 ?>
 <?php drawHeader($session, false); ?>
-    <link rel="stylesheet" href="../style/registers.css">
+<link rel="stylesheet" href="../style/registers.css">
+<script src="../javascript/DynamicHeight.js" defer></script>
 <form action="../actions/action_change_username.php" method="post" enctype="multipart/form-data">
-    <div class="user-container change-container">
+    <div id="user-container">
         <?php if ($user_type != 'admin') { ?>
             <span>Old password</span>
-            <input type="password" name="old_password" class="user-info">
+            <input type="password" name="old_password" class="user-info" id="oldPassword">
         <?php } ?>
         <span>New Username</span>
         <input type="text" name="new_username" class="user-info">
         <span>Confirm Username</span>
-        <input type="text" name="confirm_username" class="user-info">
+        <input type="text" name="confirm_username" class="user-info" id="margin-change">
         <input type="hidden" name="csrf" value="<?= $session->getCSRF() ?>">
         <button class="change-submit-button" type="submit">Submit</button>
     </div>

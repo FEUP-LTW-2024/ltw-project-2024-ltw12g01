@@ -22,16 +22,17 @@
         ?>
         <?php drawHeader($session, false); ?>
         <link rel="stylesheet" href="../style/registers.css">
+        <script src="../javascript/DynamicHeight.js" defer></script>
         <form action="../actions/action_change_email.php" method="post" enctype="multipart/form-data">
-        <div class="user-container change-container">    
+        <div  id="user-container">    
         <?php if ($user_type != 'admin') { ?>
             <span>Old password</span>
-            <input type="password" name="old_password" class="user-info">
+            <input type="password" name="old_password" class="user-info"  id="oldPassword">
             <?php } ?>
             <span>New email</span>
             <input type="email" name="new_email" class="user-info">
             <label for="confirm_email">Confirm email</label>
-            <input type="email" name="confirm_email" class="user-info">
+            <input type="email" name="confirm_email" class="user-info" id="margin-change">
             <input type="hidden" name="csrf" value="<?=$session->getCSRF()?>">
             <button class="submit-button" type="submit">Submit</button>
             </div>

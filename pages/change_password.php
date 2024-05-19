@@ -29,7 +29,7 @@
 
 <?php
 ?>
-    <div class="user-container change-pass-container">
+    <div class="user-container">
     <span>Old password</span>
     <input type="password" name="old" class="user-info" required>
 <?php
@@ -37,7 +37,7 @@
     <span>New password</span>
     <input type="password" name="new" class="user-info" required>
     <span>Confirm new password</span>
-    <input type="password" name="new2" class="user-info" required>
+    <input type="password" name="new2" class="user-info margin-pass" required>
     <input type="hidden" name="csrf" value="<?=$session->getCSRF()?>">
     <button class="submit-button change-pass-button" type="submit">Submit</button>
     </div>

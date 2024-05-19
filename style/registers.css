@@ -75,7 +75,8 @@ button:hover {
 }
 
 
-.user-container {
+
+.height-270 {
     background-color: white;
     width: 300px;
     height: 270px;
@@ -83,21 +84,47 @@ button:hover {
     margin: auto; 
     padding: 40px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    
 }
-
-.change-container {
+.height-230 {
+    background-color: white;
+    width: 300px;
+    
+    border-radius: 10px;
+    margin: auto; 
+    padding: 40px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     height: 230px;
 }
 
-.change-pass-container {
-    height: 300px;
+/* .change-container {
+    height: 230px;
 }
 
+
+
+.change-pass-container {
+    height: 300px;
+} */
+
+.user-container {
+    background-color: white;
+    width: 300px;
+    height: 270px;
+    border-radius: 10px;
+    margin: auto; 
+    padding: 40px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1)
+}
 
 .user-info {
     margin-bottom: 30px;
     margin-top: 2px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.margin-pass {
+    margin-bottom: 10px;
 }
 
 .type-container {

@@ -6,21 +6,21 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
+    background-color: #F4F4F4;
 }
 
-.container {
-    max-width: 500px; 
-    margin: 40px auto;
-    padding: 40px; 
-    background-color: #f9f9f9;
-    border: 1px solid #ddd;
+.payment-container {
+    background-color: white;
+    padding: 40px;
     border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    display: flex;
-    justify-content: center;
-    text-align: center;
 }
 
+.shipping-container {
+    background-color: white;
+    padding: 30px 40px;
+    border-radius: 10px;
+   
+}
 h1 {
     font-weight: bold;
     font-size: 28px; 
