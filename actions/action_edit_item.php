@@ -44,7 +44,7 @@ if (isset($_FILES['ItemImage']) && $_FILES['ItemImage']['error'] === UPLOAD_ERR_
     $dest_path = $uploadFileDir . $newFileName;
 
     if(move_uploaded_file($fileTmpPath, $dest_path)) {
-        $itemImage = $dest_path;
+        $itemImage = $dest_path; 
     } else {
         $session->addMessage('Error:', 'There was an error moving the uploaded file.');
         header('Location: ' . $_SERVER['HTTP_REFERER']);
