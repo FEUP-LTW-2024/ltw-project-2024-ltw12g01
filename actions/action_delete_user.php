@@ -7,13 +7,8 @@ require_once(__DIR__ . '/../database/item.class.php');
 require_once(__DIR__ . '/../session/session.php');
 
 if (isset($_POST['userId'])) {
-    
-    if ($session->getCSRF() !== $_POST['csrf']) {
-        $session->addMessage('Error:', 'Request does not appear to be legitimate');
-        sleep(10);
-        header('Location: ' . $_SERVER['HTTP_REFERER']);
-        exit();
-    }   
+
+
     $userId = (int)htmlentities($_POST['userId']);
 
     $db = getDatabaseConnection();

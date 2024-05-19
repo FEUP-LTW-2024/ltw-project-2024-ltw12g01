@@ -37,7 +37,6 @@ if ($currentUserId !== null) {
                     <a class="a-usermng" href="edit_user.php?id=<?= $user->id ?>"><?= $user->username ?></a>
                     <form action="../actions/action_delete_user.php" method="post" style="display: inline;">
                         <input type="hidden" name="userId" value="<?= $user->id ?>">
-                        <input type="hidden" name="csrf" value="<?=$session->getCSRF()?>">
                         <div class="button-container">
                             <button type="submit" class="delete-account" onclick="return confirm('Are you sure you want to delete your account?')"><span class="text">Delete account</span><span class="icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
                                         <path d="M24 20.188l-8.315-8.209 8.2-8.282-3.697-3.697-8.212 8.318-8.31-8.203-3.666 3.666 8.321 8.24-8.206 8.313 3.666 3.666 8.237-8.318 8.285 8.203z"></path>
