@@ -4,6 +4,7 @@ declare(strict_types=1);
 require_once(__DIR__ . '/../database/connection.db.php');
 require_once(__DIR__ . '/../database/user.class.php');
 require_once(__DIR__ . '/../database/message.class.php');
+require_once(__DIR__ . '/../database/item.class.php');
 require_once(__DIR__ . '/../database/conversation.class.php');
 require_once(__DIR__ . '/../session/session.php');
 
@@ -38,10 +39,11 @@ $conversations = Conversation::getUserConversations($db, $currentUserId);
             <?php
                 $otherUserId = ($conversation->senderId == $currentUserId) ? $conversation->receiverId : $conversation->senderId;
                 $otherUserUsername = User::getUsernameById($db, $otherUserId);
+                $item = Item::getItem($db, (int)$conversation->itemId);
             ?>
             <li>
-                <a href="../pages/chat.php?sender_id=<?= $currentUserId ?>&receiver_id=<?= $otherUserId ?>&item_id=<?= $conversation->itemId ?>">
-                    Chat with <?= $otherUserUsername ?> (Item Name: <?= $conversation->itemId ?>)
+                <a href="../pages/chat.php?sender_id=<?= htmlspecialchars((string)$currentUserId) ?>&receiver_id=<?= htmlspecialchars((string)$otherUserId) ?>&item_id=<?= htmlspecialchars((string)$conversation->itemId) ?>">
+                    Chat with <?= htmlspecialchars($otherUserUsername) ?> (Item Name: <?= htmlspecialchars($item->itemName) ?>)
                 </a>
             </li>
         <?php endforeach; ?>

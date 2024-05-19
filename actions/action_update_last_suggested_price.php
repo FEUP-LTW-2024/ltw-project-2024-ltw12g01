@@ -5,11 +5,13 @@ require_once(__DIR__ . '/../database/message.class.php');
 $db = getDatabaseConnection();
 
 $chat_id = $_POST['chat_id'];
+$item_id = $_POST['item_id']; // Added item_id parameter
 $last_suggested_price = $_POST['last_suggested_price'];
 
-$stmt = $db->prepare('UPDATE Chat SET lastSuggestedPrice = :last_suggested_price WHERE ChatId = :chat_id');
+$stmt = $db->prepare('UPDATE Chat SET lastSuggestedPrice = :last_suggested_price WHERE ChatId = :chat_id AND ItemId = :item_id'); // Updated SQL query
 $stmt->bindParam(':last_suggested_price', $last_suggested_price);
 $stmt->bindParam(':chat_id', $chat_id);
+$stmt->bindParam(':item_id', $item_id); // Bound item_id parameter
 $stmt->execute();
 
 echo "Success";

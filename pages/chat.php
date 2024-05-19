@@ -24,19 +24,19 @@ $receiver_username = User::getUsernameById($db, (int)$receiver_id);
 
 $chat_id = Message::getChatIdSenderReceiver($db, $item_id, $receiver_id, $sender_id);
 
-$messages = Message::getMessagesForChat($db, $chat_id);
+$item = Message::getItemByChatId($db, $chat_id);
+
+$item_object = Item::getItem($db, (int)$item);
+
+$messages = Message::getMessagesForChat($db, $chat_id,$item_id);
 
 $item = Item::getItem($db, (int)$item_id);
 
 $item_owner_id = User::getUserIdByUsername($db,$item->itemOwner);
 
-$item = Message::getItemByChatId($db, $chat_id);
-
-$item_object = Item::getItem($db, (int)$item);
-
 $is_item_owner = ($sender_id == $item_owner_id);
 
-$lastSuggestedPrice = Message::getLastSuggestedPrice($db, $chat_id); 
+$lastSuggestedPrice = Message::getLastSuggestedPrice($db, $chat_id,(int)$item_id); 
 
 ?>
 <!DOCTYPE html>
@@ -56,6 +56,7 @@ $lastSuggestedPrice = Message::getLastSuggestedPrice($db, $chat_id);
         <input type="hidden" id="chat_id" value="<?php echo $chat_id; ?>">
         <input type="hidden" id="sender_id" value="<?php echo $sender_id; ?>">
         <input type="hidden" id="receiver_id" value="<?php echo $receiver_id; ?>">
+        <input type="hidden" id="item_id" value="<?php echo $item_id; ?>">
         <textarea id="content" placeholder="Type your message here..."></textarea>
         <button type="submit">Send</button>
     </form>
@@ -80,20 +81,22 @@ $lastSuggestedPrice = Message::getLastSuggestedPrice($db, $chat_id);
         var lastSuggestedPrice = null;
 
         function suggestSellPrice() {
-
             var sellPrice = document.getElementById("sell_price").value;
 
             if (sellPrice.trim() === "" || isNaN(sellPrice)) {
                 console.error("Please enter a valid sell price.");
                 return;
             }
+
             var content = "Sell price suggestion: $" + sellPrice;
 
             lastSuggestedPrice = sellPrice;
 
             sendMessage(content);
 
-            var chatId = document.getElementById("chat_id").value; 
+            var chatId = document.getElementById("chat_id").value;
+            var itemId = document.getElementById("item_id").value;
+
             var xhr = new XMLHttpRequest();
             xhr.onreadystatechange = function() {
                 if (xhr.readyState === XMLHttpRequest.DONE) {
@@ -106,8 +109,9 @@ $lastSuggestedPrice = Message::getLastSuggestedPrice($db, $chat_id);
             };
             xhr.open("POST", "../actions/action_update_last_suggested_price.php", true);
             xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-            xhr.send("chat_id=" + encodeURIComponent(chatId) + "&last_suggested_price=" + encodeURIComponent(lastSuggestedPrice));
+            xhr.send("chat_id=" + encodeURIComponent(chatId) + "&item_id=" + encodeURIComponent(itemId) + "&last_suggested_price=" + encodeURIComponent(lastSuggestedPrice));
         }
+
 
         function addToCart() {
             if (lastSuggestedPrice === null) {
@@ -127,13 +131,14 @@ $lastSuggestedPrice = Message::getLastSuggestedPrice($db, $chat_id);
             var chatId = document.getElementById("chat_id").value;
             var senderId = document.getElementById("sender_id").value;
             var receiverId = document.getElementById("receiver_id").value;
+            var itemId = document.getElementById("item_id").value; 
 
             var xhr = new XMLHttpRequest();
             xhr.onreadystatechange = function() {
                 if (xhr.readyState === XMLHttpRequest.DONE) {
                     if (xhr.status === 200) {
-                        document.getElementById("content").value = "";
-                        fetchMessages();
+                        document.getElementById("content").value = "";  
+                        fetchMessages();  
                     } else {
                         console.error('Error sending message:', xhr.status);
                     }
@@ -141,40 +146,63 @@ $lastSuggestedPrice = Message::getLastSuggestedPrice($db, $chat_id);
             };
             xhr.open("POST", "../actions/action_send_message.php", true);
             xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-            xhr.send("chat_id=" + chatId + "&sender_id=" + senderId + "&receiver_id=" + receiverId + "&content=" + encodeURIComponent(content));
+            xhr.send("chat_id=" + encodeURIComponent(chatId) + "&sender_id=" + encodeURIComponent(senderId) + "&receiver_id=" + encodeURIComponent(receiverId) + "&item_id=" + encodeURIComponent(itemId) + "&content=" + encodeURIComponent(content));
         }
 
         function fetchMessages() {
             var chatId = document.getElementById("chat_id").value;
+            var itemId = document.getElementById("item_id").value;
 
             var xhr = new XMLHttpRequest();
             xhr.onreadystatechange = function() {
                 if (xhr.readyState === XMLHttpRequest.DONE) {
                     if (xhr.status === 200) {
-                        var messages = JSON.parse(xhr.responseText);
-                        displayMessages(messages);
+                        try {
+                            var messages = JSON.parse(xhr.responseText);
+                            displayMessages(messages);
+                        } catch (e) {
+                            console.error('Error parsing JSON response:', e);
+                            console.error('Response text:', xhr.responseText);
+                        }
                     } else {
-                        console.error('Error fetching messages:', xhr.status);
+                        console.error('Error fetching messages:', xhr.status, xhr.statusText);
+                        console.error('Response text:', xhr.responseText);
                     }
                 }
             };
-            xhr.open("GET", "../actions/action_fetch_message.php?chat_id=" + chatId, true);
+            xhr.open("GET", "../actions/action_fetch_message.php?chat_id=" + encodeURIComponent(chatId) + "&item_id=" + encodeURIComponent(itemId), true);
             xhr.send();
         }
 
         function fetchPrices() {
-            var xhr = new XMLHttpRequest();
+        var chatId = document.getElementById("chat_id").value;
+        var itemId = document.getElementById("item_id").value;
+
+        var xhr = new XMLHttpRequest();
             xhr.onreadystatechange = function() {
                 if (xhr.readyState === XMLHttpRequest.DONE) {
                     if (xhr.status === 200) {
-                        lastSuggestedPrice = xhr.responseText; 
-                        document.getElementById("add-to-cart-button").textContent = "Add to Cart $" + lastSuggestedPrice;
+                        try {
+                            var response = JSON.parse(xhr.responseText);
+                            if (response.lastSuggestedPrice !== lastSuggestedPrice) {
+                                lastSuggestedPrice = response.lastSuggestedPrice;
+                                if (lastSuggestedPrice !== null && lastSuggestedPrice !== "") {
+                                    document.getElementById("add-to-cart-submit").textContent = "Add to Cart $" + lastSuggestedPrice;
+                                    document.getElementById("last_suggested_price").value = lastSuggestedPrice;
+                                    document.getElementById("add-to-cart-container").style.display = "block";
+                                }
+                            }
+                        } catch (e) {
+                            console.error('Error parsing price response:', e);
+                            console.error('Response text:', xhr.responseText);
+                        }
                     } else {
-                        console.error('Error fetching last suggested price:', xhr.status);
+                        console.error('Error fetching last suggested price:', xhr.status, xhr.statusText);
+                        console.error('Response text:', xhr.responseText);
                     }
                 }
             };
-            xhr.open("GET", "../actions/action_suggested_prices.php?chat_id=" + document.getElementById("chat_id").value, true);
+            xhr.open("GET", "../actions/action_suggested_prices.php?chat_id=" + encodeURIComponent(chatId) + "&item_id=" + encodeURIComponent(itemId), true);
             xhr.send();
         }
 

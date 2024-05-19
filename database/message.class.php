@@ -43,16 +43,21 @@ class Message {
     
     static public function sendMessage(PDO $db, $chatId, $senderId, $receiverId, $content) {
         $stmt = $db->prepare('INSERT INTO Message (ChatId, SenderId, ReceiverId, Content) VALUES (:chatId, :senderId, :receiverId, :content)');
-        $stmt->bindParam(':chatId', $chatId);
-        $stmt->bindParam(':senderId', $senderId);
-        $stmt->bindParam(':receiverId', $receiverId);
-        $stmt->bindParam(':content', $content);
+        $stmt->bindParam(':chatId', $chatId, PDO::PARAM_INT);
+        $stmt->bindParam(':senderId', $senderId, PDO::PARAM_INT);
+        $stmt->bindParam(':receiverId', $receiverId, PDO::PARAM_INT);
+        $stmt->bindParam(':content', $content, PDO::PARAM_STR);
         $stmt->execute();
     }
     
-    static public function getMessagesForChat(PDO $db, $chatId) {
-        $stmt = $db->prepare('SELECT MessageId, ChatId, SenderId, ReceiverId, Content, Timestamp FROM Message WHERE ChatId = :chatId');
-        $stmt->bindParam(':chatId', $chatId);
+    static public function getMessagesForChat(PDO $db, $chatId, $itemId) {
+        $stmt = $db->prepare('SELECT m.MessageId, m.ChatId, m.SenderId, m.ReceiverId, m.Content, m.Timestamp 
+                              FROM Message m
+                              INNER JOIN Chat c ON m.ChatId = c.ChatId
+                              WHERE m.ChatId = :chatId AND c.ItemId = :itemId
+                              ORDER BY m.Timestamp ASC');
+        $stmt->bindParam(':chatId', $chatId, PDO::PARAM_INT);
+        $stmt->bindParam(':itemId', $itemId, PDO::PARAM_INT);
         $stmt->execute();
     
         $messages = array();
@@ -63,13 +68,14 @@ class Message {
                 $message->SenderId,
                 $message->ReceiverId,
                 $message->Content,
-                $message->Timestamp,
+                $message->Timestamp
             );
         }
     
         return $messages;
     }
 
+    
     static public function createChat(PDO $db, $itemId, $senderId, $receiverId) {
         $stmt = $db->prepare('INSERT INTO Chat (ItemId, SenderId, ReceiverId) VALUES (:itemId, :senderId, :receiverId)');
         $stmt->bindParam(':itemId', $itemId);
@@ -79,7 +85,8 @@ class Message {
     }
 
     static public function getChatIdSenderReceiver(PDO $db, $item_id, $senderId, $receiverId) {
-        $stmt = $db->prepare('SELECT ChatId FROM Chat WHERE (SenderId = :senderId AND ReceiverId = :receiverId) OR (SenderId = :receiverId AND ReceiverId = :senderId)');
+        $stmt = $db->prepare('SELECT ChatId FROM Chat WHERE ItemId = :item_id AND ((SenderId = :senderId AND ReceiverId = :receiverId) OR (SenderId = :receiverId AND ReceiverId = :senderId))');
+        $stmt->bindParam(':item_id', $item_id);
         $stmt->bindParam(':senderId', $senderId);
         $stmt->bindParam(':receiverId', $receiverId);
         $stmt->execute();
@@ -90,9 +97,17 @@ class Message {
             $chatId = self::getChatIdSenderReceiver($db, $item_id, $senderId, $receiverId);
             return $chatId;
         } else {
-            return $chat->ChatId;
+            $associatedItem = Message::getItemByChatId($db, $chat->ChatId);
+            if ($associatedItem == $item_id) {
+                return $chat->ChatId;
+            } else {
+                self::createChat($db, $item_id, $senderId, $receiverId);
+                $chatId = self::getChatIdSenderReceiver($db, $item_id, $senderId, $receiverId);
+                return $chatId;
+            }
         }
     }
+    
 
     static public function getUserConversations(PDO $db, $userId) {
         $stmt = $db->prepare('SELECT DISTINCT ChatId, SenderId, ReceiverId FROM Chat WHERE SenderId = :userId OR ReceiverId = :userId');
@@ -134,13 +149,13 @@ class Message {
         return $chat->ItemId;
     }
     
-    static public function getLastSuggestedPrice(PDO $db, $chatId) {
-        $stmt = $db->prepare('SELECT LastSuggestedPrice FROM Chat WHERE ChatId = :chatId');
-        $stmt->bindParam(':chatId', $chatId);
+    static public function getLastSuggestedPrice(PDO $db, int $chatId, int $itemId): ?float {
+        $stmt = $db->prepare('SELECT LastSuggestedPrice FROM Chat WHERE ChatId = :chatId AND ItemId = :itemId');
+        $stmt->bindParam(':chatId', $chatId, PDO::PARAM_INT);
+        $stmt->bindParam(':itemId', $itemId, PDO::PARAM_INT);
         $stmt->execute();
-    
-        $chat = $stmt->fetchObject();
-        return $chat->LastSuggestedPrice;
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+        return $result ? (float)$result['LastSuggestedPrice'] : null;
     }
     
     
